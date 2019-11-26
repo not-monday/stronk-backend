@@ -1,0 +1,5 @@
+development:
+    adapter: sqlite3
+    database: stronk.db
+    pool: 5
+    timeout: 5000
