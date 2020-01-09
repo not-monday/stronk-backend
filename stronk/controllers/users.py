@@ -1,4 +1,4 @@
-from flask import Blueprint, abort
+from flask import Blueprint, request
 
 users_page = Blueprint('users', __name__)
 
@@ -18,7 +18,8 @@ def add_user():
     # Parse request body
     # Create user object
     # Save it in the db
-    return "Adding new user"
+    req_body = request.get_json()
+    return "Adding new user with data: " + str(req_body)
 
 # PATCH /users/:id
 @users_page.route('/<int:id>', methods=['PATCH'])
