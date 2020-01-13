@@ -1,3 +1,4 @@
+"""Contains the Blueprint for users routes."""
 from flask import Blueprint, request
 
 users_page = Blueprint('users', __name__)
