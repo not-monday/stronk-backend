@@ -1,0 +1,1246 @@
+---
+swagger: "2.0"
+info:
+  description: "This is a BE Stronk server.  You can find \nout more about Swagger at \n[http://swagger.io](http://swagger.io) or on \n[irc.freenode.net, #swagger](http://swagger.io/irc/).\n"
+  version: 1.0.0
+  title: BE Stronk
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+host: virtserver.swaggerhub.com
+basePath: /Stronk/BE-Stronk/1.0.0
+tags:
+- name: users
+  description: Retrieve information about a user.
+- name: programs
+  description: Retrieve information about a program.
+- name: workouts
+  description: Retrieve information about a workout.
+- name: workout_exercise
+  description: Retrieve information about a workout exercise.
+- name: workout_exercise_super_set
+  description: Retrieve information about a workout exercise's super set.
+- name: program_workout
+  description: Retrieve information about a program workout.
+schemes:
+- https
+- http
+paths:
+  /users:
+    get:
+      tags:
+      - users
+      summary: Gets a list of all users
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ArrayOfUsers'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      tags:
+      - users
+      summary: Create a user.
+      description: Creates a user
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: Create user object.
+        required: true
+        schema:
+          $ref: '#/definitions/CreateUser'
+      responses:
+        "200":
+          description: User successfully created.
+          schema:
+            $ref: '#/definitions/User'
+        "400":
+          description: Bad request.
+          schema:
+            $ref: '#/definitions/Error'
+        "409":
+          description: Username or Email already exists.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+  /users/{id}:
+    get:
+      tags:
+      - users
+      summary: Get user by id
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: The id used to fetch a user.
+        required: true
+        type: string
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/User'
+        "400":
+          description: Invalid id supplied.
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: User not found.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      tags:
+      - users
+      summary: Update a user
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: The id of the user to be updated.
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: Updated user object
+        required: true
+        schema:
+          $ref: '#/definitions/CreateUser'
+      responses:
+        "200":
+          description: User successfully updated.
+          schema:
+            $ref: '#/definitions/User'
+        "400":
+          description: Invalid id supplied.
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: User not found.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      tags:
+      - users
+      summary: Delete user by id
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: The id used to fetch a user.
+        required: true
+        type: string
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/User'
+        "400":
+          description: Invalid id supplied.
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: User not found.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+  /programs:
+    get:
+      tags:
+      - programs
+      summary: Gets a list of all programs
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ArrayOfPrograms'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      tags:
+      - programs
+      summary: Create a program.
+      description: Creates a program
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: Create program object.
+        required: true
+        schema:
+          $ref: '#/definitions/CreateProgram'
+      responses:
+        "200":
+          description: Program successfully created.
+          schema:
+            $ref: '#/definitions/Program'
+        "400":
+          description: Bad request.
+          schema:
+            $ref: '#/definitions/Error'
+        "409":
+          description: Program name already exists.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+  /programs/{id}:
+    get:
+      tags:
+      - programs
+      summary: Get program by id
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: The id used to fetch a program.
+        required: true
+        type: string
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Program'
+        "400":
+          description: Invalid id supplied.
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: Program not found.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      tags:
+      - programs
+      summary: Update a program
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: The id of the program to be updated.
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: Updated program object
+        required: true
+        schema:
+          $ref: '#/definitions/CreateProgram'
+      responses:
+        "200":
+          description: Program successfully updated.
+          schema:
+            $ref: '#/definitions/Program'
+        "400":
+          description: Invalid id supplied.
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: Program not found.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      tags:
+      - programs
+      summary: Delete program by id
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: The id used to fetch a program.
+        required: true
+        type: string
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Program'
+        "400":
+          description: Invalid id supplied.
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: Program not found.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+  /workouts:
+    get:
+      tags:
+      - workouts
+      summary: Gets a list of all workouts
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ArrayOfWorkouts'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      tags:
+      - workouts
+      summary: Create a workout.
+      description: Creates a workout
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: Create workout object.
+        required: true
+        schema:
+          $ref: '#/definitions/CreateWorkout'
+      responses:
+        "200":
+          description: Workout successfully created.
+          schema:
+            $ref: '#/definitions/Workout'
+        "400":
+          description: Bad request.
+          schema:
+            $ref: '#/definitions/Error'
+        "409":
+          description: Workout name already exists.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+  /workouts/{id}:
+    get:
+      tags:
+      - workouts
+      summary: Get workout by id
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: The id used to fetch a workout.
+        required: true
+        type: string
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Workout'
+        "400":
+          description: Invalid id supplied.
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: Workout not found.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      tags:
+      - workouts
+      summary: Update a workout
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: The id of the workout to be updated.
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: Updated workout object
+        required: true
+        schema:
+          $ref: '#/definitions/CreateWorkout'
+      responses:
+        "200":
+          description: Workout successfully updated.
+          schema:
+            $ref: '#/definitions/Workout'
+        "400":
+          description: Invalid id supplied.
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: Workout not found.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      tags:
+      - workouts
+      summary: Delete workout by id
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: The id used to fetch a workout.
+        required: true
+        type: string
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Workout'
+        "400":
+          description: Invalid id supplied.
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: Workout not found.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+  /workout_exercises:
+    get:
+      tags:
+      - workout_exercise
+      summary: Gets a list of all workout exercises.
+      produces:
+      - application/json
+      parameters:
+      - name: exercise_id
+        in: query
+        description: The exercise id used to fetch a WorkoutExercise
+        required: false
+        type: integer
+      - name: workout_id
+        in: query
+        description: The workout id used to fetch a WorkoutExercise
+        required: false
+        type: integer
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ArrayOfWorkoutExercises'
+        "400":
+          description: Bad request. Workout Id or Exercise Id doesn't exist or one of Workout Id or Exercise Id is supplied when the other is provided.
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: WorkoutExercise with exercise id and workout id doesn't exist.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      tags:
+      - workout_exercise
+      summary: Create WorkoutExercise object
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/body'
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/WorkoutExercise'
+        "400":
+          description: Bad request. Workout Id or Exercise Id doesn't exist or not provided
+          schema:
+            $ref: '#/definitions/Error'
+        "409":
+          description: Entry already exists.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      tags:
+      - workout_exercise
+      summary: Updates a WorkoutExercise.
+      produces:
+      - application/json
+      parameters:
+      - name: exercise_id
+        in: query
+        description: The exercise id used to fetch a WorkoutExercise
+        required: true
+        type: integer
+      - name: workout_id
+        in: query
+        description: The workout id used to fetch a WorkoutExercise
+        required: true
+        type: integer
+      - in: body
+        name: body
+        description: The attributes to update the WorkoutExercise with.
+        required: false
+        schema:
+          $ref: '#/definitions/UpdateWorkoutExercise'
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/WorkoutExercise'
+        "400":
+          description: Bad request. Workout Id or Exercise Id doesn't exist or not provided.
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: WorkoutExercise with exercise id and workout id doesn't exist.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      tags:
+      - workout_exercise
+      summary: Delete a WorkoutExercise by workout id and exercise id.
+      produces:
+      - application/json
+      parameters:
+      - name: exercise_id
+        in: query
+        description: The exercise id used to fetch a WorkoutExercise
+        required: true
+        type: integer
+      - name: workout_id
+        in: query
+        description: The workout id used to fetch a WorkoutExercise
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/WorkoutExercise'
+        "400":
+          description: Bad request. Workout Id or Exercise Id doesn't exist or not provided.
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: WorkoutExercise with exercise id and workout id doesn't exist.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+  /exercises:
+    get:
+      tags:
+      - exercises
+      summary: Gets a list of all exercises
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ArrayOfPrograms'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      tags:
+      - exercises
+      summary: Create a exercise.
+      description: Creates a exercise
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        description: Create exercise object.
+        required: true
+        schema:
+          $ref: '#/definitions/CreateProgram'
+      responses:
+        "200":
+          description: Exercise successfully created.
+          schema:
+            $ref: '#/definitions/Exercise'
+        "400":
+          description: Bad request.
+          schema:
+            $ref: '#/definitions/Error'
+        "409":
+          description: Exercise name already exists.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+  /exercises/{id}:
+    get:
+      tags:
+      - exercises
+      summary: Get exercise by id
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: The id used to fetch a exercise.
+        required: true
+        type: string
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Exercise'
+        "400":
+          description: Invalid id supplied.
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: Exercise not found.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      tags:
+      - exercises
+      summary: Update a exercise
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: The id of the exercise to be updated.
+        required: true
+        type: string
+      - in: body
+        name: body
+        description: Updated exercise object
+        required: true
+        schema:
+          $ref: '#/definitions/Exercise'
+      responses:
+        "200":
+          description: Exercise successfully updated.
+          schema:
+            $ref: '#/definitions/Exercise'
+        "400":
+          description: Invalid id supplied.
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: Exercise not found.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      tags:
+      - exercises
+      summary: Delete exercise by id
+      produces:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        description: The id used to fetch a exercise.
+        required: true
+        type: string
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Exercise'
+        "400":
+          description: Invalid id supplied.
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: Exercise not found.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+  /workout_exercise_super_set:
+    get:
+      tags:
+      - workout_exercise_super_set
+      summary: Gets a list of all workout exercises' super sets
+      produces:
+      - application/json
+      parameters:
+      - name: workout_exercise_id
+        in: query
+        description: The workout exercise id.
+        required: false
+        type: string
+      - name: super_set_id
+        in: query
+        description: The super set id.
+        required: false
+        type: string
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ArrayOfWorkoutExerciseSuperSets'
+        "400":
+          description: Bad request. Workout Exercise Id or Super Set Id doesn't exist or one of Workout Exercise Id or Super Set Id is supplied when the other is provided.
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: Not found.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      tags:
+      - workout_exercise_super_set
+      summary: Creates a super set for a WorkoutExercise
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/CreateWorkoutExerciseSuperSet'
+      responses:
+        "201":
+          description: Super Set for WorkoutExercise successfully created.
+          schema:
+            $ref: '#/definitions/WorkoutExerciseSuperSet'
+        "400":
+          description: Bad request.
+          schema:
+            $ref: '#/definitions/Error'
+        "409":
+          description: Supet Set for WorkoutExercise already exists.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      tags:
+      - workout_exercise_super_set
+      summary: Updates a super set for a WorkoutExercise
+      produces:
+      - application/json
+      parameters:
+      - name: workout_exercise_id
+        in: query
+        description: The WorkoutExercise id
+        required: true
+        type: integer
+      - name: super_set_id
+        in: query
+        description: The Super Set id
+        required: true
+        type: integer
+      - in: body
+        name: body
+        description: The attributes to update the WorkoutExerciseSuperSet with.
+        required: false
+        schema:
+          $ref: '#/definitions/CreateWorkoutExerciseSuperSet'
+      responses:
+        "200":
+          description: WorkoutExerciseSuperSet successfully updated.
+          schema:
+            $ref: '#/definitions/WorkoutExerciseSuperSet'
+        "400":
+          description: Invalid WorkoutExercise id or Super Set id supplied.
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: WorkoutExerciseSuperSet not found.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      tags:
+      - workout_exercise_super_set
+      summary: Deletes a super set for a WorkoutExercise
+      produces:
+      - application/json
+      parameters:
+      - name: workout_exercise_id
+        in: query
+        description: The WorkoutExercise id
+        required: true
+        type: integer
+      - name: super_set_id
+        in: query
+        description: The Super Set id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/WorkoutExerciseSuperSet'
+        "400":
+          description: Invalid WorkoutExercise id or Super Set id supplied.
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: WorkoutExerciseSuperSet not found.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+  /program_workouts:
+    get:
+      tags:
+      - program_workout
+      summary: Gets a list of ProgramWorkout entries
+      produces:
+      - application/json
+      parameters:
+      - name: program_id
+        in: query
+        description: The program id used to fetch a ProgramWorkout
+        required: false
+        type: integer
+      - name: workout_id
+        in: query
+        description: The workout id used to fetch a ProgramWorkout
+        required: false
+        type: integer
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ArrayOfProgramWorkouts'
+        "400":
+          description: Bad request. Program Id or Workout Id doesn't exist or one of Program Id or Workout Id is supplied when the other is provided.
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: ProgramWorkout with program id and workout id doesn't exist.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+    post:
+      tags:
+      - program_workout
+      summary: Create ProgramWorkout object
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/body_1'
+      responses:
+        "201":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ProgramWorkout'
+        "400":
+          description: Bad request. Workout Id or Program Id doesn't exist or not provided
+          schema:
+            $ref: '#/definitions/Error'
+        "409":
+          description: Entry already exists.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+    put:
+      tags:
+      - program_workout
+      summary: Updates a ProgramWorkout.
+      produces:
+      - application/json
+      parameters:
+      - name: program_id
+        in: query
+        description: The program id used to fetch a ProgramWorkout
+        required: true
+        type: integer
+      - name: workout_id
+        in: query
+        description: The workout id used to fetch a ProgramWorkout
+        required: true
+        type: integer
+      - in: body
+        name: body
+        description: The attributes to update the WorkoutExercise with.
+        required: false
+        schema:
+          $ref: '#/definitions/CreateProgramWorkout'
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ProgramWorkout'
+        "400":
+          description: Bad request. Workout Id or Program Id doesn't exist or not provided.
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: ProgramWorkout with program id and workout id doesn't exist.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+    delete:
+      tags:
+      - program_workout
+      summary: Delete a ProgramWorkout by program id and workout id.
+      produces:
+      - application/json
+      parameters:
+      - name: program_id
+        in: query
+        description: The program id
+        required: true
+        type: integer
+      - name: workout_id
+        in: query
+        description: The workout id
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: successful operation
+          schema:
+            $ref: '#/definitions/ProgramWorkout'
+        "400":
+          description: Bad request. Workout Id or Program Id doesn't exist or not provided.
+          schema:
+            $ref: '#/definitions/Error'
+        "404":
+          description: ProgramWorkout with program id and workout id doesn't exist.
+          schema:
+            $ref: '#/definitions/Error'
+        "500":
+          description: Internal server error.
+          schema:
+            $ref: '#/definitions/Error'
+securityDefinitions:
+  petstore_auth:
+    type: oauth2
+    authorizationUrl: http://petstore.swagger.io/oauth/dialog
+    flow: implicit
+    scopes:
+      write:pets: modify pets in your account
+      read:pets: read your pets
+  api_key:
+    type: apiKey
+    name: api_key
+    in: header
+definitions:
+  Error:
+    type: object
+    required:
+    - code
+    - message
+    properties:
+      code:
+        type: string
+      message:
+        type: string
+    xml:
+      name: Error
+  CreateProgram:
+    type: object
+    properties:
+      author_id:
+        type: integer
+      name:
+        type: string
+      duration:
+        type: integer
+      description:
+        type: string
+  Program:
+    type: object
+    properties:
+      id:
+        type: integer
+      author:
+        $ref: '#/definitions/User'
+      name:
+        type: string
+      duration:
+        type: integer
+      description:
+        type: string
+  ArrayOfPrograms:
+    type: array
+    items:
+      $ref: '#/definitions/Program'
+  CreateWorkout:
+    type: object
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+      projected_time:
+        type: integer
+  Workout:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      description:
+        type: string
+      projected_time:
+        type: integer
+  ArrayOfWorkouts:
+    type: array
+    items:
+      $ref: '#/definitions/Workout'
+  CreateExercise:
+    type: object
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+  Exercise:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      description:
+        type: string
+  ArrayOfExercises:
+    type: array
+    items:
+      $ref: '#/definitions/Exercise'
+  WorkoutExercise:
+    type: object
+    properties:
+      workout:
+        $ref: '#/definitions/Workout'
+      exercise:
+        $ref: '#/definitions/Exercise'
+      workout_weights:
+        type: array
+        items:
+          type: integer
+      workout_reps:
+        type: array
+        items:
+          type: integer
+      rest_time:
+        type: integer
+  ArrayOfWorkoutExercises:
+    type: array
+    items:
+      $ref: '#/definitions/WorkoutExercise'
+  UpdateWorkoutExercise:
+    type: object
+    properties:
+      workout_id:
+        type: integer
+      exercise_id:
+        type: integer
+      workout_weights:
+        type: array
+        items:
+          type: integer
+      workout_reps:
+        type: array
+        items:
+          type: integer
+      rest_time:
+        type: integer
+  CreateWorkoutExerciseSuperSet:
+    type: object
+    properties:
+      workout_exercise_id:
+        type: integer
+      superset_id:
+        type: integer
+  WorkoutExerciseSuperSet:
+    type: object
+    properties:
+      workout_exercise:
+        $ref: '#/definitions/WorkoutExercise'
+      superset:
+        $ref: '#/definitions/WorkoutExercise'
+  ArrayOfWorkoutExerciseSuperSets:
+    type: array
+    items:
+      $ref: '#/definitions/WorkoutExerciseSuperSet'
+  CreateProgramWorkout:
+    type: object
+    properties:
+      program_id:
+        type: integer
+      workout_id:
+        type: integer
+  ProgramWorkout:
+    type: object
+    properties:
+      program:
+        $ref: '#/definitions/Program'
+      workout:
+        $ref: '#/definitions/Workout'
+  ArrayOfProgramWorkouts:
+    type: array
+    items:
+      $ref: '#/definitions/ProgramWorkout'
+  CreateUser:
+    type: object
+    properties:
+      name:
+        type: string
+      username:
+        type: string
+      password:
+        type: string
+      email:
+        type: string
+      current_program:
+        type: string
+    xml:
+      name: CreateUser
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      username:
+        type: string
+      email:
+        type: string
+      current_program:
+        type: string
+    xml:
+      name: User
+  ArrayOfUsers:
+    type: array
+    items:
+      $ref: '#/definitions/User'
+  body:
+    type: object
+    properties:
+      workout_id:
+        type: integer
+      exercise_id:
+        type: integer
+      workout_weights:
+        type: array
+        items:
+          type: number
+      workout_reps:
+        type: array
+        items:
+          type: integer
+      rest_time:
+        type: integer
+  body_1:
+    type: object
+    properties:
+      program_id:
+        type: integer
+      workout_id:
+        type: integer
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
