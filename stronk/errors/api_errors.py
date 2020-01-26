@@ -31,4 +31,24 @@ def not_found_error():
 
     return resp
 
-    
+@app.errorhandler(400)
+def bad_request():
+    status = 400
+    body = default_body(status,
+                        c.BAD_REQUEST_ERROR_CODE,
+                        c.BAD_REQUEST_ERROR_MSG)
+    resp = jsonify(body)
+    resp.status_code = status
+
+    return resp
+
+@app.errorhandler(409)
+def conflict():
+    status = 409
+    body = default_body(status,
+                        c.CONFLICT_ERROR_CODE,
+                        c.CONFLICT_ERROR_MSG)
+    resp = jsonify(body)
+    resp.status_code = status
+
+    return resp
