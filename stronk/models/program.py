@@ -1,4 +1,5 @@
 from stronk import db
+from stronk.models.user import User
 
 class Program(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -7,5 +8,14 @@ class Program(db.Model):
     duration = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String(256), nullable=False)    
 
-    def __repr__(self):
-        return '<Program {}>'.format(self.name)
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "author": self.get_author(),
+            "name": self.name,
+            "duration": self.duration,
+            "description": self.description
+        }
+        
+    def get_author(self):
+        return User.query.filter_by(id=self.author).first().to_dict()

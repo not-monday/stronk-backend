@@ -23,8 +23,11 @@ migrate = Migrate(app, db)
 # Import blueprints
 from stronk import models, controllers
 from stronk.controllers.users import users_page
+from stronk.controllers.programs import programs_page
 
+# TODO add global error handling for malformed requests
 app.register_blueprint(users_page, url_prefix='/users')
+app.register_blueprint(programs_page, url_prefix='/programs')
 
 # a simple page that says hello
 @app.route('/')

@@ -72,6 +72,7 @@ def add_user():
         return e.internal_server_error()
 
 # PATCH /users/:id
+# TODO move logic for updating to User model
 @users_page.route('/<int:id>', methods=['PATCH'])
 def update_user(id):
     user = User.query.filter_by(id=id).first()
