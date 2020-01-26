@@ -102,7 +102,6 @@ def update_program(id):
 
 
 # DELETE /programs/:id
-# TODO fix
 @programs_page.route('/<int:id>', methods=['DELETE'])
 def delete_program(id):
     program = None

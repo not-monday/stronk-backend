@@ -105,7 +105,6 @@ def update_user(id):
         return e.internal_server_error()
 
 # DELETE /users/:id
-# TODO fix
 @users_page.route('/<int:id>', methods=['DELETE'])
 def delete_user(id):
     user = None
