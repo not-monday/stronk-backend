@@ -8,7 +8,7 @@ Ensure you have [python3](https://www.python.org/downloads/) and [pip](https://p
 1. `git clone https://github.com/not-monday/stronk-backend.git`
 2. `cd stronk-backend`
 3. `pip3 install -r requirements.txt` To install dependencies.
-3. `./start_dev.sh`
+3. `./run.sh`
 
 Server will be live of port 5000
 
