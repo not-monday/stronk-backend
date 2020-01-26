@@ -8,5 +8,11 @@ class User(db.Model):
     password_hash = db.Column(db.String(128))
     current_program = db.Column(db.Integer, db.ForeignKey('program.id'))
 
-    def __repr__(self):
-        return '<User {}>'.format(self.username)  
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "username": self.username,
+            "email": self.email,
+            "current_program": self.current_program
+        }

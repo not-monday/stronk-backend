@@ -1,17 +1,40 @@
 """Contains the Blueprint for users routes."""
-from flask import Blueprint, request
+import json
+from flask import Blueprint, request, Response
+from sqlalchemy.exc import DBAPIError
+from stronk.models.user import User
+from stronk.errors import api_errors as e
 
 users_page = Blueprint('users', __name__)
 
 # GET /users
 @users_page.route('/', methods=['GET'])
 def get_users():
-    return "Showing All Users"
+    try:
+        users = User.query.all()
+    except DBAPIError:
+        return e.internal_server_error()
+
+    data = []
+    for user in users:
+        data.append(user.to_dict())
+    
+    body = json.dumps(data)
+    res = Response(body, status=200, mimetype='application/json')
+
+    return res
 
 # GET /users/:id
 @users_page.route('/<int:id>', methods=['GET'])
 def get_user(id):
-    return "Showing user " + str(id)
+    user = User.query.filter_by(id=id).first()
+    if not user:
+        return e.not_found_error()
+    
+    body = json.dumps(user.to_dict())
+    res = Response(body, status=200, mimetype='application/json')
+
+    return res
 
 # POST /users
 @users_page.route('/', methods=['POST'])
