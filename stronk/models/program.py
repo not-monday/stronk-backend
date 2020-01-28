@@ -19,3 +19,13 @@ class Program(db.Model):
         
     def get_author(self):
         return User.query.filter_by(id=self.author).first().to_dict()
+
+    def update(self, attrs):
+        if attrs.get('author'):
+            self.author = attrs.get('author')
+        if attrs.get('name'):
+            self.name = attrs.get('name')
+        if attrs.get('duration'):
+            self.duration = attrs.get('duration')
+        if attrs.get('description'):
+            self.description = attrs.get('description')    

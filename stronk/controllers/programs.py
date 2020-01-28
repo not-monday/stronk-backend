@@ -70,7 +70,6 @@ def add_program():
         return e.internal_server_error()
 
 # PATCH /program/:id
-# TODO move logic for updating to Program model
 @programs_page.route('/<int:id>', methods=['PATCH'])
 def update_program(id):
     program = Program.query.filter_by(id=id).first()
@@ -78,20 +77,14 @@ def update_program(id):
         return e.not_found_error()
 
     req_body = request.get_json()
+    program.update(req_body)
 
-    if req_body.get('author'):
-        program.author = req_body.get('author')
-    if req_body.get('name'):
-        program.name = req_body.get('name')
-    if req_body.get('duration'):
-        program.duration = req_body.get('duration')
-    if req_body.get('description'):
-        program.description = req_body.get('description')
-    
     try:
         db.session.commit()
-
-        return Response(program.to_dict(), status=200, mimetype='application/json')
+        body = json.dumps(program.to_dict())
+        return Response(body,
+                        status=200,
+                        mimetype='application/json')
     except IntegrityError as err:
         if isinstance(err.orig, ForeignKeyViolation):
             return e.bad_request()

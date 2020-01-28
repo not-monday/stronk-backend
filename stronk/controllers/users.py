@@ -60,7 +60,9 @@ def add_user():
         db.session.add(u)
         db.session.commit()
         body = json.dumps(u.to_dict())
-        res = Response(body, status=200, mimetype='application/json')
+        res = Response(body,
+                       status=200,
+                       mimetype='application/json')
 
         return res
     except IntegrityError as err:
@@ -72,7 +74,6 @@ def add_user():
         return e.internal_server_error()
 
 # PATCH /users/:id
-# TODO move logic for updating to User model
 @users_page.route('/<int:id>', methods=['PATCH'])
 def update_user(id):
     user = User.query.filter_by(id=id).first()
@@ -80,22 +81,12 @@ def update_user(id):
         return e.not_found_error()
 
     req_body = request.get_json()
+    user.update(req_body)
 
-    if req_body.get('name'):
-        user.name = req_body.get('name')
-    if req_body.get('email'):
-        user.email = req_body.get('email')
-    if req_body.get('username'):
-        user.username = req_body.get('username')
-    if req_body.get('password_hash'):
-        user.password_hash = req_body.get('password_hash')
-    if req_body.get('current_program'):
-        user.current_program = req_body.get('current_program')
-    
     try:
         db.session.commit()
-
-        return Response(user.to_dict(), status=200, mimetype='application/json')
+        body = json.dumps(user.to_dict())
+        return Response(body, status=200, mimetype='application/json')
     except IntegrityError as err:
         if isinstance(err.orig, ForeignKeyViolation):
             return e.bad_request()
@@ -120,6 +111,8 @@ def delete_user(id):
         }
         body = json.dumps(data)
 
-        return Response(body, status=200, mimetype='application/json')
+        return Response(body,
+                        status=200,
+                        mimetype='application/json')
     except DBAPIError as err:
         return e.internal_server_error()    

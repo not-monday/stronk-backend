@@ -16,3 +16,17 @@ class User(db.Model):
             "email": self.email,
             "current_program": self.current_program
         }
+    
+    def update(self, attrs):
+        if attrs.get('name'):
+            self.name = attrs.get('name')
+        if attrs.get('email'):
+            self.email = attrs.get('email')
+        if attrs.get('username'):
+            self.username = attrs.get('username')
+        if attrs.get('password_hash'):
+            self.password_hash = attrs.get('password_hash')
+        if attrs.get('current_program'):
+            self.current_program = attrs.get('current_program')
+        
+    
