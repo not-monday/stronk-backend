@@ -14,6 +14,7 @@ db = SQLAlchemy(app)
 # Import models to be created
 from stronk.models.program import Program
 from stronk.models.user import User
+from stronk.models.workout import Workout
 migrate = Migrate(app, db)
 
 # INITIALLY CREATE DATABASE.
