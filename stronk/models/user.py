@@ -9,6 +9,9 @@ class User(db.Model):
     current_program = db.Column(db.Integer, db.ForeignKey('program.id'))
 
     def to_dict(self):
+        """Returns a dictionary representing the attributes of the program.
+           Key is the name of the attribute and value is the value of the
+           attribute. """
         return {
             "id": self.id,
             "name": self.name,
@@ -18,6 +21,12 @@ class User(db.Model):
         }
     
     def update(self, attrs):
+        """Updates model given attrs.
+
+        Params:
+            attrs: Dictionary containing attributes to update. Key is the 
+                   attribute name and value is the new value.
+        """
         if attrs.get('name'):
             self.name = attrs.get('name')
         if attrs.get('email'):
