@@ -27,6 +27,7 @@ from stronk import models, controllers
 from stronk.controllers.users import users_page
 from stronk.controllers.programs import programs_page
 from stronk.controllers.workouts import workouts_page
+from stronk.controllers.exercise import exercise_page
 
 # TODO add global error handling for malformed requests
 app.register_blueprint(users_page, url_prefix='/users')

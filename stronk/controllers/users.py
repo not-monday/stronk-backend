@@ -42,7 +42,7 @@ def get_user(id):
 @users_page.route('/', methods=['POST'])
 def add_user():
     req_body = request.get_json()
-    
+    # TODO: Move to custom create function that includes validation
     if not (req_body.get('name')
             and req_body.get('username')
             and req_body.get('email')

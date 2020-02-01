@@ -1,63 +1,59 @@
-"""Contains the Blueprint for programs routes."""
+"""Contains the Blueprint for exercises routes."""
 import json
 from flask import Blueprint, request, Response
 from sqlalchemy.exc import DBAPIError, IntegrityError
 from psycopg2.errors import UniqueViolation, ForeignKeyViolation
-from stronk.models.program import Program
+from stronk.models.exercise import Exercise
 from stronk.errors import api_errors as e
 from stronk import db
 
-programs_page = Blueprint('program', __name__)
+exercise_page = Blueprint('exercise', __name__)
 
-# GET /programs
-@programs_page.route('/', methods=['GET'])
-def get_programs():
+# GET /exercises
+@exercise_page.route('/', methods=['GET'])
+def get_exercises():
     try:
-        programs = Program.query.all()
+        exercises = Exercise.query.all()
     except DBAPIError:
         return e.internal_server_error()
 
     data = []
-    for program in programs:
-        data.append(program.to_dict())
+    for exercise in exercises:
+        data.append(exercise.to_dict())
     
     body = json.dumps(data)
     res = Response(body, status=200, mimetype='application/json')
 
     return res
 
-# GET /programs/:id
-@programs_page.route('/<int:id>', methods=['GET'])
-def get_program(id):
-    program = Program.query.filter_by(id=id).first()
-    if not program:
+# GET /exercises/:id
+@exercise_page.route('/<int:id>', methods=['GET'])
+def get_exercise(id):
+    exercise = Exercise.query.filter_by(id=id).first()
+    if not exercise:
         return e.not_found_error()
     
-    body = json.dumps(program.to_dict())
+    body = json.dumps(exercise.to_dict())
     res = Response(body, status=200, mimetype='application/json')
     
     return res
 
-# POST /programs
-@programs_page.route('/', methods=['POST'])
-def add_program():
+# POST /exercises
+@exercise_page.route('/', methods=['POST'])
+def add_exercise():
     req_body = request.get_json()
+    
     # TODO: Move to custom create function that includes validation
-    if not (req_body.get('author')
-            and req_body.get('name')
-            and req_body.get('duration')
+    if not (req_body.get('name')
             and req_body.get('description')):
         return e.bad_request()
 
-    p = Program(author=req_body['author'],
-            name=req_body['name'],
-            duration=req_body['duration'],
-            description=req_body['description'])
+    e = Exercise(author=req_body['name'], name=req_body['description'])
     
     try:
-        db.session.add(p)
+        db.session.add(e)
         db.session.commit()
-        body = json.dumps(p.to_dict())
+        body = json.dumps(e.to_dict())
         res = Response(body, status=200, mimetype='application/json')
 
         return res
@@ -69,19 +65,19 @@ def add_program():
     except DBAPIError as err:
         return e.internal_server_error()
 
-# PATCH /program/:id
-@programs_page.route('/<int:id>', methods=['PATCH'])
-def update_program(id):
-    program = Program.query.filter_by(id=id).first()
-    if not program:
+# PATCH /exercise/:id
+@exercise_page.route('/<int:id>', methods=['PATCH'])
+def update_exercise(id):
+    exercise = Exercise.query.filter_by(id=id).first()
+    if not exercise:
         return e.not_found_error()
 
     req_body = request.get_json()
-    program.update(req_body)
+    exercise.update(req_body)
 
     try:
         db.session.commit()
-        body = json.dumps(program.to_dict())
+        body = json.dumps(exercise.to_dict())
         return Response(body,
                         status=200,
                         mimetype='application/json')
@@ -93,19 +89,19 @@ def update_program(id):
     except DBAPIError as err:
         return e.internal_server_error()
 
-# DELETE /programs/:id
-@programs_page.route('/<int:id>', methods=['DELETE'])
-def delete_program(id):
-    program = None
-    program = Program.query.filter_by(id=id).first()
-    if not program:
+# DELETE /exercises/:id
+@exercise_page.route('/<int:id>', methods=['DELETE'])
+def delete_exercise(id):
+    exercise = None
+    exercise = Program.query.filter_by(id=id).first()
+    if not exercise:
         return e.not_found_error()
 
     try:
-        db.session.delete(program)
+        db.session.delete(exercise)
         db.session.commit()
         data = {
-            "message": "Program successfully deleted."
+            "message": "Exercise successfully deleted."
         }
         body = json.dumps(data)
 
