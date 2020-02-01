@@ -32,6 +32,8 @@ from stronk.controllers.exercise import exercise_page
 # TODO add global error handling for malformed requests
 app.register_blueprint(users_page, url_prefix='/users')
 app.register_blueprint(programs_page, url_prefix='/programs')
+app.register_blueprint(workouts_page, url_prefix='/workouts')
+app.register_blueprint(exercise_page, url_prefix='/exercises')
 
 # a simple page that says hello
 @app.route('/')
