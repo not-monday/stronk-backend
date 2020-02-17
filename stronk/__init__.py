@@ -1,10 +1,14 @@
 import os
 
+from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask import Flask
 
 from stronk.database.config import Config
+
+# Load environment variables from .env
+load_dotenv()
 
 # Create and configure the app
 app = Flask(__name__, instance_relative_config=True)
