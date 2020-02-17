@@ -9,7 +9,7 @@ Ensure you have [python3](https://www.python.org/downloads/), [pip](https://pip.
 2. `cd stronk-backend`
 3. `pip3 install -r requirements.txt` To install dependencies
 4. Rename the `dotenv` file to `.env` and fill out the secrets
-5. Ensure you create a schema in PostgreSQL that matches the one in `DATABASE_URL` in `.env`. If you don't follow the instructions below to set up the database!
+5. Ensure you create a schema in PostgreSQL that matches the one in `DATABASE_URL` in `.env`. If you don't, follow the instructions below to set up the database!
 6. `./scripts/setup.sh` to run database migrations
 7. `./scripts/run.sh` to start server
 
