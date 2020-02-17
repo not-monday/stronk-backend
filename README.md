@@ -38,7 +38,7 @@ docker run  -it --rm --name {database name} -P -v -d -e POSTGRES_PASSWORD={passw
 # --name    : gives the container a name
 #  -v       : mount the directory supplied to /mnt in the container (modifications are reflected across container and current fs)
 ```
-3. Run this to get which port the container is mapped to`docker ps`
+3. Run this to get which port the container is mapped to `docker ps`
 4. Create a database using this command
 ```
 # Any name is fine for the database, just make sure you remember it so that you can set up the .env file
