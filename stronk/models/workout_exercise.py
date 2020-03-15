@@ -48,13 +48,15 @@ class WorkoutExercise(db.Model):
                    attribute name and value is the new value.
         """
         if attrs.get('workout_id'):
-            if Workout.query.filter_by(id=self.workout_id):
-                self.workout_id = attrs.get('workout_id')
+            new_id = attrs.get('workout_id')
+            if Workout.query.filter_by(id=new_id):
+                self.workout_id = new_id
             else:
                 raise NoResultFound('Workout ID does not exist')
         if attrs.get('exercise_id'):
-            if Exercise.query.filter_by(id=self.exercise_id):
-                self.exercise_id = attrs.get('exercise_id')
+            new_id = attrs.get('exercise_id')
+            if Exercise.query.filter_by(id=new_id):
+                self.exercise_id = new_id
             else:
                 raise NoResultFound('Exercise ID does not exist')
         if attrs.get('workout_weights'):

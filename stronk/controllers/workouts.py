@@ -4,7 +4,7 @@ from flask import Blueprint, request, Response
 from sqlalchemy.exc import DBAPIError, IntegrityError
 from psycopg2.errors import UniqueViolation, ForeignKeyViolation
 from stronk.models.workout import Workout
-from stronk.errors import api_errors as e
+from stronk.errors import handlers as e
 from stronk import db
 
 workouts_page = Blueprint('workout', __name__)

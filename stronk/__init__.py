@@ -20,7 +20,7 @@ from stronk.models.program import Program
 from stronk.models.user import User
 from stronk.models.workout import Workout
 from stronk.models.exercise import Exercise
-from stronk.models.workoutExercise import WorkoutExercise
+from stronk.models.workout_exercise import WorkoutExercise
 
 migrate = Migrate(app, db)
 
@@ -40,6 +40,7 @@ app.register_blueprint(users_page, url_prefix='/users')
 app.register_blueprint(programs_page, url_prefix='/programs')
 app.register_blueprint(workouts_page, url_prefix='/workouts')
 app.register_blueprint(exercise_page, url_prefix='/exercises')
+# TODO add endpoint for workoutExercise
 
 # a simple page that says hello
 @app.route('/')
