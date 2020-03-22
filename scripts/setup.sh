@@ -7,5 +7,5 @@ source venv/bin/activate
 export FLASK_APP=stronk
 export FLASK_ENV=development
 
-# Run flask app
+# Run flask database migrations
 flask db upgrade
