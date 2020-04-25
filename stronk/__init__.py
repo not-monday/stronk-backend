@@ -23,6 +23,7 @@ from stronk.models.exercise import Exercise
 from stronk.models.workout_exercise import WorkoutExercise
 from stronk.models.workout_exercise_super_sets import WorkoutExerciseSuperSets
 from stronk.models.program_workouts import ProgramWorkouts
+from stronk.models.program_reviews import ProgramReviews
 
 migrate = Migrate(app, db)
 
