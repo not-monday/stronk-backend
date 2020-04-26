@@ -11,7 +11,6 @@ def default_body(status, code, msg):
     }
 
 
-@app.errorhandler(500)
 def internal_server_error():
     status = 500
     body = default_body(status,
@@ -23,7 +22,6 @@ def internal_server_error():
     return resp
 
 
-@app.errorhandler(404)
 def not_found_error(err):
     status = 404
     body = default_body(status,
@@ -35,7 +33,6 @@ def not_found_error(err):
     return resp
 
 
-@app.errorhandler(400)
 def bad_request():
     status = 400
     body = default_body(status,
@@ -47,7 +44,6 @@ def bad_request():
     return resp
 
 
-@app.errorhandler(409)
 def conflict():
     status = 409
     body = default_body(status,
