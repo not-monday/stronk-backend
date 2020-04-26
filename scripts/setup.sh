@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Start virtual env
 source venv/bin/activate
