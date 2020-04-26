@@ -23,9 +23,19 @@ class ProgramReviews(db.Model):
     @classmethod
     def get_reviews_by_program_id(cls, program_id):
         """Returns a list of all reviews for a program with id."""
+        res = cls.query.filter_by(program_id=program_id)
+        reviews = []
+        for row in res:
+            reviews.append(
+                {
+                    "reviewer": row.get_user().to_dict(),
+                    "rating": row.rating,
+                    "comments": row.comments
+                }
+            )
         return {
             "program": self.get_program(program_id=program_id).to_dict(),
-            "reviews": cls.query.filter_by(program_id=program_id)
+            "reviews": reviews
         }
 
     def to_dict(self):
