@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask import Flask
+import firebase_admin
 
 from stronk.database.config import Config
 
@@ -11,6 +12,7 @@ from stronk.database.config import Config
 load_dotenv()
 
 # Create and configure the app
+default_app = firebase_admin.initialize_app()
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
