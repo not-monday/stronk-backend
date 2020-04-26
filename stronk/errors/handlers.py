@@ -1,7 +1,7 @@
 from stronk import app
 from stronk import constants as c
 from flask import jsonify
-from stronk.errors.classes.notFound import NotFound
+
 
 def default_body(status, code, msg):
     return {
@@ -9,6 +9,7 @@ def default_body(status, code, msg):
         'code': code,
         'message': msg
     }
+
 
 @app.errorhandler(500)
 def internal_server_error():
@@ -21,15 +22,18 @@ def internal_server_error():
 
     return resp
 
-@app.errorhandler(NotFound)
+
+@app.errorhandler(404)
 def not_found_error(err):
-    body = default_body(err.status,
-                        err.error_code,
-                        err.message)
+    status = 404
+    body = default_body(status,
+                        c.NOT_FOUND_ERROR_CODE,
+                        c.NOT_FOUND_ERROR_MSG)
     resp = jsonify(body)
     resp.status_code = status
 
     return resp
+
 
 @app.errorhandler(400)
 def bad_request():
@@ -41,6 +45,7 @@ def bad_request():
     resp.status_code = status
 
     return resp
+
 
 @app.errorhandler(409)
 def conflict():
