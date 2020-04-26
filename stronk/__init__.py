@@ -24,6 +24,7 @@ from stronk.models.workout_exercise import WorkoutExercise
 from stronk.models.workout_exercise_super_sets import WorkoutExerciseSuperSets
 from stronk.models.program_workouts import ProgramWorkouts
 from stronk.models.program_reviews import ProgramReviews
+from stronk.models.weight import Weight
 
 migrate = Migrate(app, db)
 
