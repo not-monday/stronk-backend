@@ -19,6 +19,7 @@ class ProgramReviews(db.Model):
     rating = db.Column(db.Integer,
                        nullable=False)
     comments = db.Column(db.String(250), nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False)
 
     @classmethod
     def get_reviews_by_program_id(cls, program_id):
@@ -30,7 +31,8 @@ class ProgramReviews(db.Model):
                 {
                     "reviewer": row.get_user().to_dict(),
                     "rating": row.rating,
-                    "comments": row.comments
+                    "comments": row.comments,
+                    "created_at": row.created_at
                 }
             )
         return {
@@ -46,7 +48,8 @@ class ProgramReviews(db.Model):
             "program": self.get_program().to_dict(),
             "reviewer": self.get_user().to_dict(),
             "rating": self.rating,
-            "comments": self.comments
+            "comments": self.comments,
+            "created_at": self.created_at
         }
 
     def get_program(self, program_id=None):
