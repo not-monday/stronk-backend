@@ -22,9 +22,8 @@ Server will be live of port 5000
 # Setting up the database
 
 ## Requirements:
-
-- [Docker](https://docs.docker.com/install/)
-- Run `docker pull postgres` to install the latest linux-Arm64 docker image for [postgres](https://hub.docker.com/postgres).
+- [Docker]( https://docs.docker.com/install/)
+- Run `docker pull postgres` to install the latest linux-Arm64 docker image for [postgres](https://hub.docker.com/_/postgres). 
 
 ## Steps
 
@@ -32,14 +31,14 @@ Server will be live of port 5000
 2. Create an container with the image using this command
 
 ```docker
-docker run  -it --rm --name {database name} -P -v -d -e POSTGRES_PASSWORD={password}
+docker run -it --rm --name {image name} -P -d -e POSTGRES_PASSWORD={password} postgres 
 
 # example:
-# docker run  -it --rm --name {database name} -P -v -d -e POSTGRES_PASSWORD=test
+# docker run -it --rm --name stronk -P -it -e POSTGRES_PASSWORD=test postgres
 
 # Options:
-#  -e       : sets environment variables
-#  -p       : publishes ports to host
+#  -e       : sets environment variables 
+#  -P       : publishes ports to host
 #  -d       : (can leave out) starts the container in detached mode
 #  -it      : allows us to interact (i) with container through stdin/stdout and login through the terminal (t)
 # --rm      : cleans up container files on exit
