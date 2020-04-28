@@ -57,5 +57,11 @@ app.register_blueprint(exercise_page, url_prefix='/exercises')
 def index():
     return 'Hello, World!'
 
+""" graphql route
+this uses the flask as_view utility which transforms a class to a view function, passing its args to the class constructor
+each request will call the class' `dispatch_request()` function
 
+- flask [as_view](https://flask.palletsprojects.com/en/1.1.x/api/#flask.views.View.as_view)
+- flask-graphql  [as_view](https://github.com/graphql-python/flask-graphql/blob/master/flask_graphql/graphqlview.py)
+"""
 app.add_url_rule('/graphql', view_func=GraphQLView.as_view('graphql',schema=schema,graphiql=app.debug))
