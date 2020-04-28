@@ -57,16 +57,5 @@ app.register_blueprint(exercise_page, url_prefix='/exercises')
 def index():
     return 'Hello, World!'
 
-# graphql endpoints
-@app.route('/graphql-query')
-def graphql_query():
-    print(request.json)
-    return "ok"
 
-@app.route('/graphql-mutation')
-def graphql_mutation():
-    # TODO
-    pass
-
-# debug point
-app.add_url_rule('/graphql', view_func=GraphQLView.as_view('graphql', schema=schema, graphiql=True))
+app.add_url_rule('/graphql', view_func=GraphQLView.as_view('graphql',schema=schema,graphiql=app.debug))
