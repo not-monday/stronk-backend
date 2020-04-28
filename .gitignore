@@ -7,3 +7,5 @@ venv
 */bin
 
 notes.notes
+# firebase service account credentials file
+stronk-google-credentials.json
