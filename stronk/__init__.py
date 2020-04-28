@@ -3,9 +3,10 @@ import os
 from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from flask import Flask
+from flask import Flask, jsonify, request
+from graphene import ObjectType, String, Schema
+from flask_graphql import GraphQLView
 import firebase_admin
-from stronk.middleware import Middleware 
 
 from stronk.database.config import Config
 
@@ -13,10 +14,10 @@ from stronk.database.config import Config
 load_dotenv()
 
 # Create and configure the app
-default_app = firebase_admin.initialize_app()
+if not firebase_admin._apps:
+    default_app = firebase_admin.initialize_app()
 app = Flask(__name__, instance_relative_config=True)
 app.config.from_object(Config)
-app.wsgi_app = Middleware(app.wsgi_app)
 db = SQLAlchemy(app)
 
 # Import models to be created
@@ -29,6 +30,8 @@ from stronk.models.workout_exercise_super_sets import WorkoutExerciseSuperSets
 from stronk.models.program_workouts import ProgramWorkouts
 from stronk.models.program_reviews import ProgramReviews
 from stronk.models.weight import Weight
+from stronk.errors.errors import InvalidIdTokenError
+from stronk.schema import schema
 
 migrate = Migrate(app, db)
 
@@ -53,3 +56,17 @@ app.register_blueprint(exercise_page, url_prefix='/exercises')
 @app.route('/')
 def index():
     return 'Hello, World!'
+
+# graphql endpoints
+@app.route('/graphql-query')
+def graphql_query():
+    print(request.json)
+    return "ok"
+
+@app.route('/graphql-mutation')
+def graphql_mutation():
+    # TODO
+    pass
+
+# debug point
+app.add_url_rule('/graphql', view_func=GraphQLView.as_view('graphql', schema=schema, graphiql=True))

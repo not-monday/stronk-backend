@@ -5,3 +5,5 @@ Flask-Migrate==2.5.2
 psycopg2-binary==2.8.4
 python-dotenv==0.11.0
 firebase-admin==4.1.0
+graphene==2.1.8
+flask-graphql==2.0.1

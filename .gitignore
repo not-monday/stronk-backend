@@ -7,3 +7,5 @@ venv
 */bin
 
 notes.notes
+# credential json files
+*.json
