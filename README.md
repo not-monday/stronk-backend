@@ -14,13 +14,14 @@ Ensure you have [python3](https://www.python.org/downloads/), [pip](https://pip.
 4. `pip3 install -r requirements.txt` To install dependencies
 5. Rename the `dotenv` file to `.env` and fill out the secrets
 6. Ensure you create a schema in PostgreSQL that matches the one in `DATABASE_URL` in `.env`. If you don't, follow the instructions below to set up the database!
-7. Set up a Firebase Service Account for Stronk if you do not already have one and fill in `GOOGLE_APPLICATION_CREDENTIALS` in `./scripts/setup.sh`
-8. `source ./scripts/setup.sh` to run database migrations
-9. `flask run` to start server
+7. Set up a Firebase Service Account for Stronk if you do not already have one and download the json credentials file
+8. Rename the json file to `stronk-google-credentials.json` and copy it to the the root of the project
+9. `source ./scripts/setup.sh` to run database migrations
+10. `flask run` to start server
 
 Server will be live of port 5000
 
-- when developing, make sure to run repeat `step 2` to use venc
+- when developing, make sure to run repeat `step 2` to use venv
 
 # Setting up the database
 
