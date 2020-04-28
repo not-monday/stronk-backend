@@ -21,7 +21,7 @@ Ensure you have [python3](https://www.python.org/downloads/), [pip](https://pip.
 
 Server will be live of port 5000
 
-- when developing, make sure to run repeat `step 2` to use venv
+- when developing, make sure to run repeat `step 2` to use your virtual env
 
 # Setting up the database
 
