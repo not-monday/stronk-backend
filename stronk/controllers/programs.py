@@ -1,11 +1,13 @@
 """Contains the Blueprint for programs routes."""
 import json
+
 from flask import Blueprint, request, Response
-from sqlalchemy.exc import DBAPIError, IntegrityError
 from psycopg2.errors import UniqueViolation, ForeignKeyViolation
-from stronk.models.program import Program
-from stronk.errors import handlers as e
+from sqlalchemy.exc import DBAPIError, IntegrityError
+from werkzeug.exceptions import BadRequest, Conflict, InternalServerError, NotFound
+
 from stronk import db
+from stronk.models.program import Program
 
 programs_page = Blueprint('program', __name__)
 
@@ -15,12 +17,12 @@ def get_programs():
     try:
         programs = Program.query.all()
     except DBAPIError:
-        return e.internal_server_error()
+        raise InternalServerError("Databse Error")
 
     data = []
     for program in programs:
         data.append(program.to_dict())
-    
+
     body = json.dumps(data)
     res = Response(body, status=200, mimetype='application/json')
 
@@ -31,11 +33,11 @@ def get_programs():
 def get_program(id):
     program = Program.query.filter_by(id=id).first()
     if not program:
-        return e.not_found_error()
-    
+        raise NotFound("Program not found.")
+
     body = json.dumps(program.to_dict())
     res = Response(body, status=200, mimetype='application/json')
-    
+
     return res
 
 # POST /programs
@@ -47,13 +49,14 @@ def add_program():
             and req_body.get('name')
             and req_body.get('duration')
             and req_body.get('description')):
-        return e.bad_request()
+        raise BadRequest(
+            "Attributes author, name, duration, description are required.")
 
     p = Program(author=req_body['author'],
-            name=req_body['name'],
-            duration=req_body['duration'],
-            description=req_body['description'])
-    
+                name=req_body['name'],
+                duration=req_body['duration'],
+                description=req_body['description'])
+
     try:
         db.session.add(p)
         db.session.commit()
@@ -63,18 +66,18 @@ def add_program():
         return res
     except IntegrityError as err:
         if isinstance(err.orig, ForeignKeyViolation):
-            return e.bad_request()
+            raise BadRequest("Author does not exist.")
         elif isinstance(err.orig, UniqueViolation):
-            return e.conflict()
+            raise Conflict("Program with ID already exists.")
     except DBAPIError as err:
-        return e.internal_server_error()
+        raise InternalServerError("Databse Error")
 
 # PATCH /program/:id
 @programs_page.route('/<int:id>', methods=['PATCH'])
 def update_program(id):
     program = Program.query.filter_by(id=id).first()
     if not program:
-        return e.not_found_error()
+        raise NotFound("Program not found.")
 
     req_body = request.get_json()
     program.update(req_body)
@@ -87,11 +90,11 @@ def update_program(id):
                         mimetype='application/json')
     except IntegrityError as err:
         if isinstance(err.orig, ForeignKeyViolation):
-            return e.bad_request()
+            raise BadRequest("Author does not exist.")
         elif isinstance(err.orig, UniqueViolation):
-            return e.conflict()
+            raise Conflict("Program with ID already exists.")
     except DBAPIError as err:
-        return e.internal_server_error()
+        raise InternalServerError("Databse Error")
 
 # DELETE /programs/:id
 @programs_page.route('/<int:id>', methods=['DELETE'])
@@ -99,7 +102,7 @@ def delete_program(id):
     program = None
     program = Program.query.filter_by(id=id).first()
     if not program:
-        return e.not_found_error()
+        raise NotFound("Program not found.")
 
     try:
         db.session.delete(program)
@@ -111,4 +114,4 @@ def delete_program(id):
 
         return Response(body, status=200, mimetype='application/json')
     except DBAPIError as err:
-        return e.internal_server_error()    
+        raise InternalServerError("Databse Error")

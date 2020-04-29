@@ -1,11 +1,13 @@
 """Contains the Blueprint for users routes."""
 import json
+
 from flask import Blueprint, request, Response
-from sqlalchemy.exc import DBAPIError, IntegrityError
 from psycopg2.errors import UniqueViolation, ForeignKeyViolation
-from stronk.models.user import User
-from stronk.errors import handlers as e
+from sqlalchemy.exc import DBAPIError, IntegrityError
+from werkzeug.exceptions import BadRequest, Conflict, InternalServerError, NotFound
+
 from stronk import db
+from stronk.models.user import User
 
 users_page = Blueprint('users', __name__)
 
@@ -15,12 +17,12 @@ def get_users():
     try:
         users = User.query.all()
     except DBAPIError:
-        return e.internal_server_error()
+        raise InternalServerError("Databse Error")
 
     data = []
     for user in users:
         data.append(user.to_dict())
-    
+
     body = json.dumps(data)
     res = Response(body, status=200, mimetype='application/json')
 
@@ -31,8 +33,8 @@ def get_users():
 def get_user(id):
     user = User.query.filter_by(id=id).first()
     if not user:
-        return e.not_found_error()
-    
+        raise NotFound("User not found.")
+
     body = json.dumps(user.to_dict())
     res = Response(body, status=200, mimetype='application/json')
 
@@ -45,17 +47,16 @@ def add_user():
     # TODO: Move to custom create function that includes validation
     if not (req_body.get('name')
             and req_body.get('username')
-            and req_body.get('email')
-            and req_body.get('password_hash')):
-        return e.bad_request()
+            and req_body.get('email')):
+        raise BadRequest("Attributes name, username, email are required.")
 
     u = User(name=req_body['name'],
-            username=req_body['username'],
-            email=req_body['email'],
-            password_hash=req_body['password_hash'])
+             username=req_body['username'],
+             email=req_body['email'],
+             password_hash=req_body['password_hash'])
     if req_body.get('current_program'):
         u.current_program = req_body['current_program']
-    
+
     try:
         db.session.add(u)
         db.session.commit()
@@ -67,18 +68,18 @@ def add_user():
         return res
     except IntegrityError as err:
         if isinstance(err.orig, ForeignKeyViolation):
-            return e.bad_request()
+            raise BadRequest("Program does not exist.")
         elif isinstance(err.orig, UniqueViolation):
-            return e.conflict()
+            raise Conflict("User with ID already exists.")
     except DBAPIError as err:
-        return e.internal_server_error()
+        raise InternalServerError("Databse Error")
 
 # PATCH /users/:id
 @users_page.route('/<int:id>', methods=['PATCH'])
 def update_user(id):
     user = User.query.filter_by(id=id).first()
     if not user:
-        return e.not_found_error()
+        raise NotFound("User not found.")
 
     req_body = request.get_json()
     user.update(req_body)
@@ -89,11 +90,11 @@ def update_user(id):
         return Response(body, status=200, mimetype='application/json')
     except IntegrityError as err:
         if isinstance(err.orig, ForeignKeyViolation):
-            return e.bad_request()
+            raise BadRequest("Program does not exist.")
         elif isinstance(err.orig, UniqueViolation):
-            return e.conflict()
+            raise Conflict("User with ID already exists.")
     except DBAPIError as err:
-        return e.internal_server_error()
+        raise InternalServerError("Databse Error")
 
 # DELETE /users/:id
 @users_page.route('/<int:id>', methods=['DELETE'])
@@ -101,7 +102,7 @@ def delete_user(id):
     user = None
     user = User.query.filter_by(id=id).first()
     if not user:
-        return e.not_found_error()
+        raise NotFound("User not found.")
 
     try:
         db.session.delete(user)
@@ -115,4 +116,4 @@ def delete_user(id):
                         status=200,
                         mimetype='application/json')
     except DBAPIError as err:
-        return e.internal_server_error()    
+        raise InternalServerError("Databse Error")
