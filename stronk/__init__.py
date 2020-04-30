@@ -7,6 +7,7 @@ from flask import Flask, jsonify, request
 from graphene import ObjectType, String, Schema
 from flask_graphql import GraphQLView
 import firebase_admin
+from stronk.utils import auth
 
 from stronk.database.config import Config
 
@@ -30,7 +31,6 @@ from stronk.models.workout_exercise_super_sets import WorkoutExerciseSuperSets
 from stronk.models.program_workouts import ProgramWorkouts
 from stronk.models.program_reviews import ProgramReviews
 from stronk.models.weight import Weight
-from stronk.errors.errors import InvalidIdTokenError
 from stronk.schema import schema
 
 migrate = Migrate(app, db)
@@ -52,10 +52,20 @@ app.register_blueprint(programs_page, url_prefix='/programs')
 app.register_blueprint(workouts_page, url_prefix='/workouts')
 app.register_blueprint(exercise_page, url_prefix='/exercises')
 
+# Load error handlers
+from stronk.errors import handlers as h
+from werkzeug.exceptions import HTTPException
+
+app.register_error_handler(HTTPException, h.handle_http_exception)
+app.register_error_handler(Exception, h.handle_unexpected_errors)
+
+app.before_request(auth.verify_token)
+
 # a simple page that says hello
 @app.route('/')
 def index():
     return 'Hello, World!'
+
 
 """ graphql route
 this uses the flask as_view utility which transforms a class to a view function, passing its args to the class constructor
@@ -64,4 +74,10 @@ each request will call the class' `dispatch_request()` function
 - flask [as_view](https://flask.palletsprojects.com/en/1.1.x/api/#flask.views.View.as_view)
 - flask-graphql  [as_view](https://github.com/graphql-python/flask-graphql/blob/master/flask_graphql/graphqlview.py)
 """
-app.add_url_rule('/graphql', view_func=GraphQLView.as_view('graphql',schema=schema,graphiql=app.debug))
+app.add_url_rule('/graphql', view_func=GraphQLView.as_view('graphql',
+                                                           schema=schema, graphiql=app.debug))
+
+# debug endpoint for graphiql
+if (app.debug):
+    app.add_url_rule(
+        '/graphiql', view_func=GraphQLView.as_view('graphiql', schema=schema, graphiql=True))

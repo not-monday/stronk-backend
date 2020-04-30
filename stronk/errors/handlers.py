@@ -1,55 +1,40 @@
-from stronk import app
-from stronk import constants as c
+from copy import deepcopy
+
 from flask import jsonify
+from werkzeug.exceptions import HTTPException
+
+from stronk import constants as c
 
 
-def default_body(status, code, msg):
-    return {
-        'status': status,
-        'code': code,
-        'message': msg
+def error_response(status_code, error_code, msg):
+    body = deepcopy(c.ERROR_RESPONSE_BODY)
+    body["code"] = error_code
+    body["message"] = msg
+    resp = jsonify(body)
+    resp.status_code = status_code
+
+    return resp
+
+
+def handle_http_exception(e):
+    """Error handler for HTTPExceptions."""
+    exceptions_to_error_code = {
+        'Bad Request': c.BAD_REQUEST_ERROR_CODE,
+        'Conflict': c.CONFLICT_ERROR_CODE,
+        'Not Found': c.NOT_FOUND_ERROR_CODE,
+        'Unauthorized': c.UNAUTHORIZED_ERROR_CODE
     }
+    name = e.name.strip()
+    if name in exceptions_to_error_code:
+        return error_response(e.code,
+                              exceptions_to_error_code[name],
+                              e.description)
+    res = handle_unexpected_errors(e)
+    return res
 
 
-def internal_server_error():
-    status = 500
-    body = default_body(status,
-                        c.INTERNAL_SERVER_ERROR_CODE,
-                        c.INTERNAL_SERVER_ERROR_MSG)
-    resp = jsonify(body)
-    resp.status_code = status
-
-    return resp
-
-
-def not_found_error(err):
-    status = 404
-    body = default_body(status,
-                        c.NOT_FOUND_ERROR_CODE,
-                        c.NOT_FOUND_ERROR_MSG)
-    resp = jsonify(body)
-    resp.status_code = status
-
-    return resp
-
-
-def bad_request():
-    status = 400
-    body = default_body(status,
-                        c.BAD_REQUEST_ERROR_CODE,
-                        c.BAD_REQUEST_ERROR_MSG)
-    resp = jsonify(body)
-    resp.status_code = status
-
-    return resp
-
-
-def conflict():
-    status = 409
-    body = default_body(status,
-                        c.CONFLICT_ERROR_CODE,
-                        c.CONFLICT_ERROR_MSG)
-    resp = jsonify(body)
-    resp.status_code = status
-
-    return resp
+def handle_unexpected_errors(*_):
+    """Error handler for generic exceptions."""
+    return error_response(500,
+                          c.UNEXPECTED_ERROR_CODE,
+                          c.UNEXPECTED_ERROR_MSG)
