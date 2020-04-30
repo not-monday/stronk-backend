@@ -8,9 +8,6 @@ NOT_FOUND_ERROR_CODE = "NOT_FOUND_ERROR"
 # ERROR MESSAGES
 UNEXPECTED_ERROR_MSG = "An unexpected error has occured."
 
-# TESTING ERROR MESSAGES
-ASSERTION_ERROR_MSG = "Expected {}, but got {}"
-
 # ERROR BODY RESPONSE
 ERROR_RESPONSE_BODY = {
     'code': -1,

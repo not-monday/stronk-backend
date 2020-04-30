@@ -17,7 +17,7 @@ def get_exercises():
     try:
         exercises = Exercise.query.all()
     except DBAPIError:
-        raise InternalServerError("Databse Error")
+        raise InternalServerError("Database Error")
 
     data = []
     for exercise in exercises:
@@ -62,7 +62,7 @@ def add_exercise():
 
         return res
     except DBAPIError as err:
-        raise InternalServerError("Databse Error")
+        raise InternalServerError("Database Error")
 
 # PATCH /exercise/:id
 @exercise_page.route('/<int:id>', methods=['PATCH'])
@@ -81,10 +81,10 @@ def update_exercise(id):
                         status=200,
                         mimetype='application/json')
     except IntegrityError as err:
-        elif isinstance(err.orig, UniqueViolation):
+        if isinstance(err.orig, UniqueViolation):
             return Conflict("Exercise with ID already exists.")
     except DBAPIError as err:
-        raise InternalServerError("Databse Error")
+        raise InternalServerError("Database Error")
 
 # DELETE /exercises/:id
 @exercise_page.route('/<int:id>', methods=['DELETE'])
@@ -104,4 +104,4 @@ def delete_exercise(id):
 
         return Response(body, status=200, mimetype='application/json')
     except DBAPIError as err:
-        raise InternalServerError("Databse Error")
+        raise InternalServerError("Database Error")

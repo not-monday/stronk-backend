@@ -4,8 +4,9 @@ from unittest.mock import patch, MagicMock
 
 from flask import jsonify
 
-from stronk import constants as c
 from stronk.errors import handlers as h
+from stronk import constants as c
+from tests import constants as test_c
 
 
 class TestErrorResponse(unittest.TestCase):
@@ -23,8 +24,10 @@ class TestErrorResponse(unittest.TestCase):
         result = h.error_response(status_code, error_code, msg)
 
         mock_jsonify.assert_called_once_with(body)
-        self.assertEqual(status_code, result.status_code, c.ASSERTION_ERROR_MSG.format(
-            status_code, result.status_code))
+        self.assertEqual(status_code,
+                         result.status_code,
+                         test_c.ASSERTION_ERROR_MSG.format(status_code,
+                                                           result.status_code))
 
 
 class TestHandleHttpException(unittest.TestCase):
@@ -40,8 +43,9 @@ class TestHandleHttpException(unittest.TestCase):
 
         mock_handle_unexpected_errors.assert_called_once_with(error)
         self.assertEqual(
-            self.returned, result, c.ASSERTION_ERROR_MSG.format(self.returned,
-                                                                result))
+            self.returned,
+            result,
+            test_c.ASSERTION_ERROR_MSG.format(self.returned, result))
 
     @patch("stronk.errors.handlers.error_response")
     def test_bad_request(self, mock_error_response):
@@ -57,8 +61,9 @@ class TestHandleHttpException(unittest.TestCase):
                                                     c.BAD_REQUEST_ERROR_CODE,
                                                     error.description)
         self.assertEqual(
-            self.returned, result, c.ASSERTION_ERROR_MSG.format(self.returned,
-                                                                result))
+            self.returned,
+            result,
+            test_c.ASSERTION_ERROR_MSG.format(self.returned, result))
 
     @patch("stronk.errors.handlers.error_response")
     def test_conflict(self, mock_error_response):
@@ -74,8 +79,8 @@ class TestHandleHttpException(unittest.TestCase):
                                                     c.CONFLICT_ERROR_CODE,
                                                     error.description)
         self.assertEqual(
-            self.returned, result, c.ASSERTION_ERROR_MSG.format(self.returned,
-                                                                result))
+            self.returned, result, test_c.ASSERTION_ERROR_MSG.format(self.returned,
+                                                                     result))
 
     @patch("stronk.errors.handlers.error_response")
     def test_not_found(self, mock_error_response):
@@ -91,8 +96,8 @@ class TestHandleHttpException(unittest.TestCase):
                                                     c.NOT_FOUND_ERROR_CODE,
                                                     error.description)
         self.assertEqual(
-            self.returned, result, c.ASSERTION_ERROR_MSG.format(self.returned,
-                                                                result))
+            self.returned, result, test_c.ASSERTION_ERROR_MSG.format(self.returned,
+                                                                     result))
 
     @patch("stronk.errors.handlers.error_response")
     def test_unauthorized(self, mock_error_response):
@@ -108,8 +113,8 @@ class TestHandleHttpException(unittest.TestCase):
                                                     c.UNAUTHORIZED_ERROR_CODE,
                                                     error.description)
         self.assertEqual(
-            self.returned, result, c.ASSERTION_ERROR_MSG.format(self.returned,
-                                                                result))
+            self.returned, result, test_c.ASSERTION_ERROR_MSG.format(self.returned,
+                                                                     result))
 
 
 class TestHandleUnexpectedErrors(unittest.TestCase):
@@ -124,4 +129,4 @@ class TestHandleUnexpectedErrors(unittest.TestCase):
         mock_error_response.assert_called_once_with(
             500, c.UNEXPECTED_ERROR_CODE, c.UNEXPECTED_ERROR_MSG)
         self.assertEqual(
-            self.returned, result, c.ASSERTION_ERROR_MSG.format(True, result))
+            self.returned, result, test_c.ASSERTION_ERROR_MSG.format(True, result))

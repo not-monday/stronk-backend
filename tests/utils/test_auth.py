@@ -5,8 +5,8 @@ from flask import request
 from firebase_admin.auth import RevokedIdTokenError, InvalidIdTokenError, verify_id_token
 from werkzeug import exceptions as e
 
-from stronk import constants as c
 from stronk.utils import auth
+from tests import constants as test_c
 
 
 @patch("stronk.utils.auth.request")
@@ -17,7 +17,7 @@ class TestVerifyToken(unittest.TestCase):
         result = auth.verify_token()
 
         self.assertEqual(
-            None, result, c.ASSERTION_ERROR_MSG.format(None, result))
+            None, result, test_c.ASSERTION_ERROR_MSG.format(None, result))
 
     @patch("stronk.utils.auth.auth.verify_id_token")
     def test_valid_token(self, mock_verify_id_token, mock_request):
@@ -29,7 +29,7 @@ class TestVerifyToken(unittest.TestCase):
         result = auth.verify_token()
 
         self.assertEqual(expected, result,
-                         c.ASSERTION_ERROR_MSG.format(expected, result))
+                         test_c.ASSERTION_ERROR_MSG.format(expected, result))
 
     def test_empty_auth_token(self, mock_request):
         mock_request.endpoint = 'graphql'

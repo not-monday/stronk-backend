@@ -1,0 +1,2 @@
+# TESTING ERROR MESSAGES
+ASSERTION_ERROR_MSG = "Expected {}, but got {}"

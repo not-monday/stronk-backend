@@ -17,7 +17,7 @@ def get_users():
     try:
         users = User.query.all()
     except DBAPIError:
-        raise InternalServerError("Databse Error")
+        raise InternalServerError("Database Error")
 
     data = []
     for user in users:
@@ -72,7 +72,7 @@ def add_user():
         elif isinstance(err.orig, UniqueViolation):
             raise Conflict("User with ID already exists.")
     except DBAPIError as err:
-        raise InternalServerError("Databse Error")
+        raise InternalServerError("Database Error")
 
 # PATCH /users/:id
 @users_page.route('/<int:id>', methods=['PATCH'])
@@ -94,7 +94,7 @@ def update_user(id):
         elif isinstance(err.orig, UniqueViolation):
             raise Conflict("User with ID already exists.")
     except DBAPIError as err:
-        raise InternalServerError("Databse Error")
+        raise InternalServerError("Database Error")
 
 # DELETE /users/:id
 @users_page.route('/<int:id>', methods=['DELETE'])
@@ -116,4 +116,4 @@ def delete_user(id):
                         status=200,
                         mimetype='application/json')
     except DBAPIError as err:
-        raise InternalServerError("Databse Error")
+        raise InternalServerError("Database Error")

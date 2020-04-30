@@ -17,7 +17,7 @@ def get_programs():
     try:
         programs = Program.query.all()
     except DBAPIError:
-        raise InternalServerError("Databse Error")
+        raise InternalServerError("Database Error")
 
     data = []
     for program in programs:
@@ -70,7 +70,7 @@ def add_program():
         elif isinstance(err.orig, UniqueViolation):
             raise Conflict("Program with ID already exists.")
     except DBAPIError as err:
-        raise InternalServerError("Databse Error")
+        raise InternalServerError("Database Error")
 
 # PATCH /program/:id
 @programs_page.route('/<int:id>', methods=['PATCH'])
@@ -94,7 +94,7 @@ def update_program(id):
         elif isinstance(err.orig, UniqueViolation):
             raise Conflict("Program with ID already exists.")
     except DBAPIError as err:
-        raise InternalServerError("Databse Error")
+        raise InternalServerError("Database Error")
 
 # DELETE /programs/:id
 @programs_page.route('/<int:id>', methods=['DELETE'])
@@ -114,4 +114,4 @@ def delete_program(id):
 
         return Response(body, status=200, mimetype='application/json')
     except DBAPIError as err:
-        raise InternalServerError("Databse Error")
+        raise InternalServerError("Database Error")

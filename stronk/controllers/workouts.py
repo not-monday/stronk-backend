@@ -17,7 +17,7 @@ def get_workouts():
     try:
         workouts = Workout.query.all()
     except DBAPIError:
-        raise InternalServerError("Databse Error")
+        raise InternalServerError("Database Error")
 
     data = []
     for workout in workouts:
@@ -67,7 +67,7 @@ def add_workout():
         if isinstance(err.orig, UniqueViolation):
             raise Conflict("Workout with ID already exists.")
     except DBAPIError as err:
-        raise InternalServerError("Databse Error")
+        raise InternalServerError("Database Error")
 
 # PATCH /workout/:id
 @workouts_page.route('/<int:id>', methods=['PATCH'])
@@ -89,7 +89,7 @@ def update_workout(id):
         if isinstance(err.orig, UniqueViolation):
             raise Conflict("Workout with ID already exists.")
     except DBAPIError as err:
-        raise InternalServerError("Databse Error")
+        raise InternalServerError("Database Error")
 
 # DELETE /workouts/:id
 @workouts_page.route('/<int:id>', methods=['DELETE'])
@@ -109,4 +109,4 @@ def delete_workout(id):
 
         return Response(body, status=200, mimetype='application/json')
     except DBAPIError as err:
-        raise InternalServerError("Databse Error")
+        raise InternalServerError("Database Error")
