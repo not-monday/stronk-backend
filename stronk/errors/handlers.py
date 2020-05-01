@@ -35,6 +35,7 @@ def handle_http_exception(e):
 
 def handle_unexpected_errors(*_):
     """Error handler for generic exceptions."""
+    # TODO: Add logging to the application.
     return error_response(500,
                           c.UNEXPECTED_ERROR_CODE,
                           c.UNEXPECTED_ERROR_MSG)

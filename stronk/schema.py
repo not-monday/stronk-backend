@@ -1,17 +1,39 @@
-from graphene import ObjectType, String, Schema
+import graphene
 
-class Query(ObjectType):
-    # defines query schema
-    user = String(name=String(default_value="test user name"))
-    workout = String(id=String(default_value="test workout id"))
-
-    # TODO actual resolvers - these are just for show
-    # resolvers
-    def resolve_user(root, info, name):
-        return f"user : {name}"
-
-    def resolve_workout(root, info, id):
-        return f"workout id : {id}"
+from stronk.models.user import User as UserModel
+from stronk.schemas.user.queries import User
 
 
-schema = Schema(query=Query)
+class Query(graphene.ObjectType):
+    users = graphene.List(User)
+    user = graphene.Field(User,
+                          id=graphene.Int(),
+                          username=graphene.String(),
+                          email=graphene.String(),
+                          currentProgram=graphene.Int())
+
+    def resolve_users(root, info):
+        query = User.get_query(info)
+        return query.all()
+
+    def resolve_user(root, info, id=None, username=None, email=None, currentProgram=None):
+        """Search for user in decreasing order of precedence: id, username,
+        email and current program.
+        """
+        query = User.get_query(info)
+        if id:
+            return query.filter(UserModel.id == id).first()
+
+        if username:
+            return query.filter(UserModel.username == username).first()
+
+        if email:
+            return query.filter(UserModel.email == email).first()
+
+        if currentProgram:
+            return query.filter(UserModel.current_program == currentProgram).first()
+
+        return None
+
+
+schema = graphene.Schema(query=Query)

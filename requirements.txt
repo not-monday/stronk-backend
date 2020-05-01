@@ -7,3 +7,4 @@ python-dotenv==0.11.0
 firebase-admin==4.1.0
 graphene==2.1.8
 flask-graphql==2.0.1
+graphene-sqlalchemy==2.2.2
