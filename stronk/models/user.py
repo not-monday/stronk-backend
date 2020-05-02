@@ -1,3 +1,8 @@
+from flask import current_app
+from psycopg2.errors import UniqueViolation, ForeignKeyViolation
+from sqlalchemy.exc import DBAPIError, IntegrityError
+from werkzeug.exceptions import BadRequest, Conflict
+
 from stronk import db
 
 
@@ -9,6 +14,28 @@ class User(db.Model):
     email = db.Column(db.String(120), index=True, unique=True, nullable=False)
     password_hash = db.Column(db.String(128))  # TODO remove field
     current_program = db.Column(db.Integer, db.ForeignKey('program.id'))
+
+    @staticmethod
+    def create(id, name, username, email, current_program=None):
+        u = User(id=id,
+                 name=name,
+                 username=username,
+                 email=email,
+                 current_program=current_program)
+        if current_program:
+            u.current_program = current_program
+
+        try:
+            db.session.add(u)
+            db.session.commit()
+        except IntegrityError as err:
+            if isinstance(err.orig, ForeignKeyViolation):
+                raise BadRequest("Program does not exist.")
+            elif isinstance(err.orig, UniqueViolation):
+                current_app.logger.info(err.orig)
+                raise Conflict("Username, email or ID is not unique.")
+        except DBAPIError as err:
+            raise InternalServerError("Database Error")
 
     def to_dict(self):
         """Returns a dictionary representing the attributes of the program.

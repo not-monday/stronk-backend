@@ -12,8 +12,8 @@ class User(SQLAlchemyObjectType):
 
 class Query(graphene.ObjectType):
     users = graphene.List(User)
-    user = graphene.Field(User,
-                          id=graphene.Int(),
+    user = graphene.Field(lambda: User,
+                          id=graphene.String(),
                           username=graphene.String(),
                           email=graphene.String(),
                           currentProgram=graphene.Int())

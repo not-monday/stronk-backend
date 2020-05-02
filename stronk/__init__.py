@@ -1,11 +1,12 @@
 import os
 
 from dotenv import load_dotenv
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
 from flask import Flask, jsonify, request
-from graphene import ObjectType, String, Schema
 from flask_graphql import GraphQLView
+from flask_migrate import Migrate
+from flask_sqlalchemy import SQLAlchemy
+from graphene import ObjectType, String, Schema
+
 import firebase_admin
 from stronk.utils import auth
 
@@ -33,7 +34,8 @@ from stronk.models.program_reviews import ProgramReviews
 from stronk.models.weight import Weight
 from stronk.schema import schema
 
-migrate = Migrate(app, db)
+
+migrate = Migrate(app, db, compare_type=True)
 
 # INITIALLY CREATE DATABASE.
 # UNCOMMENT ONLY WHEN RUNNING FOR THE FIRST TIME.
