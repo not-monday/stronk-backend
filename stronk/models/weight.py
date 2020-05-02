@@ -3,7 +3,7 @@ from stronk.models.user import User
 
 
 class Weight(db.Model):
-    user_id = db.Column(db.Integer,
+    user_id = db.Column(db.String(),
                         db.ForeignKey('user.id'),
                         primary_key=True,
                         index=True,

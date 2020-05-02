@@ -2,7 +2,7 @@ from stronk import db
 
 
 class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)  # TODO: change to string type
+    id = db.Column(db.String(), primary_key=True)
     name = db.Column(db.String(64), index=True, nullable=False)
     username = db.Column(db.String(64), index=True,
                          unique=True, nullable=False)
