@@ -1,11 +1,13 @@
 from stronk import db
 
+
 class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)  # TODO: change to string type
     name = db.Column(db.String(64), index=True, nullable=False)
-    username = db.Column(db.String(64), index=True, unique=True, nullable=False)
+    username = db.Column(db.String(64), index=True,
+                         unique=True, nullable=False)
     email = db.Column(db.String(120), index=True, unique=True, nullable=False)
-    password_hash = db.Column(db.String(128))
+    password_hash = db.Column(db.String(128))  # TODO remove field
     current_program = db.Column(db.Integer, db.ForeignKey('program.id'))
 
     def to_dict(self):
@@ -19,7 +21,7 @@ class User(db.Model):
             "email": self.email,
             "current_program": self.current_program
         }
-    
+
     def update(self, attrs):
         """Updates model given attrs.
 
@@ -37,5 +39,3 @@ class User(db.Model):
             self.password_hash = attrs.get('password_hash')
         if attrs.get('current_program'):
             self.current_program = attrs.get('current_program')
-        
-    
