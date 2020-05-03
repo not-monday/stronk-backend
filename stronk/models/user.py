@@ -28,6 +28,8 @@ class User(db.Model):
         try:
             db.session.add(u)
             db.session.commit()
+
+            return u
         except IntegrityError as err:
             if isinstance(err.orig, ForeignKeyViolation):
                 raise BadRequest("Program does not exist.")
