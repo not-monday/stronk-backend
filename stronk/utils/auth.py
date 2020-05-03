@@ -1,5 +1,5 @@
 from firebase_admin import auth
-from flask import request
+from flask import request, g
 from werkzeug import exceptions as e
 
 
@@ -21,6 +21,8 @@ def verify_token():
             # Verify the ID token while checking if the token is revoked by
             # passing check_revoked=True.
             decoded_token = auth.verify_id_token(id_token, check_revoked=True)
+            # Set the Firebase Token in the request context
+            g.firebase_token = id_token
             # Token is valid and not revoked.
             return decoded_token['uid']
         except auth.RevokedIdTokenError:

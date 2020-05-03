@@ -1,11 +1,16 @@
 import graphene
+from firebase_admin import auth
+from flask import g
 
 from stronk import db
 from stronk.models.user import User as UserModel
-from stronk.schemas.user.queries import User
+from stronk.schemas.user.type import User
 
 
 class CreateUser(graphene.Mutation):
+    # declare class attributes
+    user = graphene.Field(User)
+
     class Arguments:
         # Arguments to take went creating User
         name = graphene.String(required=True)
@@ -13,22 +18,13 @@ class CreateUser(graphene.Mutation):
         email = graphene.String(required=True)
         currentProgram = graphene.Int(required=False)
 
-    user = graphene.Field(lambda: User)
-
     def mutate(root, info, name, username, email, currentProgram=None):
-        # TODO Get the UID from firebase token
-        id = "test"
-        UserModel.create(id=id,
-                         name=name,
-                         username=username,
-                         email=email,
-                         current_program=currentProgram)
-
-        user = User(id=id,
-                    name=name,
-                    username=username,
-                    email=email,
-                    current_program=currentProgram)
+        id = auth.get_user(g.get("firebase_token"))
+        user = UserModel.create(id=id,
+                                name=name,
+                                username=username,
+                                email=email,
+                                current_program=currentProgram)
 
         return CreateUser(user=user)
 
