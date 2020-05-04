@@ -39,6 +39,14 @@ class User(db.Model):
         except DBAPIError as err:
             raise InternalServerError("Database Error")
 
+    @staticmethod
+    def find_by_id(id):
+        user = User.query.filter_by(id=id).first()
+        if not user:
+            raise NotFound("User not found.")
+
+        return user
+
     def to_dict(self):
         """Returns a dictionary representing the attributes of the program.
            Key is the name of the attribute and value is the value of the
@@ -64,7 +72,26 @@ class User(db.Model):
             self.email = attrs.get('email')
         if attrs.get('username'):
             self.username = attrs.get('username')
-        if attrs.get('password_hash'):
-            self.password_hash = attrs.get('password_hash')
         if attrs.get('current_program'):
             self.current_program = attrs.get('current_program')
+
+        try:
+            db.session.add(self)
+            db.session.commit()
+        except IntegrityError as err:
+            if isinstance(err.orig, ForeignKeyViolation):
+                raise BadRequest("Program does not exist.")
+            elif isinstance(err.orig, UniqueViolation):
+                raise Conflict("User with ID already exists.")
+        except DBAPIError as err:
+            raise InternalServerError("Database Error")
+
+    def delete(self):
+        try:
+            db.session.delete(self)
+            db.session.commit()
+            data = {
+                "message": "User successfully deleted."
+            }
+        except DBAPIError as err:
+            raise InternalServerError("Database Error")
