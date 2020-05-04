@@ -6,4 +6,3 @@ from stronk.models.user import User as UserModel
 class User(SQLAlchemyObjectType):
     class Meta:
         model = UserModel
-        exclude_fields = ("password_hash",)

@@ -8,9 +8,8 @@ from flask_sqlalchemy import SQLAlchemy
 from graphene import ObjectType, String, Schema
 
 import firebase_admin
-from stronk.utils import auth
-
 from stronk.database.config import Config
+from stronk.utils import auth
 
 # Load environment variables from .env
 load_dotenv()
@@ -43,13 +42,10 @@ migrate = Migrate(app, db, compare_type=True)
 
 # Import blueprints
 from stronk import models, controllers
-from stronk.controllers.users import users_page
 from stronk.controllers.programs import programs_page
 from stronk.controllers.workouts import workouts_page
 from stronk.controllers.exercise import exercise_page
 
-# TODO add global error handling for malformed requests
-app.register_blueprint(users_page, url_prefix='/users')
 app.register_blueprint(programs_page, url_prefix='/programs')
 app.register_blueprint(workouts_page, url_prefix='/workouts')
 app.register_blueprint(exercise_page, url_prefix='/exercises')
