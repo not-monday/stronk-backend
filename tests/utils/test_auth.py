@@ -19,8 +19,9 @@ class TestVerifyToken(unittest.TestCase):
         self.assertEqual(
             None, result, test_c.ASSERTION_ERROR_MSG.format(None, result))
 
+    @patch("stronk.utils.auth.g")
     @patch("stronk.utils.auth.auth.verify_id_token")
-    def test_valid_token(self, mock_verify_id_token, mock_request):
+    def test_valid_token(self, mock_verify_id_token, mock_g, mock_request):
         mock_request.endpoint = 'graphql'
         mock_request.headers.get.return_value = "Bearer id_token"
         mock_verify_id_token.return_value = {"uid": "id_token"}
@@ -58,8 +59,9 @@ class TestVerifyToken(unittest.TestCase):
         self.assertTrue(
             "Authorization token in header has incorrect format." in str(context.exception))
 
+    @patch("stronk.utils.auth.g")
     @patch("stronk.utils.auth.auth.verify_id_token")
-    def test_revoked_id_token(self, mock_verify_id_token, mock_request):
+    def test_revoked_id_token(self, mock_verify_id_token, mock_g, mock_request):
         mock_request.endpoint = 'graphql'
         mock_request.headers.get.return_value = "Bearer id_token"
         mock_verify_id_token.side_effect = RevokedIdTokenError("Error")
@@ -69,8 +71,9 @@ class TestVerifyToken(unittest.TestCase):
         self.assertTrue(
             "Token has been revoked." in str(context.exception))
 
+    @patch("stronk.utils.auth.g")
     @patch("stronk.utils.auth.auth.verify_id_token")
-    def test_invalid_id_token(self, mock_verify_id_token, mock_request):
+    def test_invalid_id_token(self, mock_verify_id_token, mock_g, mock_request):
         mock_request.endpoint = 'graphql'
         mock_request.headers.get.return_value = "Bearer id_token"
         mock_verify_id_token.side_effect = InvalidIdTokenError("Error")

@@ -83,8 +83,8 @@ this is a pretty good [resource](https://docs.docker.com/engine/examples/postgre
 
 # Testing
 
-Run unit tests from the root of the repo
-`python3 -m unittest`
+Run unit tests and Snapshot tests for GraphQL.
+`nosetests`
 
 # Contributing
 
