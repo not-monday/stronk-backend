@@ -5,8 +5,11 @@ from werkzeug.exceptions import BadRequest, Conflict
 
 from stronk import db
 
+table_name = "stronk_user"
 
 class User(db.Model):
+    __tablename__ = table_name
+
     id = db.Column(db.String(), primary_key=True)
     name = db.Column(db.String(64), index=True, nullable=False)
     username = db.Column(db.String(64), index=True,

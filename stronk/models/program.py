@@ -5,7 +5,7 @@ from stronk.models.user import User
 class Program(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     author = db.Column(db.String(),
-                       db.ForeignKey('user.id'),
+                       db.ForeignKey(f'{User.__tablename__}.id'),
                        index=True,
                        nullable=False)
     name = db.Column(db.String(128), index=True, nullable=False, unique=True)
