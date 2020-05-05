@@ -19,6 +19,15 @@ Ensure you have [python3](https://www.python.org/downloads/), [pip](https://pip.
 9. `source ./scripts/setup.sh` to run database migrations
 10. `flask run` to start server
 
+## OPTIONAL:
+To add mock data to the database so interacting is easier:
+1. 
+```bash
+# example:
+# psql -h localhost -p 32768 -U postgres -d stronk -a -f mock/dummy.sql
+psql -h localhost -p {port} -U {user name} -d {database name} -a -f mock/dummy.sql
+```
+
 Server will be live of port 5000
 
 - when developing, make sure to run repeat `step 2` to use your virtual env
