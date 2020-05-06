@@ -7,6 +7,7 @@ from stronk import db
 
 table_name = "stronk_user"
 
+
 class User(db.Model):
     __tablename__ = table_name
 
