@@ -20,8 +20,11 @@ Ensure you have [python3](https://www.python.org/downloads/), [pip](https://pip.
 10. `flask run` to start server
 
 ## OPTIONAL:
+
 To add mock data to the database so interacting is easier:
-1. 
+
+1.
+
 ```bash
 # example:
 # psql -h localhost -p 32768 -U postgres -d stronk -a -f mock/dummy.sql
@@ -92,7 +95,11 @@ this is a pretty good [resource](https://docs.docker.com/engine/examples/postgre
 
 # Testing
 
+Set up a test database by running the database migrations and setting the `TEST_DATABASE_URL` in the
+`.env` file.
+
 Run unit tests and Snapshot tests for GraphQL.
+
 `nosetests`
 
 # Contributing
