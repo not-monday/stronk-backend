@@ -4,7 +4,7 @@ This is a [Flask](https://flask.palletsprojects.com/en/1.1.x/blueprints/) backen
 
 # Pre-requisites
 
-Ensure you have [python3](https://www.python.org/downloads/), [pip](https://pip.pypa.io/en/stable/installing/) and [postgreSQL](https://www.postgresql.org/) installed.
+Ensure you have [python3](https://www.python.org/downloads/), [pip](https://pip.pypa.io/en/stable/installing/), [postgreSQL](https://www.postgresql.org/) and [newman](https://github.com/postmanlabs/newman) installed.
 
 # Quickstart
 
@@ -102,7 +102,7 @@ Set up a test database
 
 Run unit tests and graphQL tests
 
-`./test.sh`
+`./scripts/test.sh`
 
 # Contributing
 
