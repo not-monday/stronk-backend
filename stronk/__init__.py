@@ -60,7 +60,8 @@ from werkzeug.exceptions import HTTPException
 app.register_error_handler(HTTPException, h.handle_http_exception)
 app.register_error_handler(Exception, h.handle_unexpected_errors)
 
-app.before_request(auth.verify_token)
+if app.config['ENV'] != 'testing':
+    app.before_request(auth.verify_token)
 
 # a simple page that says hello
 @app.route('/')

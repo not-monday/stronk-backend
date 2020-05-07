@@ -1,11 +1,11 @@
 import graphene
 from firebase_admin import auth
-from flask import g
+from flask import current_app, g
 
 from stronk import db
 from stronk.models.user import User as UserModel
 from stronk.schemas.user.type import User
-
+from tests import constants as c
 
 class CreateUser(graphene.Mutation):
     """Create a user."""
@@ -19,7 +19,8 @@ class CreateUser(graphene.Mutation):
         currentProgram = graphene.Int(required=False)
 
     def mutate(root, info, name, username, email, currentProgram=None):
-        id = auth.get_user(g.get("firebase_token"))
+        id = c.TEST_ID if current_app.config['ENV'] == 'testing' else g.id
+
         user = UserModel.create(id=id,
                                 name=name,
                                 username=username,
