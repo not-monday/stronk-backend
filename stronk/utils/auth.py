@@ -1,12 +1,12 @@
 from firebase_admin import auth
-from flask import request, g
+from flask import current_app, request, g
 from werkzeug import exceptions as e
 
 
 def verify_token():
     """Returns the uid for the user with id_token if id_token is valid and
        not revoked."""
-    if request.endpoint == 'graphql':
+    if request.endpoint == 'graphql' and current_app.config['ENV'] != 'testing':
         id_token = request.headers.get("Authorization")
         if not id_token:
             raise e.BadRequest("Missing Authorization token in header.")

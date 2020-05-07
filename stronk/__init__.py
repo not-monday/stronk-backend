@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 from graphene import ObjectType, String, Schema
 
 import firebase_admin
-from stronk.database.config import Config
+from stronk.database.config import Config, TestConfig
 from stronk.utils import auth
 
 # Load environment variables from .env
@@ -15,8 +15,13 @@ load_dotenv()
 # Create and configure the app
 if not firebase_admin._apps:
     default_app = firebase_admin.initialize_app()
+
 app = Flask(__name__, instance_relative_config=True)
-app.config.from_object(Config)
+if app.config['ENV'] == 'testing':
+    app.config.from_object(TestConfig)
+else:
+    app.config.from_object(Config)
+
 db = SQLAlchemy(app)
 
 # Import models to be created
