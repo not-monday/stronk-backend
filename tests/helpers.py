@@ -20,7 +20,7 @@ def close_session(session):
     session.close()
 
 
-def execute(session, path):
+def execute_from_file(session, path):
     """Executes SQL file located at the path with the database session."""
     conn = session.connection()
     with open(path) as file:

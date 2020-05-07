@@ -1,7 +1,7 @@
 from flask import current_app
 from psycopg2.errors import UniqueViolation, ForeignKeyViolation
 from sqlalchemy.exc import DBAPIError, IntegrityError
-from werkzeug.exceptions import BadRequest, Conflict
+from werkzeug.exceptions import BadRequest, Conflict, NotFound
 
 from stronk import db
 

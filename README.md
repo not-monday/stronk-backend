@@ -27,8 +27,8 @@ To add mock data to the database so interacting is easier:
 
 ```bash
 # example:
-# psql -h localhost -p 32768 -U postgres -d stronk -a -f mock/dummy.sql
-psql -h localhost -p {port} -U {user name} -d {database name} -a -f mock/dummy.sql
+# psql -h localhost -p 32768 -U postgres -d stronk -a -f sql/insert_mock_data.sql
+psql -h localhost -p {port} -U {user name} -d {database name} -a -f sql/insert_mock_data.sql
 ```
 
 Server will be live of port 5000
@@ -95,12 +95,14 @@ this is a pretty good [resource](https://docs.docker.com/engine/examples/postgre
 
 # Testing
 
-Set up a test database by running the database migrations and setting the `TEST_DATABASE_URL` in the
-`.env` file.
+Set up a test database
 
-Run unit tests and Snapshot tests for GraphQL.
+1. Fill in `TEST_DATABASE_URL` in your `.env`
+2. Run `source scripts/setup.sh --testing`
 
-`nosetests`
+Run unit tests and graphQL tests
+
+`./test.sh`
 
 # Contributing
 
