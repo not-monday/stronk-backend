@@ -95,14 +95,14 @@ this is a pretty good [resource](https://docs.docker.com/engine/examples/postgre
 
 # Testing
 
-Set up a test database
+Set up flask to use test database
 
 1. Fill in `TEST_DATABASE_URL` in your `.env`
 2. Run `source scripts/setup.sh --testing`
 
 Run unit tests and graphQL tests
-
-`./scripts/test.sh`
+1. Run the server `flask run`
+2. Run the tests `./scripts/test.sh`
 
 # Contributing
 
