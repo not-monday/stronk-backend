@@ -1,12 +1,16 @@
 from stronk import db
 from stronk.models.user import User
 
+
 class Program(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    author = db.Column(db.Integer, db.ForeignKey('user.id'), index=True, nullable=False)
+    author = db.Column(db.String(),
+                       db.ForeignKey(f'{User.__tablename__}.id'),
+                       index=True,
+                       nullable=False)
     name = db.Column(db.String(128), index=True, nullable=False, unique=True)
     duration = db.Column(db.Integer, nullable=False)
-    description = db.Column(db.String(256), nullable=False)    
+    description = db.Column(db.String(256), nullable=False)
 
     def to_dict(self):
         """Returns a dictionary representing the attributes of the program.
@@ -19,7 +23,7 @@ class Program(db.Model):
             "duration": self.duration,
             "description": self.description
         }
-        
+
     def get_author(self):
         """Returns the User object for the author of the program."""
         return User.query.filter_by(id=self.author).first().to_dict()
@@ -38,4 +42,4 @@ class Program(db.Model):
         if attrs.get('duration'):
             self.duration = attrs.get('duration')
         if attrs.get('description'):
-            self.description = attrs.get('description')    
+            self.description = attrs.get('description')

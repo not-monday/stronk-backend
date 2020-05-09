@@ -4,7 +4,7 @@ This is a [Flask](https://flask.palletsprojects.com/en/1.1.x/blueprints/) backen
 
 # Pre-requisites
 
-Ensure you have [python3](https://www.python.org/downloads/), [pip](https://pip.pypa.io/en/stable/installing/) and [postgreSQL](https://www.postgresql.org/) installed.
+Ensure you have [python3](https://www.python.org/downloads/), [pip](https://pip.pypa.io/en/stable/installing/), [postgreSQL](https://www.postgresql.org/) and [newman](https://github.com/postmanlabs/newman) installed.
 
 # Quickstart
 
@@ -18,6 +18,18 @@ Ensure you have [python3](https://www.python.org/downloads/), [pip](https://pip.
 8. Rename the json file to `stronk-google-credentials.json` and copy it to the the root of the project
 9. `source ./scripts/setup.sh` to run database migrations
 10. `flask run` to start server
+
+## OPTIONAL:
+
+To add mock data to the database so interacting is easier:
+
+1.
+
+```bash
+# example:
+# psql -h localhost -p 32768 -U postgres -d stronk -a -f sql/insert_mock_data.sql
+psql -h localhost -p {port} -U {user name} -d {database name} -a -f sql/insert_mock_data.sql
+```
 
 Server will be live of port 5000
 
@@ -83,8 +95,14 @@ this is a pretty good [resource](https://docs.docker.com/engine/examples/postgre
 
 # Testing
 
-Run unit tests from the root of the repo
-`python3 -m unittest`
+Set up flask to use test database
+
+1. Fill in `TEST_DATABASE_URL` in your `.env`
+2. Run `source scripts/setup.sh --testing`
+
+Run unit tests and graphQL tests
+1. Run the server `flask run`
+2. Run the tests `./scripts/test.sh`
 
 # Contributing
 

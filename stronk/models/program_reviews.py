@@ -11,8 +11,8 @@ class ProgramReviews(db.Model):
                            primary_key=True,
                            index=True,
                            nullable=False)
-    reviewer_id = db.Column(db.Integer,
-                            db.ForeignKey('user.id'),
+    reviewer_id = db.Column(db.String(),
+                            db.ForeignKey(f'{User.__tablename__}.id'),
                             primary_key=True,
                             index=True,
                             nullable=False)

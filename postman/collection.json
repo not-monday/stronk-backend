@@ -1,0 +1,1227 @@
+{
+	"info": {
+		"_postman_id": "d4f8d1ef-997e-46ec-b562-667a587585e1",
+		"name": "Stronk",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "1. Queries: user, users",
+					"item": [
+						{
+							"name": "users query",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "79044c52-b47f-4187-a417-773347972319",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"users\": [",
+											"                {",
+											"                    \"id\": \"user_id_1\",",
+											"                    \"name\": \"max b wavy\",",
+											"                    \"username\": \"mxwvy\",",
+											"                    \"email\": \"max.wavy@gmail.com\",",
+											"                    \"currentProgram\": 0",
+											"                },",
+											"                {",
+											"                    \"id\": \"user_id_2\",",
+											"                    \"name\": \"jason cheung\",",
+											"                    \"username\": \"kakit\",",
+											"                    \"email\": \"ka.kit@gmail.com\",",
+											"                    \"currentProgram\": 1",
+											"                },",
+											"                {",
+											"                    \"id\": \"user_id_3\",",
+											"                    \"name\": \"richard wei\",",
+											"                    \"username\": \"chengchu\",",
+											"                    \"email\": \"richard.wei@gmail.com\",",
+											"                    \"currentProgram\": 2",
+											"                }",
+											"            ]",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "{\n    users {\n        id\n        name\n        username\n        email\n        currentProgram\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "correct response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "{\n    users {\n        id\n        name\n        username\n        email\n        currentProgram\n    }\n}",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/graphql",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"graphql"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "354"
+										},
+										{
+											"key": "Server",
+											"value": "Werkzeug/0.15.4 Python/3.7.0"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 07 May 2020 06:51:49 GMT"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"users\": [\n            {\n                \"id\": \"user_id_1\",\n                \"name\": \"max b wavy\",\n                \"username\": \"mxwvy\",\n                \"email\": \"max.wavy@gmail.com\",\n                \"currentProgram\": null\n            },\n            {\n                \"id\": \"user_id_2\",\n                \"name\": \"jason cheung\",\n                \"username\": \"kakit\",\n                \"email\": \"ka.kit@gmail.com\",\n                \"currentProgram\": null\n            },\n            {\n                \"id\": \"user_id_3\",\n                \"name\": \"richard wei\",\n                \"username\": \"chengchu\",\n                \"email\": \"richard.wei@gmail.com\",\n                \"currentProgram\": null\n            }\n        ]\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "user query",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c0ce811e-05ff-43bd-b3f3-e2195515747f",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"user\": {",
+											"                \"id\": \"user_id_1\",",
+											"                \"name\": \"max b wavy\",",
+											"                \"username\": \"mxwvy\",",
+											"                \"email\": \"max.wavy@gmail.com\",",
+											"                \"currentProgram\": 0",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "{\n    user(id: \"user_id_1\") {\n        id\n        name\n        username\n        email\n        currentProgram\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "correct response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "{\n    user(id: \"user_id_1\") {\n        id\n        name\n        username\n        email\n        currentProgram\n    }\n}",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/graphql",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"graphql"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "126"
+										},
+										{
+											"key": "Server",
+											"value": "Werkzeug/0.15.4 Python/3.7.0"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 07 May 2020 07:04:40 GMT"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"user\": {\n            \"id\": \"user_id_1\",\n            \"name\": \"max b wavy\",\n            \"username\": \"mxwvy\",\n            \"email\": \"max.wavy@gmail.com\",\n            \"currentProgram\": null\n        }\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "user query - NULL",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "2ada5435-6164-430e-9c85-ab1d0f268939",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"user\": null",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "{\n    user(id: \"user_id_10\") {\n        id\n        name\n        username\n        email\n        currentProgram\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "correct response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "{\n    user(id: \"user_id_1\") {\n        id\n        name\n        username\n        email\n        currentProgram\n    }\n}",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/graphql",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"graphql"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "126"
+										},
+										{
+											"key": "Server",
+											"value": "Werkzeug/0.15.4 Python/3.7.0"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 07 May 2020 07:04:40 GMT"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"user\": {\n            \"id\": \"user_id_1\",\n            \"name\": \"max b wavy\",\n            \"username\": \"mxwvy\",\n            \"email\": \"max.wavy@gmail.com\",\n            \"currentProgram\": null\n        }\n    }\n}"
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "2. Mutation: createUser",
+					"item": [
+						{
+							"name": "Create without currentProgram",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e3dffe37-86c4-45d3-bfce-63c08a80e2ab",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"createUser\": {",
+											"                \"user\": {",
+											"                    \"id\": \"test_id\",",
+											"                    \"name\": \"test_name\",",
+											"                    \"username\": \"test_username\",",
+											"                    \"email\": \"test_email\",",
+											"                    \"currentProgram\": null",
+											"                }",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    createUser(email: \"test_email\", username: \"test_username\", name: \"test_name\") {\n        user {\n            id\n            name\n            username\n            email\n            currentProgram\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "correct response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "{\n    user(id: \"user_id_1\") {\n        id\n        name\n        username\n        email\n        currentProgram\n    }\n}",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/graphql",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"graphql"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "126"
+										},
+										{
+											"key": "Server",
+											"value": "Werkzeug/0.15.4 Python/3.7.0"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 07 May 2020 07:04:40 GMT"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"user\": {\n            \"id\": \"user_id_1\",\n            \"name\": \"max b wavy\",\n            \"username\": \"mxwvy\",\n            \"email\": \"max.wavy@gmail.com\",\n            \"currentProgram\": null\n        }\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Conflict",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7d8a9f16-e1df-4aa7-abcd-46774c850dd5",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = \"409 Conflict: Username, email or ID is not unique.\";",
+											"    pm.expect(result.errors[0].message).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    createUser(email: \"test_email\", username: \"test_username\", name: \"test_name\") {\n        user {\n            id\n            name\n            username\n            email\n            currentProgram\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "correct response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "{\n    user(id: \"user_id_1\") {\n        id\n        name\n        username\n        email\n        currentProgram\n    }\n}",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/graphql",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"graphql"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "126"
+										},
+										{
+											"key": "Server",
+											"value": "Werkzeug/0.15.4 Python/3.7.0"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 07 May 2020 07:04:40 GMT"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"user\": {\n            \"id\": \"user_id_1\",\n            \"name\": \"max b wavy\",\n            \"username\": \"mxwvy\",\n            \"email\": \"max.wavy@gmail.com\",\n            \"currentProgram\": null\n        }\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Bad Request - Missing name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "326f117c-8b5a-46c9-adc7-ab507ee6a3fa",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = \"Field \\\"createUser\\\" argument \\\"name\\\" of type \\\"String!\\\" is required but not provided.\";",
+											"    pm.expect(result.errors[0].message).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    createUser(email: \"test_email\", username: \"test_username\") {\n        user {\n            id\n            name\n            username\n            email\n            currentProgram\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "correct response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "{\n    user(id: \"user_id_1\") {\n        id\n        name\n        username\n        email\n        currentProgram\n    }\n}",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/graphql",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"graphql"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "126"
+										},
+										{
+											"key": "Server",
+											"value": "Werkzeug/0.15.4 Python/3.7.0"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 07 May 2020 07:04:40 GMT"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"user\": {\n            \"id\": \"user_id_1\",\n            \"name\": \"max b wavy\",\n            \"username\": \"mxwvy\",\n            \"email\": \"max.wavy@gmail.com\",\n            \"currentProgram\": null\n        }\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Bad Request - Missing username",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ff9ac69b-f9db-4493-9eb1-55e2f74e039a",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = \"Field \\\"createUser\\\" argument \\\"username\\\" of type \\\"String!\\\" is required but not provided.\";",
+											"    pm.expect(result.errors[0].message).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    createUser(email: \"test_email\", name: \"test_name\") {\n        user {\n            id\n            name\n            username\n            email\n            currentProgram\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "correct response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "{\n    user(id: \"user_id_1\") {\n        id\n        name\n        username\n        email\n        currentProgram\n    }\n}",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/graphql",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"graphql"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "126"
+										},
+										{
+											"key": "Server",
+											"value": "Werkzeug/0.15.4 Python/3.7.0"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 07 May 2020 07:04:40 GMT"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"user\": {\n            \"id\": \"user_id_1\",\n            \"name\": \"max b wavy\",\n            \"username\": \"mxwvy\",\n            \"email\": \"max.wavy@gmail.com\",\n            \"currentProgram\": null\n        }\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Bad Request - Missing email",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "18bb27df-940d-40a2-9384-fe538c2d2d82",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = \"Field \\\"createUser\\\" argument \\\"email\\\" of type \\\"String!\\\" is required but not provided.\";",
+											"    pm.expect(result.errors[0].message).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    createUser(username: \"test_username\", name: \"test_name\") {\n        user {\n            id\n            name\n            username\n            email\n            currentProgram\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "correct response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "{\n    user(id: \"user_id_1\") {\n        id\n        name\n        username\n        email\n        currentProgram\n    }\n}",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/graphql",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"graphql"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "126"
+										},
+										{
+											"key": "Server",
+											"value": "Werkzeug/0.15.4 Python/3.7.0"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 07 May 2020 07:04:40 GMT"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"user\": {\n            \"id\": \"user_id_1\",\n            \"name\": \"max b wavy\",\n            \"username\": \"mxwvy\",\n            \"email\": \"max.wavy@gmail.com\",\n            \"currentProgram\": null\n        }\n    }\n}"
+								}
+							]
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "3. Mutation: updateUser",
+					"item": [
+						{
+							"name": "Update non-existent user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d661b80c-f871-4f4c-bb26-1dea5e882fee",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = \"404 Not Found: User not found.\";",
+											"    pm.expect(result.errors[0].message).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    updateUser(id: \"user_id_x\", name: \"new_name\") {\n        user {\n            id\n            name\n            username\n            email\n            currentProgram\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update username",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "025b78ef-a533-447b-8831-d7ff8311795d",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "fb227f67-7252-45bb-89ea-7610ff71365a",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"updateUser\": {",
+											"                \"user\": {",
+											"                    \"id\": \"user_id_1\",",
+											"                    \"name\": \"max b wavy\",",
+											"                    \"username\": \"new_username\",",
+											"                    \"email\": \"max.wavy@gmail.com\",",
+											"                    \"currentProgram\": 0",
+											"                }",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    updateUser(id: \"user_id_1\", username: \"new_username\") {\n        user {\n            id\n            name\n            username\n            email\n            currentProgram\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update email",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "fbd292fc-2d2e-422e-8c18-e64ef28b7c68",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"updateUser\": {",
+											"                \"user\": {",
+											"                    \"id\": \"user_id_1\",",
+											"                    \"name\": \"max b wavy\",",
+											"                    \"username\": \"new_username\",",
+											"                    \"email\": \"new_email\",",
+											"                    \"currentProgram\": 0",
+											"                }",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    updateUser(id: \"user_id_1\", email: \"new_email\") {\n        user {\n            id\n            name\n            username\n            email\n            currentProgram\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3fb6d81a-ce13-4184-acdc-da5b58effd03",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"updateUser\": {",
+											"                \"user\": {",
+											"                    \"id\": \"user_id_1\",",
+											"                    \"name\": \"new_name\",",
+											"                    \"username\": \"new_username\",",
+											"                    \"email\": \"new_email\",",
+											"                    \"currentProgram\": 0",
+											"                }",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    updateUser(id: \"user_id_1\", name: \"new_name\") {\n        user {\n            id\n            name\n            username\n            email\n            currentProgram\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update currentProgram",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "14e351e7-dbef-4909-bde6-9b1630a869f5",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"updateUser\": {",
+											"                \"user\": {",
+											"                    \"id\": \"user_id_1\",",
+											"                    \"name\": \"new_name\",",
+											"                    \"username\": \"new_username\",",
+											"                    \"email\": \"new_email\",",
+											"                    \"currentProgram\": 2",
+											"                }",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    updateUser(id: \"user_id_1\", currentProgram: 2) {\n        user {\n            id\n            name\n            username\n            email\n            currentProgram\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "4. Mutation: deleteUser",
+					"item": [
+						{
+							"name": "Delete user that exists",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "621e5840-9854-4ffa-8d49-eae3800bf5b2",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"deleteUser\": {",
+											"                \"ok\": true",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    deleteUser(id: \"test_id\") {\n        ok\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete user that does not exist",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5cc9454b-a905-4ee9-b6af-7fd20776bcd9",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = \"404 Not Found: User not found.\";",
+											"    pm.expect(result.errors[0].message).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    deleteUser(id: \"test_id_x\") {\n        ok\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"description": "Tests for graphQL queries and mutations for users.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9ded4b1a-1950-433b-9f03-4256ae82b3c9",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "db984adf-ea78-47a9-ad8e-6bdc9252329b",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
