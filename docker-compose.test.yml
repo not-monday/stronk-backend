@@ -1,0 +1,6 @@
+version: "3"
+services:
+  postman:
+    image: postman/newman
+    volumes:
+      - ./postman:/etc/newman

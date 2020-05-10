@@ -1,0 +1,52 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+trigger:
+  - "*"
+
+pr:
+  - "*"
+
+pool:
+  vmImage: "ubuntu-latest"
+
+steps:
+  - task: UsePythonVersion@0
+    inputs:
+      versionSpec: "3.6"
+  - script: pip install -r requirements.txt
+    displayName: "Install packages"
+  - script: python3 -m unittest
+    displayName: "Run unit tests"
+  - task: DockerCompose@0
+    displayName: Run web and db services
+    inputs:
+      containerregistrytype: 'Azure Container Registry'
+      dockerComposeFile: 'docker-compose.yml'
+      additionalDockerComposeFiles: |
+        ./docker-compose.test.yml
+        ./docker-compose.ci.yml
+      action: 'Run services'
+  - task: Docker@2
+    displayName: Run migrations on db
+    inputs:
+      command: exec
+      arguments: -i not-mondaystronk-backend_web_1 flask db upgrade
+  - task: Docker@2
+    displayName: Insert test data into db
+    inputs:
+      command: exec
+      arguments: -i not-mondaystronk-backend_db_1 psql -U postgres -d $(DB_NAME) -a -f ./sql/insert_mock_data.sql
+  - task: DockerCompose@0
+    displayName: Run GraphQL tests via postman/newman
+    inputs:
+      containerregistrytype: 'Azure Container Registry'
+      dockerComposeFile: 'docker-compose.yml'
+      additionalDockerComposeFiles: |
+        ./docker-compose.test.yml
+        ./docker-compose.ci.yml
+      action: 'Run a specific service'
+      serviceName: 'postman'
+      containerCommand: 'run /etc/newman/collection.json -e /etc/newman/ci_env.json'
+      detached: false

@@ -4,78 +4,37 @@ This is a [Flask](https://flask.palletsprojects.com/en/1.1.x/blueprints/) backen
 
 # Pre-requisites
 
-Ensure you have [python3](https://www.python.org/downloads/), [pip](https://pip.pypa.io/en/stable/installing/), [postgreSQL](https://www.postgresql.org/) and [newman](https://github.com/postmanlabs/newman) installed.
+Ensure you have [Docker](https://docs.docker.com/install/), [python3](https://www.python.org/downloads/), [pip](https://pip.pypa.io/en/stable/installing/), [postgreSQL](https://www.postgresql.org/) and [newman](https://github.com/postmanlabs/newman) installed.
 
-# Quickstart
+# Running with Docker and Docker Compose
 
 1. `git clone https://github.com/not-monday/stronk-backend.git`
 2. `cd stronk-backend`
 3. `source venv/bin/activate` to use venv
 4. `pip3 install -r requirements.txt` To install dependencies
-5. Rename the `dotenv` file to `.env` and fill out the secrets
-6. Ensure you create a schema in PostgreSQL that matches the one in `DATABASE_URL` in `.env`. If you don't, follow the instructions below to set up the database!
-7. Set up a Firebase Service Account for Stronk if you do not already have one and download the json credentials file
-8. Rename the json file to `stronk-google-credentials.json` and copy it to the the root of the project
-9. `source ./scripts/setup.sh` to run database migrations
-10. `flask run` to start server
+5. Install [Docker](https://docs.docker.com/get-docker/) and [Docker Compose](https://docs.docker.com/compose/install/)
+6. Rename the `dotenv` file to `.env` and fill out the secrets.
+7. Open `.flaskenv` to fill out any missing environment variables.
+8. Ensure you create a database in PostgreSQL that matches the one in `DATABASE_URL` in `.env`. If you don't, follow the instructions below to set up the database!
+9. Set up a Firebase Service Account for Stronk if you do not already have one and download the json credentials file
+10. Rename the json file to `stronk-google-credentials.json` and copy it to the the root of the project
+11. Run `docker-compose up`
 
-## OPTIONAL:
-
-To add mock data to the database so interacting is easier:
-
-1.
-
-```bash
-# example:
-# psql -h localhost -p 32768 -U postgres -d stronk -a -f sql/insert_mock_data.sql
-psql -h localhost -p {port} -U {user name} -d {database name} -a -f sql/insert_mock_data.sql
-```
-
-Server will be live of port 5000
-
-- when developing, make sure to run repeat `step 2` to use your virtual env
+Server will be live on port 5000 and database on port 5001.
 
 # Setting up the database
 
-## Requirements:
+`docker-compose.yml` will pull the latest version of the official postgres docker image.
 
-- [Docker](https://docs.docker.com/install/)
-- Run `docker pull postgres` to install the latest linux-Arm64 docker image for [postgres](https://hub.docker.com/_/postgres).
+Fill in the `DB_NAME` and `DB_PASSWORD` in `.env` which correspond to the `POSTGRES_PASSWORD` and `POSTGRES_DB` in `docker-compose.yml`. Any name is fine for the database, just make sure you remember it so that you can set up the .env file.
 
-## Steps
+A database will be created automatically for you with the name `DB_NAME`. Access from outside the `db` container will require a password whereas access from within does not.
 
-1. Make sure you're in the root of the project
-2. Create an container with the image using this command
+More info on this and the environment variables available [here](https://hub.docker.com/_/postgres).
 
-```docker
-docker run -it --rm --name {image name} -P -d -e POSTGRES_PASSWORD={password} postgres
+## Database connection URL
 
-# example:
-# docker run -it --rm --name stronk -P -it -e POSTGRES_PASSWORD=test postgres
-
-# Options:
-#  -e       : sets environment variables
-#  -P       : publishes ports to host
-#  -d       : (can leave out) starts the container in detached mode
-#  -it      : allows us to interact (i) with container through stdin/stdout and login through the terminal (t)
-# --rm      : cleans up container files on exit
-# --name    : gives the container a name
-#  -v       : mount the directory supplied to /mnt in the container (modifications are reflected across container and current fs)
-```
-
-3. Run this to get which port the container is mapped to `docker ps`
-4. Create a database using this command
-
-```
-# Any name is fine for the database, just make sure you remember it so that you can set up the .env file
-psql -h localhost -p {port} -U {username} -c "CREATE DATABASE {database name};" --password
-
-# example:
-# psql -h localhost -p 32773 -U postgres  -c "CREATE DATABASE stronk;" --password
-#  -c       : lets us run an SQL command directly
-```
-
-5. Set up your .env file
+Run this to get which port the container is mapped to `docker ps`
 
 ```
 DATABASE_URL="postgresql://{username}:{password}@localhost:{port}/{database name}"
@@ -84,28 +43,41 @@ DATABASE_URL="postgresql://{username}:{password}@localhost:{port}/{database name
 # DATABASE_URL="postgresql://postgres:test@localhost:32773/stronk"
 ```
 
-6. If you need to connect to the database
-
+## Connecting to the database
 ```
 # run this on your host if you need to connect to the database in the container
 psql -h localhost -p {port} -U postgres --password
 ```
 
+## Executing a command 
+```
+# psql -h localhost -p {port} -U {username} -c "CREATE DATABASE {database name};" --password
+
+# Example:
+# psql -h localhost -p 5001 -U postgres  -c "CREATE DATABASE stronk;" --password
+#  -c       : lets us run an SQL command directly
+```
+
 this is a pretty good [resource](https://docs.docker.com/engine/examples/postgresql_service/) to consult
+
+## Optional
+
+To add mock data to the database so interacting is easier:
+
+```bash
+# example:
+# psql -h localhost -p 32768 -U postgres -d stronk -a -f ./tests/fixtures/insert_mock_data.sql
+psql -h localhost -p {port} -U {user name} -d {database name} -a -f ./tests/fixtures/insert_mock_data.sql
+```
 
 # Testing
 
-Set up flask to use test database
+1. In another terminal, set the environment variable, `TEST_DATABASE_URL` to the address exposed by the `db` service.
+2. Run `./scripts/test.sh`
 
-1. Fill in `TEST_DATABASE_URL` in your `.env`
-2. Run `source scripts/setup.sh --testing` to run migrations on test database.
+Server will be live on port 5000
 
-Run unit tests and graphQL tests. Before running the tests, disable authentication and use the test database. `FLASK_ENV=testing`.
-
-To re-enable authentication and use the development database, `FLASK_ENV=development`.
-
-1. Run the server `flask run`
-2. In another terminal, `./scripts/test.sh`
+- when developing, make sure to run repeat `step 3` to use your virtual env
 
 # Contributing
 
