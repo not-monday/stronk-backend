@@ -1,0 +1,8 @@
+version: "3"
+services:
+  web:
+    environment:
+      FLASK_ENV: ${FLASK_ENV}
+      FLASK_APP: ${FLASK_APP}
+      TEST_DATABASE_URL: ${TEST_DATABASE_URL}
+      DATABASE_URL: ${DATABASE_URL}

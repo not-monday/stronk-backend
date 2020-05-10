@@ -1,0 +1,14 @@
+{
+	"id": "54f885db-778b-4f80-b302-d007357ec0b4",
+	"name": "CI test",
+	"values": [
+		{
+			"key": "base_url",
+			"value": "http://web:5000",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2020-05-17T20:40:44.384Z",
+	"_postman_exported_using": "Postman/7.24.0"
+}
