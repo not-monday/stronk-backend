@@ -40,30 +40,6 @@ def get_exercise(id):
 
     return res
 
-# POST /exercises
-@exercise_page.route('/', methods=['POST'])
-def add_exercise():
-    req_body = request.get_json()
-
-    # TODO: Move to custom create function that includes validation
-    if not req_body.get('name'):
-        raise BadRequest("Missing name attribute creating exercise.")
-
-    if not req_body.get('description'):
-        raise BadRequest("Missing description attribute creating exercise.")
-
-    e = Exercise(author=req_body['name'], name=req_body['description'])
-
-    try:
-        db.session.add(e)
-        db.session.commit()
-        body = json.dumps(e.to_dict())
-        res = Response(body, status=200, mimetype='application/json')
-
-        return res
-    except DBAPIError as err:
-        raise InternalServerError("Database Error")
-
 # PATCH /exercise/:id
 @exercise_page.route('/<int:id>', methods=['PATCH'])
 def update_exercise(id):

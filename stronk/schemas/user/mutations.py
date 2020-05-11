@@ -2,10 +2,10 @@ import graphene
 from firebase_admin import auth
 from flask import current_app, g
 
-from stronk import db
 from stronk.models.user import User as UserModel
 from stronk.schemas.user.type import User
 from tests import constants as c
+
 
 class CreateUser(graphene.Mutation):
     """Create a user."""
