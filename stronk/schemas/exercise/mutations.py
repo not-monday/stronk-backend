@@ -20,5 +20,28 @@ class CreateExercise(graphene.Mutation):
         return CreateExercise(exercise=exercise)
 
 
+class UpdateExercise(graphene.Mutation):
+    """Update an exercise."""
+    exercise = graphene.Field(Exercise)
+
+    class Arguments:
+        id = graphene.Int(required=True)
+        name = graphene.String(required=False)
+        desc = graphene.String(required=False)
+
+    def mutate(root, info, id, name=None, desc=None):
+        exercise = ExerciseModel.find_by_id(id)
+
+        attrs = {}
+        if name:
+            attrs['name'] = name
+        if desc:
+            attrs['description'] = desc
+        exercise.update(attrs)
+
+        return UpdateExercise(exercise=exercise)
+
+
 class Mutation(graphene.ObjectType):
     create_exercise = CreateExercise.Field()
+    update_exercise = UpdateExercise.Field()
