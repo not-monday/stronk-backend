@@ -129,7 +129,7 @@
 							]
 						},
 						{
-							"name": "user query",
+							"name": "user query by id",
 							"event": [
 								{
 									"listen": "test",
@@ -167,6 +167,309 @@
 									"mode": "graphql",
 									"graphql": {
 										"query": "{\n    user(id: \"user_id_1\") {\n        id\n        name\n        username\n        email\n        currentProgram\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "correct response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "{\n    user(id: \"user_id_1\") {\n        id\n        name\n        username\n        email\n        currentProgram\n    }\n}",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/graphql",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"graphql"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "126"
+										},
+										{
+											"key": "Server",
+											"value": "Werkzeug/0.15.4 Python/3.7.0"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 07 May 2020 07:04:40 GMT"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"user\": {\n            \"id\": \"user_id_1\",\n            \"name\": \"max b wavy\",\n            \"username\": \"mxwvy\",\n            \"email\": \"max.wavy@gmail.com\",\n            \"currentProgram\": null\n        }\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "user query by username",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a138b40e-db0d-4462-9d81-c5b2453900aa",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"user\": {",
+											"                \"id\": \"user_id_3\",",
+											"                \"name\": \"richard wei\",",
+											"                \"username\": \"chengchu\",",
+											"                \"email\": \"richard.wei@gmail.com\",",
+											"                \"currentProgram\": 2",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "{\n    user(username: \"chengchu\") {\n        id\n        name\n        username\n        email\n        currentProgram\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "correct response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "{\n    user(id: \"user_id_1\") {\n        id\n        name\n        username\n        email\n        currentProgram\n    }\n}",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/graphql",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"graphql"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "126"
+										},
+										{
+											"key": "Server",
+											"value": "Werkzeug/0.15.4 Python/3.7.0"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 07 May 2020 07:04:40 GMT"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"user\": {\n            \"id\": \"user_id_1\",\n            \"name\": \"max b wavy\",\n            \"username\": \"mxwvy\",\n            \"email\": \"max.wavy@gmail.com\",\n            \"currentProgram\": null\n        }\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "user query by email",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4149a4c3-1d5c-4fc7-91f8-98e0322c0435",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"user\": {",
+											"                \"id\": \"user_id_2\",",
+											"                \"name\": \"jason cheung\",",
+											"                \"username\": \"kakit\",",
+											"                \"email\": \"ka.kit@gmail.com\",",
+											"                \"currentProgram\": 1",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "{\n    user(email: \"ka.kit@gmail.com\") {\n        id\n        name\n        username\n        email\n        currentProgram\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "correct response",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "graphql",
+											"graphql": {
+												"query": "{\n    user(id: \"user_id_1\") {\n        id\n        name\n        username\n        email\n        currentProgram\n    }\n}",
+												"variables": ""
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/graphql",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"graphql"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Content-Length",
+											"value": "126"
+										},
+										{
+											"key": "Server",
+											"value": "Werkzeug/0.15.4 Python/3.7.0"
+										},
+										{
+											"key": "Date",
+											"value": "Thu, 07 May 2020 07:04:40 GMT"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"user\": {\n            \"id\": \"user_id_1\",\n            \"name\": \"max b wavy\",\n            \"username\": \"mxwvy\",\n            \"email\": \"max.wavy@gmail.com\",\n            \"currentProgram\": null\n        }\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "user query by currentProgram",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a798088c-8658-4b87-8ff9-19e26fb5342b",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"user\": {",
+											"                \"id\": \"user_id_2\",",
+											"                \"name\": \"jason cheung\",",
+											"                \"username\": \"kakit\",",
+											"                \"email\": \"ka.kit@gmail.com\",",
+											"                \"currentProgram\": 1",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "{\n    user(currentProgram: 1) {\n        id\n        name\n        username\n        email\n        currentProgram\n    }\n}",
 										"variables": ""
 									}
 								},
@@ -1218,6 +1521,287 @@
 							""
 						]
 					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "exercise",
+			"item": [
+				{
+					"name": "1. Queries: exercise, exercises",
+					"item": [
+						{
+							"name": "exercises query",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ad133401-06b5-4279-a9e3-b8f33bada394",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"exercises\": [",
+											"                {",
+											"                    \"id\": \"0\",",
+											"                    \"name\": \"bicep curls\",",
+											"                    \"description\": \"bicep curls description\"",
+											"                },",
+											"                {",
+											"                    \"id\": \"1\",",
+											"                    \"name\": \"squats\",",
+											"                    \"description\": \"squats description\"",
+											"                },",
+											"                {",
+											"                    \"id\": \"2\",",
+											"                    \"name\": \"pullups\",",
+											"                    \"description\": \"pullups curls description\"",
+											"                }",
+											"            ]",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\n    exercises {\n        id\n        name\n        description\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "exercise query by id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c30e6531-8dfd-4206-84c5-fbc4b9dc4edb",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"exercise\": {",
+											"                \"id\": \"1\",",
+											"                \"name\": \"squats\",",
+											"                \"description\": \"squats description\"",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\n    exercise(id: 1) {\n        id\n        name\n        description\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "exercise query by name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "678ecdad-fa9e-4f86-8daf-931711dbe7b1",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"exercise\": {",
+											"                \"id\": \"1\",",
+											"                \"name\": \"squats\",",
+											"                \"description\": \"squats description\"",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\n    exercise(name: \"squats\") {\n        id\n        name\n        description\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "exercise query by desc",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "bc65f750-3276-41e5-82fd-fd5431167ca5",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"exercise\": {",
+											"                \"id\": \"1\",",
+											"                \"name\": \"squats\",",
+											"                \"description\": \"squats description\"",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\n    exercise(desc: \"squats description\") {\n        id\n        name\n        description\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "exercise query - NULL",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4f83b8b3-3978-4c37-b3e6-18b00d55b3fc",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"exercise\": null",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\n    exercise(id: -1) {\n        id\n        name\n        description\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
 				}
 			],
 			"protocolProfileBehavior": {}
