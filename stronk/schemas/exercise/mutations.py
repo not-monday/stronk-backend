@@ -42,6 +42,21 @@ class UpdateExercise(graphene.Mutation):
         return UpdateExercise(exercise=exercise)
 
 
+class DeleteExercise(graphene.Mutation):
+    """Delete an exercise."""
+    ok = graphene.Boolean()
+
+    class Arguments:
+        id = graphene.Int(required=True)
+
+    def mutate(root, info, id):
+        ExerciseModel.find_by_id(id).delete()
+        ok = True
+
+        return DeleteExercise(ok=ok)
+
+
 class Mutation(graphene.ObjectType):
     create_exercise = CreateExercise.Field()
     update_exercise = UpdateExercise.Field()
+    delete_exercise = DeleteExercise.Field()

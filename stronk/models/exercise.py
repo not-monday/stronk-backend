@@ -63,3 +63,13 @@ class Exercise(db.Model):
             raise InternalServerError("Database Error")
         except DBAPIError as err:
             raise InternalServerError("Database Error")
+
+    def delete(self):
+        try:
+            db.session.delete(self)
+            db.session.commit()
+            data = {
+                "message": "Exercise successfully deleted."
+            }
+        except DBAPIError as err:
+            raise InternalServerError("Database Error")
