@@ -33,21 +33,21 @@
 											"                    \"name\": \"max b wavy\",",
 											"                    \"username\": \"mxwvy\",",
 											"                    \"email\": \"max.wavy@gmail.com\",",
-											"                    \"currentProgram\": 0",
+											"                    \"currentProgram\": 1",
 											"                },",
 											"                {",
 											"                    \"id\": \"user_id_2\",",
 											"                    \"name\": \"jason cheung\",",
 											"                    \"username\": \"kakit\",",
 											"                    \"email\": \"ka.kit@gmail.com\",",
-											"                    \"currentProgram\": 1",
+											"                    \"currentProgram\": 2",
 											"                },",
 											"                {",
 											"                    \"id\": \"user_id_3\",",
 											"                    \"name\": \"richard wei\",",
 											"                    \"username\": \"chengchu\",",
 											"                    \"email\": \"richard.wei@gmail.com\",",
-											"                    \"currentProgram\": 2",
+											"                    \"currentProgram\": 3",
 											"                }",
 											"            ]",
 											"        }",
@@ -149,7 +149,7 @@
 											"                \"name\": \"max b wavy\",",
 											"                \"username\": \"mxwvy\",",
 											"                \"email\": \"max.wavy@gmail.com\",",
-											"                \"currentProgram\": 0",
+											"                \"currentProgram\": 1",
 											"            }",
 											"        }",
 											"    }",
@@ -250,7 +250,7 @@
 											"                \"name\": \"richard wei\",",
 											"                \"username\": \"chengchu\",",
 											"                \"email\": \"richard.wei@gmail.com\",",
-											"                \"currentProgram\": 2",
+											"                \"currentProgram\": 3",
 											"            }",
 											"        }",
 											"    }",
@@ -351,7 +351,7 @@
 											"                \"name\": \"jason cheung\",",
 											"                \"username\": \"kakit\",",
 											"                \"email\": \"ka.kit@gmail.com\",",
-											"                \"currentProgram\": 1",
+											"                \"currentProgram\": 2",
 											"            }",
 											"        }",
 											"    }",
@@ -452,7 +452,7 @@
 											"                \"name\": \"jason cheung\",",
 											"                \"username\": \"kakit\",",
 											"                \"email\": \"ka.kit@gmail.com\",",
-											"                \"currentProgram\": 1",
+											"                \"currentProgram\": 2",
 											"            }",
 											"        }",
 											"    }",
@@ -469,7 +469,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "{\n    user(currentProgram: 1) {\n        id\n        name\n        username\n        email\n        currentProgram\n    }\n}",
+										"query": "{\n    user(currentProgram: 2) {\n        id\n        name\n        username\n        email\n        currentProgram\n    }\n}",
 										"variables": ""
 									}
 								},
@@ -1184,7 +1184,7 @@
 											"                    \"name\": \"max b wavy\",",
 											"                    \"username\": \"new_username\",",
 											"                    \"email\": \"max.wavy@gmail.com\",",
-											"                    \"currentProgram\": 0",
+											"                    \"currentProgram\": 1",
 											"                }",
 											"            }",
 											"        }",
@@ -1242,7 +1242,7 @@
 											"                    \"name\": \"max b wavy\",",
 											"                    \"username\": \"new_username\",",
 											"                    \"email\": \"new_email\",",
-											"                    \"currentProgram\": 0",
+											"                    \"currentProgram\": 1",
 											"                }",
 											"            }",
 											"        }",
@@ -1300,7 +1300,7 @@
 											"                    \"name\": \"new_name\",",
 											"                    \"username\": \"new_username\",",
 											"                    \"email\": \"new_email\",",
-											"                    \"currentProgram\": 0",
+											"                    \"currentProgram\": 1",
 											"                }",
 											"            }",
 											"        }",
@@ -1549,17 +1549,17 @@
 											"        \"data\": {",
 											"            \"exercises\": [",
 											"                {",
-											"                    \"id\": \"0\",",
+											"                    \"id\": \"1\",",
 											"                    \"name\": \"bicep curls\",",
 											"                    \"description\": \"bicep curls description\"",
 											"                },",
 											"                {",
-											"                    \"id\": \"1\",",
+											"                    \"id\": \"2\",",
 											"                    \"name\": \"squats\",",
 											"                    \"description\": \"squats description\"",
 											"                },",
 											"                {",
-											"                    \"id\": \"2\",",
+											"                    \"id\": \"3\",",
 											"                    \"name\": \"pullups\",",
 											"                    \"description\": \"pullups curls description\"",
 											"                }",
@@ -1612,7 +1612,7 @@
 											"    var expected = {",
 											"        \"data\": {",
 											"            \"exercise\": {",
-											"                \"id\": \"1\",",
+											"                \"id\": \"2\",",
 											"                \"name\": \"squats\",",
 											"                \"description\": \"squats description\"",
 											"            }",
@@ -1631,7 +1631,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "query {\n    exercise(id: 1) {\n        id\n        name\n        description\n    }\n}",
+										"query": "query {\n    exercise(id: 2) {\n        id\n        name\n        description\n    }\n}",
 										"variables": ""
 									}
 								},
@@ -1664,7 +1664,7 @@
 											"    var expected = {",
 											"        \"data\": {",
 											"            \"exercise\": {",
-											"                \"id\": \"1\",",
+											"                \"id\": \"2\",",
 											"                \"name\": \"squats\",",
 											"                \"description\": \"squats description\"",
 											"            }",
@@ -1716,7 +1716,7 @@
 											"    var expected = {",
 											"        \"data\": {",
 											"            \"exercise\": {",
-											"                \"id\": \"1\",",
+											"                \"id\": \"2\",",
 											"                \"name\": \"squats\",",
 											"                \"description\": \"squats description\"",
 											"            }",
@@ -1784,6 +1784,481 @@
 									"mode": "graphql",
 									"graphql": {
 										"query": "query {\n    exercise(id: -1) {\n        id\n        name\n        description\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "2. Mutation: createExercise",
+					"item": [
+						{
+							"name": "Create exercise",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3c970356-257f-4817-a8de-df79adb8b649",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"createExercise\": {",
+											"                \"exercise\": {",
+											"                    \"name\": \"ex1\",",
+											"                    \"description\": \"ex1 desc\"",
+											"                }",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    createExercise(name: \"ex1\", desc: \"ex1 desc\") {\n        exercise {\n            name\n            description\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Conflict",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5d445a1d-06c9-477f-9442-ca648b6d2ff8",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = \"400 Bad Request: Name already used by another exercise\";",
+											"    pm.expect(result.errors[0].message).to.eql(expected);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    createExercise(name: \"ex1\", desc: \"newest exercise\") {\n        exercise {\n            id\n            name\n            description\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Missing name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e74378b3-a42f-4815-845c-fa8079fd32f2",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = \"Field \\\"createExercise\\\" argument \\\"name\\\" of type \\\"String!\\\" is required but not provided.\";",
+											"    pm.expect(result.errors[0].message).to.eql(expected);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    createExercise(desc: \"newest exercise\") {\n        exercise {\n            id\n            name\n            description\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Missing description",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b00808db-e79b-4176-96bb-fd978ca49dd7",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = \"Field \\\"createExercise\\\" argument \\\"desc\\\" of type \\\"String!\\\" is required but not provided.\";",
+											"    pm.expect(result.errors[0].message).to.eql(expected);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "5b5c0e46-d3a5-4514-802a-cf0dc7829079",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    createExercise(name: \"new exercise\") {\n        exercise {\n            id\n            name\n            description\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "3. Mutation: updateExercise",
+					"item": [
+						{
+							"name": "Update non-existent exercise",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "78eb1a65-f2f1-4f99-82e5-4dcdbdcdff1f",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = \"404 Not Found: Exercise not found.\";",
+											"    pm.expect(result.errors[0].message).to.eql(expected);",
+											"});",
+											"",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    updateExercise(id: 0) {\n        exercise {\n            id\n            name\n            description\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b2a580a4-f37b-4c26-95df-41fb85fab450",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"updateExercise\": {",
+											"                \"exercise\": {",
+											"                    \"id\": \"1\",",
+											"                    \"name\": \"new exercise\",",
+											"                    \"description\": \"bicep curls description\"",
+											"                }",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    updateExercise(id: 1, name: \"new exercise\") {\n        exercise {\n            id\n            name\n            description\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update description",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "bdd4ad01-9597-4440-8baa-c81efc17c941",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"updateExercise\": {",
+											"                \"exercise\": {",
+											"                    \"id\": \"1\",",
+											"                    \"name\": \"new exercise\",",
+											"                    \"description\": \"new description\"",
+											"                }",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    updateExercise(id: 1, desc: \"new description\") {\n        exercise {\n            id\n            name\n            description\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "4. Mutation: deleteExercise",
+					"item": [
+						{
+							"name": "Delete existing exercise",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4816dd49-4f06-467a-b4ef-172514b3b7a6",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"deleteExercise\": {",
+											"                \"ok\": true",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    deleteExercise(id: 1) {\n        ok\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete non-existent exercise",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "089d9137-52b5-4963-a603-56705374bf4f",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = \"404 Not Found: Exercise not found.\";",
+											"    pm.expect(result.errors[0].message).to.eql(expected);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    deleteExercise(id: 0) {\n        ok\n    }\n}",
 										"variables": ""
 									}
 								},

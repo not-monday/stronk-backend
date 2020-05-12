@@ -100,7 +100,9 @@ Set up flask to use test database
 1. Fill in `TEST_DATABASE_URL` in your `.env`
 2. Run `source scripts/setup.sh --testing` to run migrations on test database.
 
-Run unit tests and graphQL tests. Before running the tests, ensure the environment variable `FLASK_ENV=testing`
+Run unit tests and graphQL tests. Before running the tests, disable authentication and use the test database. `FLASK_ENV=testing`.
+
+To re-enable authentication and use the development database, `FLASK_ENV=development`.
 
 1. Run the server `flask run`
 2. In another terminal, `./scripts/test.sh`

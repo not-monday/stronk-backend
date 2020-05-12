@@ -20,7 +20,12 @@ class Exercise(db.Model):
 
             return exercise
         except IntegrityError as err:
-            raise BadRequest("Name already used by another exercise")
+            print("* err")
+            print(err)
+            if isinstance(err.orig, UniqueViolation):
+                raise BadRequest("Name already used by another exercise")
+            else:
+                raise InternalServerError("Database Error")
         except DBAPIError as err:
             raise InternalServerError("Database Error")
 

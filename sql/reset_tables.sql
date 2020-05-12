@@ -9,3 +9,6 @@
  TRUNCATE program_reviews CASCADE;
  TRUNCATE stronk_user CASCADE;
 
+ALTER SEQUENCE exercise_id_seq RESTART;
+ALTER SEQUENCE program_id_seq RESTART;
+ALTER SEQUENCE workout_id_seq RESTART;
