@@ -1,11 +1,12 @@
 import graphene
 from firebase_admin import auth
 from flask import current_app, g
+from werkzeug.exceptions import NotFound
 
-from stronk import db
 from stronk.models.user import User as UserModel
 from stronk.schemas.user.type import User
 from tests import constants as c
+
 
 class CreateUser(graphene.Mutation):
     """Create a user."""
@@ -44,6 +45,8 @@ class UpdateUser(graphene.Mutation):
     def mutate(root, info, id, name=None, username=None, email=None,
                currentProgram=None):
         user = UserModel.find_by_id(id)
+        if not user:
+            raise NotFound("User not found.")
 
         attrs = {}
         if name:
@@ -67,7 +70,11 @@ class DeleteUser(graphene.Mutation):
         id = graphene.String(required=True)
 
     def mutate(root, info, id):
-        UserModel.find_by_id(id).delete()
+        user = UserModel.find_by_id(id)
+        if not user:
+            raise NotFound("User not found.")
+
+        user.delete()
         ok = True
 
         return DeleteUser(ok=ok)
