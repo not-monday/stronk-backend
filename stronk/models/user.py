@@ -1,7 +1,7 @@
 from flask import current_app
 from psycopg2.errors import UniqueViolation, ForeignKeyViolation
 from sqlalchemy.exc import DBAPIError, IntegrityError
-from werkzeug.exceptions import BadRequest, Conflict, InternalServerError, NotFound
+from werkzeug.exceptions import BadRequest, Conflict, InternalServerError
 
 from stronk import db
 
@@ -44,11 +44,7 @@ class User(db.Model):
 
     @staticmethod
     def find_by_id(id):
-        user = User.query.filter_by(id=id).first()
-        if not user:
-            raise NotFound("User not found.")
-
-        return user
+        return User.query.filter_by(id=id).first()
 
     def to_dict(self):
         """Returns a dictionary representing the attributes of the program.

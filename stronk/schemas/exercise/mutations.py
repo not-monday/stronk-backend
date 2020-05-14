@@ -1,5 +1,7 @@
 import graphene
 
+from werkzeug.exceptions import NotFound
+
 from stronk.models.exercise import Exercise as ExerciseModel
 from stronk.schemas.exercise.type import Exercise
 
@@ -31,6 +33,8 @@ class UpdateExercise(graphene.Mutation):
 
     def mutate(root, info, id, name=None, desc=None):
         exercise = ExerciseModel.find_by_id(id)
+        if not exercise:
+            raise NotFound("Exercise not found.")
 
         attrs = {}
         if name:
@@ -50,7 +54,11 @@ class DeleteExercise(graphene.Mutation):
         id = graphene.Int(required=True)
 
     def mutate(root, info, id):
-        ExerciseModel.find_by_id(id).delete()
+        exercise = ExerciseModel.find_by_id(id)
+        if not exercise:
+            raise NotFound("Exercise not found.")
+
+        exercise.delete()
         ok = True
 
         return DeleteExercise(ok=ok)

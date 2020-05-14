@@ -1,6 +1,6 @@
 from psycopg2.errors import UniqueViolation
 from sqlalchemy.exc import DBAPIError, IntegrityError
-from werkzeug.exceptions import BadRequest, Conflict, InternalServerError, NotFound
+from werkzeug.exceptions import BadRequest, Conflict, InternalServerError
 
 from stronk import db
 
@@ -31,11 +31,7 @@ class Exercise(db.Model):
 
     @staticmethod
     def find_by_id(id):
-        exercise = Exercise.query.filter_by(id=id).first()
-        if not exercise:
-            raise NotFound("Exercise not found.")
-
-        return exercise
+        return Exercise.query.filter_by(id=id).first()
 
     def to_dict(self):
         """Returns a dictionary representing the attributes of the program.
