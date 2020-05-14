@@ -1,3 +1,4 @@
+import string
 from psycopg2.errors import UniqueViolation
 from sqlalchemy.exc import DBAPIError, IntegrityError
 from werkzeug.exceptions import BadRequest, Conflict, InternalServerError
@@ -12,7 +13,8 @@ class Exercise(db.Model):
 
     @staticmethod
     def create(name, description):
-        exercise = Exercise(name=name, description=description)
+        exercise = Exercise(name=string.capwords(name),
+                            description=description)
 
         try:
             db.session.add(exercise)
@@ -20,8 +22,6 @@ class Exercise(db.Model):
 
             return exercise
         except IntegrityError as err:
-            print("* err")
-            print(err)
             if isinstance(err.orig, UniqueViolation):
                 raise BadRequest("Name already used by another exercise")
             else:
@@ -51,7 +51,7 @@ class Exercise(db.Model):
                    attribute name and value is the new value.
         """
         if attrs.get('name'):
-            self.name = attrs.get('name')
+            self.name = string.capwords(attrs.get('name'))
         if attrs.get('description'):
             self.description = attrs.get('description')
 
