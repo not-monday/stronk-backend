@@ -2,6 +2,8 @@ from graphene_sqlalchemy import SQLAlchemyObjectType
 
 from stronk.models.program_workouts import ProgramWorkouts as ProgramWorkoutModel
 from stronk.models.workout import Workout as WorkoutModel
+from stronk.models.workout_exercise import WorkoutExercise as WorkoutExerciseModel
+
 class Workout(SQLAlchemyObjectType):
     class Meta: 
         model = WorkoutModel

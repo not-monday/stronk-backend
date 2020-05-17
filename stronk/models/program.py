@@ -28,6 +28,10 @@ class Program(db.Model):
         """Returns the User object for the author of the program."""
         return User.query.filter_by(id=self.author).first().to_dict()
 
+    @staticmethod
+    def find_by_id(id):
+        return Program.query.filter_by(id=id).first()
+
     def update(self, attrs):
         """Updates model given attrs.
 

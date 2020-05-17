@@ -1,4 +1,6 @@
 from stronk import db
+from sqlalchemy.exc import DBAPIError
+from werkzeug.exceptions import InternalServerError
 
 class Workout(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -30,4 +32,35 @@ class Workout(db.Model):
             self.description = attrs.get('description')
         if attrs.get('projected_time'):
             self.projected_time = attrs.get('projected_time')
+
+        
+    def delete(self):
+        try:
+            db.session.delete(self)
+            db.session.commit()
+            data = {
+                "message": "Workout successfully deleted."
+            }
+        except DBAPIError as err:
+            raise InternalServerError("Database Error")
     
+    @staticmethod
+    def create(name, description, projected_time) -> Workout:
+        workout = Workout(
+            name=name,
+            description=description,
+            projected_time = projected_time
+            )
+
+        try:
+            db.session.add(workout)
+            db.session.commit()
+
+            return workout
+        except DBAPIError as err:
+            raise InternalServerError("Database Error")
+
+
+    @staticmethod
+    def find_by_id(id) -> Workout:
+        return Workout.query.filter_by(id=id).first()
