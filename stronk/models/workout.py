@@ -1,6 +1,7 @@
+from flask import current_app
 from stronk import db
 from sqlalchemy.exc import DBAPIError
-from werkzeug.exceptions import InternalServerError
+from werkzeug.exceptions import InternalServerError, Conflict
 
 class Workout(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -48,8 +49,8 @@ class Workout(db.Model):
     def create(name, description, projected_time):
         workout = Workout(
             name=name,
-            description=description,
-            projected_time = projected_time
+            description=description if description else "",
+            projected_time = projected_time if projected_time else 0
             )
 
         try:

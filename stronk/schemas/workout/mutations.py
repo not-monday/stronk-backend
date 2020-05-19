@@ -16,21 +16,23 @@ class CreateWorkout(graphene.Mutation):
     workout = graphene.Field(WorkoutType)
 
     class Arguments:
-        name = graphene.String()
-        description = graphene.String()
-        projected_time = graphene.Int()
-        program_id = graphene.Int()
+        name = graphene.String(required=True)
+        description = graphene.String(required=False)
+        projected_time = graphene.Int(required=False)
+        program_id = graphene.Int(required=True)
 
-    def mutate(root, info, name: str, description: str, projected_time: int, program_id: int):
+    def mutate(root, info, name: str, program_id: int, description: str = None, projected_time: int = None):
         program = ProgramModel.find_by_id(program_id)
         if not program:
             raise NotFound("Program not found.")
 
         workout = WorkoutModel.create(
-            name=name, description=description, projected_time=projected_time, programId=program_id)
+            name=name, description=description, projected_time=projected_time)
 
-        program_workout = ProgramWorkoutsModel.create(program_id=program.id, workout_id=workout.id)
+        program_workout = ProgramWorkoutsModel.create(
+            program_id=program.id, workout_id=workout.id)
         return CreateWorkout(workout=workout)
+
 
 class UpdateWorkout(graphene.Mutation):
     """ updates a workout's information
@@ -44,7 +46,7 @@ class UpdateWorkout(graphene.Mutation):
         description = graphene.String(required=False)
         projected_time = graphene.Int(required=False)
 
-    def mutate(root, info, id: str, name: str, description: str, projected_time: int):
+    def mutate(root, info, id: str, name: str = None, description: str = None, projected_time: int = None):
         workout = WorkoutModel.find_by_id(id)
         if not workout:
             raise NotFound("Workout not found.")
@@ -59,6 +61,7 @@ class UpdateWorkout(graphene.Mutation):
         workout.update(attrs)
 
         return UpdateWorkout(workout=workout)
+
 
 class DeleteWorkout(graphene.Mutation):
     """ removes a workout from a program
