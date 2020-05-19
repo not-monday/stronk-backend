@@ -45,7 +45,7 @@ class Workout(db.Model):
             raise InternalServerError("Database Error")
     
     @staticmethod
-    def create(name, description, projected_time) -> Workout:
+    def create(name, description, projected_time):
         workout = Workout(
             name=name,
             description=description,
@@ -62,5 +62,5 @@ class Workout(db.Model):
 
 
     @staticmethod
-    def find_by_id(id) -> Workout:
+    def find_by_id(id):
         return Workout.query.filter_by(id=id).first()

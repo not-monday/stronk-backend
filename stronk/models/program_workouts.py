@@ -62,11 +62,9 @@ class ProgramWorkouts(db.Model):
             raise InternalServerError("Database Error")
 
     @staticmethod
-    def create(program_id: int, workout_id: int) -> ProgramWorkouts:
+    def create(program_id, workout_id):
         program_workout = ProgramWorkouts(
-            program_id=program_id,
-            workout_id=workout_id
-        )
+            program_id=program_id, workout_id=workout_id)
 
         try:
             db.session.add(program_workout)
@@ -77,5 +75,5 @@ class ProgramWorkouts(db.Model):
             raise InternalServerError("Database Error")
 
     @staticmethod
-    def find_by_workout_id(workout_id) -> ProgramWorkouts:
+    def find_by_workout_id(workout_id):
         return ProgramWorkouts.query.filter_by(workout_id=workout_id).first()

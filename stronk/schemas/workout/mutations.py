@@ -16,10 +16,10 @@ class CreateWorkout(graphene.Mutation):
     workout = graphene.Field(WorkoutType)
 
     class Arguments:
-        name = graphene.String
-        description = graphene.String
-        projected_time = graphene.Int
-        program_id = graphene.Int
+        name = graphene.String()
+        description = graphene.String()
+        projected_time = graphene.Int()
+        program_id = graphene.Int()
 
     def mutate(root, info, name: str, description: str, projected_time: int, program_id: int):
         program = ProgramModel.find_by_id(program_id)
@@ -82,3 +82,9 @@ class DeleteWorkout(graphene.Mutation):
         ok = True
 
         return DeleteWorkout(ok=ok)
+
+
+class Mutation(graphene.ObjectType):
+    create_workout = CreateWorkout.Field()
+    update_workout = UpdateWorkout.Field()
+    delete_workout = DeleteWorkout.Field()
