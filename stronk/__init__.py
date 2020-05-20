@@ -46,10 +46,8 @@ migrate = Migrate(app, db, compare_type=True)
 # Import blueprints
 from stronk import models, controllers
 from stronk.controllers.programs import programs_page
-from stronk.controllers.workouts import workouts_page
 
 app.register_blueprint(programs_page, url_prefix='/programs')
-app.register_blueprint(workouts_page, url_prefix='/workouts')
 
 # Load error handlers
 from stronk.errors import handlers as h
