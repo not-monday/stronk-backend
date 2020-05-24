@@ -1,7 +1,10 @@
 import string
 from psycopg2.errors import UniqueViolation
 from sqlalchemy.exc import DBAPIError, IntegrityError
-from werkzeug.exceptions import BadRequest, Conflict, InternalServerError
+
+from stronk.constants import DATABASE_ERROR_MSG
+from stronk.errors.conflict import Conflict
+from stronk.errors.unexpected_error import UnexpectedError
 
 from stronk import db
 
@@ -23,11 +26,11 @@ class Exercise(db.Model):
             return exercise
         except IntegrityError as err:
             if isinstance(err.orig, UniqueViolation):
-                raise BadRequest("Name already used by another exercise")
+                raise Conflict("Name already used by another exercise")
             else:
-                raise InternalServerError("Database Error")
+                raise UnexpectedError(DATABASE_ERROR_MSG)
         except DBAPIError as err:
-            raise InternalServerError("Database Error")
+            raise UnexpectedError(DATABASE_ERROR_MSG)
 
     @staticmethod
     def find_by_id(id):
@@ -61,9 +64,9 @@ class Exercise(db.Model):
         except IntegrityError as err:
             if isinstance(err.orig, UniqueViolation):
                 raise Conflict("Name already used by another exercise.")
-            raise InternalServerError("Database Error")
+            raise UnexpectedError(DATABASE_ERROR_MSG)
         except DBAPIError as err:
-            raise InternalServerError("Database Error")
+            raise UnexpectedError(DATABASE_ERROR_MSG)
 
     def delete(self):
         try:
@@ -73,4 +76,4 @@ class Exercise(db.Model):
                 "message": "Exercise successfully deleted."
             }
         except DBAPIError as err:
-            raise InternalServerError("Database Error")
+            raise UnexpectedError(DATABASE_ERROR_MSG)

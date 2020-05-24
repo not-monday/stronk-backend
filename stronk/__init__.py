@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 from flask import Flask, jsonify, request
-from flask_graphql import GraphQLView
+from stronk.view.graphql_view import CustomGraphQLView
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from graphene import ObjectType, String, Schema
@@ -43,11 +43,7 @@ migrate = Migrate(app, db, compare_type=True)
 # UNCOMMENT ONLY WHEN RUNNING FOR THE FIRST TIME.
 # db.create_all()
 
-# Import blueprints
-from stronk import models, controllers
-from stronk.controllers.programs import programs_page
-
-app.register_blueprint(programs_page, url_prefix='/programs')
+from stronk import models
 
 # Load error handlers
 from stronk.errors import handlers as h
@@ -59,11 +55,6 @@ app.register_error_handler(Exception, h.handle_unexpected_errors)
 if app.config['ENV'] != 'testing':
     app.before_request(auth.verify_token)
 
-# a simple page that says hello
-@app.route('/')
-def index():
-    return 'Hello, World!'
-
 
 """ graphql route
 this uses the flask as_view utility which transforms a class to a view function, passing its args to the class constructor
@@ -72,10 +63,10 @@ each request will call the class' `dispatch_request()` function
 - flask [as_view](https://flask.palletsprojects.com/en/1.1.x/api/#flask.views.View.as_view)
 - flask-graphql  [as_view](https://github.com/graphql-python/flask-graphql/blob/master/flask_graphql/graphqlview.py)
 """
-app.add_url_rule('/graphql', view_func=GraphQLView.as_view('graphql',
-                                                           schema=schema, graphiql=app.debug))
+app.add_url_rule('/graphql', view_func=CustomGraphQLView.as_view('graphql',
+                                                                 schema=schema, graphiql=app.debug))
 
 # debug endpoint for graphiql
 if (app.debug):
     app.add_url_rule(
-        '/graphiql', view_func=GraphQLView.as_view('graphiql', schema=schema, graphiql=True))
+        '/graphiql', view_func=CustomGraphQLView.as_view('graphiql', schema=schema, graphiql=True))

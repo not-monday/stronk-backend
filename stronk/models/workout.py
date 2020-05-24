@@ -1,7 +1,11 @@
 from flask import current_app
-from stronk import db
 from sqlalchemy.exc import DBAPIError
-from werkzeug.exceptions import InternalServerError, Conflict
+
+from stronk import db
+from stronk.constants import DATABASE_ERROR_MSG
+from stronk.errors.conflict import Conflict
+from stronk.errors.unexpected_error import UnexpectedError
+
 
 class Workout(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -19,7 +23,7 @@ class Workout(db.Model):
             "description": self.description,
             "projected_time": self.projected_time
         }
-	
+
     def update(self, attrs):
         """Updates model given attrs.
 
@@ -34,7 +38,6 @@ class Workout(db.Model):
         if attrs.get('projected_time'):
             self.projected_time = attrs.get('projected_time')
 
-        
     def delete(self):
         try:
             db.session.delete(self)
@@ -43,15 +46,15 @@ class Workout(db.Model):
                 "message": "Workout successfully deleted."
             }
         except DBAPIError as err:
-            raise InternalServerError("Database Error")
-    
+            raise UnexpectedError(DATABASE_ERROR_MSG)
+
     @staticmethod
     def create(name, description, projected_time):
         workout = Workout(
             name=name,
             description=description if description else "",
-            projected_time = projected_time if projected_time else 0
-            )
+            projected_time=projected_time if projected_time else 0
+        )
 
         try:
             db.session.add(workout)
@@ -59,8 +62,7 @@ class Workout(db.Model):
 
             return workout
         except DBAPIError as err:
-            raise InternalServerError("Database Error")
-
+            raise UnexpectedError(DATABASE_ERROR_MSG)
 
     @staticmethod
     def find_by_id(id):

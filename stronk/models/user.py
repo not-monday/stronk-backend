@@ -1,7 +1,11 @@
 from flask import current_app
 from psycopg2.errors import UniqueViolation, ForeignKeyViolation
 from sqlalchemy.exc import DBAPIError, IntegrityError
-from werkzeug.exceptions import BadRequest, Conflict, InternalServerError
+
+from stronk.constants import DATABASE_ERROR_MSG
+from stronk.errors.bad_attributes import BadAttributes
+from stronk.errors.conflict import Conflict
+from stronk.errors.unexpected_error import UnexpectedError
 
 from stronk import db
 
@@ -35,16 +39,23 @@ class User(db.Model):
             return u
         except IntegrityError as err:
             if isinstance(err.orig, ForeignKeyViolation):
-                raise BadRequest("Program does not exist.")
+                raise BadAttributes("Program does not exist.")
             elif isinstance(err.orig, UniqueViolation):
                 current_app.logger.info(err.orig)
                 raise Conflict("Username, email or ID is not unique.")
+            else:
+                raise UnexpectedError(DATABASE_ERROR_MSG)
         except DBAPIError as err:
-            raise InternalServerError("Database Error")
+            raise UnexpectedError(DATABASE_ERROR_MSG)
 
     @staticmethod
     def find_by_id(id):
         return User.query.filter_by(id=id).first()
+
+    @staticmethod
+    def find_by_program_id(program_id):
+        """Return users who's current program has program_id."""
+        return User.query.filter_by(current_program=program_id).all()
 
     def to_dict(self):
         """Returns a dictionary representing the attributes of the program.
@@ -65,13 +76,13 @@ class User(db.Model):
             attrs: Dictionary containing attributes to update. Key is the 
                    attribute name and value is the new value.
         """
-        if attrs.get('name'):
+        if 'name' in attrs:
             self.name = attrs.get('name')
-        if attrs.get('email'):
+        if 'email' in attrs:
             self.email = attrs.get('email')
-        if attrs.get('username'):
+        if 'username' in attrs:
             self.username = attrs.get('username')
-        if attrs.get('current_program'):
+        if 'current_program' in attrs:
             self.current_program = attrs.get('current_program')
 
         try:
@@ -79,11 +90,11 @@ class User(db.Model):
             db.session.commit()
         except IntegrityError as err:
             if isinstance(err.orig, ForeignKeyViolation):
-                raise BadRequest("Program does not exist.")
+                raise BadAttributes("Program does not exist.")
             elif isinstance(err.orig, UniqueViolation):
                 raise Conflict("User with ID already exists.")
         except DBAPIError as err:
-            raise InternalServerError("Database Error")
+            raise UnexpectedError(DATABASE_ERROR_MSG)
 
     def delete(self):
         try:
@@ -93,4 +104,4 @@ class User(db.Model):
                 "message": "User successfully deleted."
             }
         except DBAPIError as err:
-            raise InternalServerError("Database Error")
+            raise UnexpectedError(DATABASE_ERROR_MSG)

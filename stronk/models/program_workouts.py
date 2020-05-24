@@ -1,13 +1,17 @@
 from stronk import db
+from stronk.constants import DATABASE_ERROR_MSG
+from stronk.errors.unexpected_error import UnexpectedError
+from stronk.errors.conflict import Conflict
 from stronk.models.program import Program
-from sqlalchemy.exc import DBAPIError
-from werkzeug.exceptions import InternalServerError
+from stronk.models.workout import Workout
+
+from psycopg2.errors import UniqueViolation
+from sqlalchemy.exc import DBAPIError, IntegrityError
 
 
 class ProgramWorkouts(db.Model):
     program_id = db.Column(db.Integer,
                            db.ForeignKey('program.id'),
-                           primary_key=True,
                            index=True,
                            nullable=False)
     workout_id = db.Column(db.Integer,
@@ -15,6 +19,44 @@ class ProgramWorkouts(db.Model):
                            primary_key=True,
                            index=True,
                            nullable=False)
+
+    @staticmethod
+    def create(program_id, workout_id):
+        program_workout = ProgramWorkouts(
+            program_id=program_id, workout_id=workout_id)
+
+        try:
+            db.session.add(program_workout)
+            db.session.commit()
+
+            return program_workout
+        except IntegrityError as err:
+            if isinstance(err.orig, UniqueViolation):
+                raise Conflict("Program workout already exists")
+            else:
+                raise UnexpectedError(DATABASE_ERROR_MSG)
+        except DBAPIError as err:
+            print("* err")
+            print(err)
+            raise UnexpectedError(DATABASE_ERROR_MSG)
+
+    @staticmethod
+    def find_by_workout_id(workout_id):
+        return ProgramWorkouts.query.filter_by(workout_id=workout_id).first()
+
+    @staticmethod
+    def filter_by_program_id(program_id):
+        """Returns all rows with program_id."""
+        return ProgramWorkouts.query.filter_by(program_id=program_id).all()
+
+    @staticmethod
+    def find_workouts_by_program_id(program_id: int):
+        """Returns list of Workouts that belong to a program with program_id."""
+        rows = ProgramWorkouts.filter_by_program_id(program_id)
+        ids = []
+        for row in rows:
+            ids.append(row.workout_id)
+        return db.session.query(Workout).filter(Workout.id.in_(ids)).order_by(Workout.name).all()
 
     def to_dict(self):
         """Returns a dictionary representing the attributes of the
@@ -59,21 +101,4 @@ class ProgramWorkouts(db.Model):
                 "message": "Program Workout successfully deleted."
             }
         except DBAPIError as err:
-            raise InternalServerError("Database Error")
-
-    @staticmethod
-    def create(program_id, workout_id):
-        program_workout = ProgramWorkouts(
-            program_id=program_id, workout_id=workout_id)
-
-        try:
-            db.session.add(program_workout)
-            db.session.commit()
-
-            return program_workout
-        except DBAPIError as err:
-            raise InternalServerError("Database Error")
-
-    @staticmethod
-    def find_by_workout_id(workout_id):
-        return ProgramWorkouts.query.filter_by(workout_id=workout_id).first()
+            raise UnexpectedError(DATABASE_ERROR_MSG)

@@ -1,7 +1,6 @@
 import graphene
 
-from werkzeug.exceptions import NotFound
-
+from stronk.errors.not_found import NotFound
 from stronk.models.exercise import Exercise as ExerciseModel
 from stronk.schemas.exercise.type import Exercise
 

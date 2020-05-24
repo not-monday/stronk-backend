@@ -7,6 +7,9 @@ NOT_FOUND_ERROR_CODE = "NOT_FOUND_ERROR"
 
 # ERROR MESSAGES
 UNEXPECTED_ERROR_MSG = "An unexpected error has occured."
+PROGRAM_NOT_FOUND_MSG = "Program not found."
+USER_NOT_FOUND_MSG = "User not found."
+DATABASE_ERROR_MSG = "Database Error"
 
 # ERROR BODY RESPONSE
 ERROR_RESPONSE_BODY = {

@@ -1,19 +1,18 @@
 import graphene
 
-from stronk.schemas.workout.type import Workout as WorkoutType
-
+from stronk.constants import PROGRAM_NOT_FOUND_MSG
+from stronk.errors.not_found import NotFound
+from stronk.schemas.workout.type import Workout
 from stronk.models.program import Program as ProgramModel
 from stronk.models.program_workouts import ProgramWorkouts as ProgramWorkoutsModel
 from stronk.models.workout import Workout as WorkoutModel
-
-from werkzeug.exceptions import NotFound
 
 
 class CreateWorkout(graphene.Mutation):
     """ creates a workout and adds it to a program - result is the new workout
     """
     # mutation results
-    workout = graphene.Field(WorkoutType)
+    workout = graphene.Field(Workout)
 
     class Arguments:
         name = graphene.String(required=True)
@@ -24,7 +23,7 @@ class CreateWorkout(graphene.Mutation):
     def mutate(root, info, name: str, program_id: int, description: str = None, projected_time: int = None):
         program = ProgramModel.find_by_id(program_id)
         if not program:
-            raise NotFound("Program not found.")
+            raise NotFound(PROGRAM_NOT_FOUND_MSG)
 
         workout = WorkoutModel.create(
             name=name, description=description, projected_time=projected_time)
@@ -38,7 +37,7 @@ class UpdateWorkout(graphene.Mutation):
     """ updates a workout's information
     """
     # mutation results
-    workout = graphene.Field(WorkoutType)
+    workout = graphene.Field(Workout)
 
     class Arguments:
         id = graphene.Int(required=True)
