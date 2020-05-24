@@ -1,6 +1,8 @@
 # Stronk Backend
 
-This is a [Flask](https://flask.palletsprojects.com/en/1.1.x/blueprints/) backend for Stronk.
+[![Build Status](https://dev.azure.com/kkjasoncheung/stronk/_apis/build/status/not-monday.stronk-backend?branchName=master)](https://dev.azure.com/kkjasoncheung/stronk/_build/latest?definitionId=1&branchName=master)
+
+This is a [Flask](https://flask.palletsprojects.com/en/1.1.x/blueprints/) backend for Stronk that exposes a [GraphQL](https://graphql.org/) API. We also use [Azure Pipelines](https://azure.microsoft.com/en-us/services/devops/pipelines/) for CI.
 
 # Running with Docker and Docker Compose
 
