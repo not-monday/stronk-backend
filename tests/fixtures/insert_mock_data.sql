@@ -56,7 +56,7 @@ VALUES
 
 -- create dummy exercises
 INSERT INTO
-    EXERCISE (name, description)
+    exercise (name, description)
 VALUES
     ('bicep curls', 'bicep curls description'),
     ('squats', 'squats description'),
@@ -120,3 +120,23 @@ SET
     current_program = 3
 WHERE
     id = 'user_id_3';
+
+-- assign workout exercises to workouts
+INSERT INTO
+    workout_exercise (
+        workout_id,
+        exercise_id,
+        workout_weights,
+        workout_reps,
+        rest_time
+    )
+VALUES
+    (1, 1, '{10.0, 10.0, 10.0}', '{10, 10, 10}', 10),
+    (1, 2, '{10.0, 10.0, 10.0}', '{10, 10, 10}', 10),
+    (1, 3, '{10.0, 10.0, 10.0}', '{10, 10, 10}', 10),
+    (2, 1, '{10.0, 10.0, 10.0}', '{10, 10, 10}', 10),
+    (2, 2, '{10.0, 10.0, 10.0}', '{10, 10, 10}', 10),
+    (2, 3, '{10.0, 10.0, 10.0}', '{10, 10, 10}', 10),
+    (3, 1, '{10.0, 10.0, 10.0}', '{10, 10, 10}', 10),
+    (3, 2, '{10.0, 10.0, 10.0}', '{10, 10, 10}', 10),
+    (3, 3, '{10.0, 10.0, 10.0}', '{10, 10, 10}', 10);

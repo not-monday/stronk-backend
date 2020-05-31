@@ -5,7 +5,6 @@ from stronk.errors.not_found import NotFound
 from stronk.models.program_workouts import ProgramWorkouts as ProgramWorkoutsModel
 from stronk.models.workout import Workout as WorkoutModel
 from stronk.schemas.workout.type import Workout
-from stronk.schemas.workout.type import ProgramWorkouts as ProgramWorkoutsType
 
 
 class Query(graphene.ObjectType):

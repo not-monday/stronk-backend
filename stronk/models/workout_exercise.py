@@ -65,3 +65,8 @@ class WorkoutExercise(db.Model):
             self.workout_reps = attrs.get('workout_reps')
         if attrs.get('rest_time'):
             self.rest_time = attrs.get('rest_time')
+
+    @staticmethod
+    def find_workout_exercises(workout_id):
+        """Returns list of workout exercises that belong to a workout with workout_id."""
+        return WorkoutExercise.query.filter_by(workout_id=workout_id)
