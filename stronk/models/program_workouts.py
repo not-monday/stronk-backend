@@ -97,8 +97,5 @@ class ProgramWorkouts(db.Model):
         try:
             db.session.delete(self)
             db.session.commit()
-            data = {
-                "message": "Program Workout successfully deleted."
-            }
         except DBAPIError as err:
             raise UnexpectedError(DATABASE_ERROR_MSG)

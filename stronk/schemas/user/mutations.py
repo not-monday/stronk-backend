@@ -6,7 +6,6 @@ from stronk.constants import USER_NOT_FOUND_MSG
 from stronk.errors.not_found import NotFound
 from stronk.models.user import User as UserModel
 from stronk.schemas.user.type import User
-from tests import constants as c
 
 
 class CreateUser(graphene.Mutation):
@@ -21,9 +20,7 @@ class CreateUser(graphene.Mutation):
         currentProgram = graphene.Int(required=False)
 
     def mutate(root, info, name, username, email, currentProgram=None):
-        id = c.TEST_ID if current_app.config['ENV'] == 'testing' else g.id
-
-        user = UserModel.create(id=id,
+        user = UserModel.create(id=g.id,
                                 name=name,
                                 username=username,
                                 email=email,

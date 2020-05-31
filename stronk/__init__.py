@@ -1,11 +1,12 @@
 from dotenv import load_dotenv
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, g
 from stronk.view.graphql_view import CustomGraphQLView
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from graphene import ObjectType, String, Schema
 
 import firebase_admin
+from tests.constants import TEST_ID
 from stronk.database.config import Config, TestConfig
 from stronk.utils import auth
 
@@ -52,9 +53,15 @@ from werkzeug.exceptions import HTTPException
 app.register_error_handler(HTTPException, h.handle_http_exception)
 app.register_error_handler(Exception, h.handle_unexpected_errors)
 
+# Environment specific settings
 if app.config['ENV'] != 'testing':
     app.before_request(auth.verify_token)
+else:
+    def initialize_test_g():
+        """Initialize values of g for testing purposes."""
+        g.id = TEST_ID
 
+    app.before_request(initialize_test_g)
 
 """ graphql route
 this uses the flask as_view utility which transforms a class to a view function, passing its args to the class constructor

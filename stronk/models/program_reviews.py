@@ -1,11 +1,20 @@
+import datetime
+
 from sqlalchemy import CheckConstraint
+from psycopg2.errors import ForeignKeyViolation, UniqueViolation
+from sqlalchemy.exc import DBAPIError, IntegrityError
+
 from stronk import db
+from stronk.constants import DATABASE_ERROR_MSG, PROGRAM_NOT_FOUND_MSG
+from stronk.errors.bad_attributes import BadAttributes
+from stronk.errors.conflict import Conflict
+from stronk.errors.unexpected_error import UnexpectedError
 from stronk.models.program import Program
 from stronk.models.user import User
 
 
 class ProgramReviews(db.Model):
-    __table_args__ = (CheckConstraint('rating <= 5'),)
+    __table_args__ = (CheckConstraint('rating <= 5 AND rating > 0'),)
     program_id = db.Column(db.Integer,
                            db.ForeignKey('program.id'),
                            primary_key=True,
@@ -21,36 +30,53 @@ class ProgramReviews(db.Model):
     comments = db.Column(db.String(250), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False)
 
-    @classmethod
-    def get_reviews_by_program_id(cls, program_id):
-        """Returns a list of all reviews for a program with id."""
-        res = cls.query.filter_by(program_id=program_id)
-        reviews = []
-        for row in res:
-            reviews.append(
-                {
-                    "reviewer": row.get_user().to_dict(),
-                    "rating": row.rating,
-                    "comments": row.comments,
-                    "created_at": row.created_at
-                }
-            )
-        return {
-            "program": self.get_program(program_id=program_id).to_dict(),
-            "reviews": reviews
-        }
+    @staticmethod
+    def create(reviewer_id, program_id, rating, comments):
+        now = datetime.datetime.now()
+        program_review = ProgramReviews(reviewer_id=reviewer_id,
+                                        program_id=program_id,
+                                        rating=rating,
+                                        comments=comments,
+                                        created_at=now)
 
-    def to_dict(self):
-        """Returns a dictionary representing the attributes of the
-           ProgramReviews. Key is the name of the attribute and value is the
-           value of the attribute."""
-        return {
-            "program": self.get_program().to_dict(),
-            "reviewer": self.get_user().to_dict(),
-            "rating": self.rating,
-            "comments": self.comments,
-            "created_at": self.created_at
-        }
+        try:
+            db.session.add(program_review)
+            db.session.commit()
+
+            return program_review
+        except IntegrityError as err:
+            if isinstance(err.orig, UniqueViolation):
+                raise Conflict("User already reviewed this program")
+            elif isinstance(err.orig, ForeignKeyViolation):
+                raise BadAttributes(PROGRAM_NOT_FOUND_MSG)
+            else:
+                raise UnexpectedError(DATABASE_ERROR_MSG)
+        except DBAPIError as err:
+            raise UnexpectedError(DATABASE_ERROR_MSG)
+
+    @staticmethod
+    def get_reviews_by_program_id(program_id):
+        """Returns a list of all reviews for a program with id."""
+        return (ProgramReviews
+                .query
+                .order_by(ProgramReviews.created_at.desc())
+                .filter_by(program_id=program_id)
+                .all())
+
+    @staticmethod
+    def get_reviews_by_reviewer_id(reviewer_id):
+        """Returns a list of all reviews by a user."""
+        return (ProgramReviews
+                .query
+                .order_by(ProgramReviews.created_at.desc())
+                .filter_by(reviewer_id=reviewer_id)
+                .all())
+
+    @staticmethod
+    def get_by_reviewer_and_program_id(reviewer_id: str, program_id: int):
+        """Returns a program review based on the reviewer id and program id."""
+        return (ProgramReviews.query.filter_by(reviewer_id=reviewer_id,
+                                               program_id=program_id).first())
 
     def get_program(self, program_id=None):
         """Returns Program object for the ProgramReviews. """
@@ -78,3 +104,11 @@ class ProgramReviews(db.Model):
             self.program_id = attrs.get("program_id")
         if attrs.get("reviewer_id"):
             self.reviewer_id = attrs.get("reviewer_id")
+
+    def delete(self):
+        """Delete program review."""
+        try:
+            db.session.delete(self)
+            db.session.commit()
+        except DBAPIError as err:
+            raise UnexpectedError(DATABASE_ERROR_MSG)

@@ -29,6 +29,13 @@
 											"        \"data\": {",
 											"            \"users\": [",
 											"                {",
+											"                    \"id\": \"user_id_4\",",
+											"                    \"name\": \"test name\",",
+											"                    \"username\": \"test username\",",
+											"                    \"email\": \"test@email.com\",",
+											"                    \"currentProgram\": null",
+											"                },",
+											"                {",
 											"                    \"id\": \"user_id_1\",",
 											"                    \"name\": \"max b wavy\",",
 											"                    \"username\": \"mxwvy\",",
@@ -1471,7 +1478,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n    deleteUser(id: \"test_id\") {\n        ok\n    }\n}",
+										"query": "mutation {\n    deleteUser(id: \"user_id_4\") {\n        ok\n    }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -3677,6 +3684,477 @@
 									"mode": "graphql",
 									"graphql": {
 										"query": "mutation {\n    deleteProgram(id: 4) {\n        ok\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "program review",
+			"item": [
+				{
+					"name": "1. Mutation: createProgramReview",
+					"item": [
+						{
+							"name": "Create program review",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "70df9a36-e10d-49a6-be73-7a53625d86e6",
+										"exec": [
+											"",
+											"",
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"createProgramReview\": {",
+											"                \"programReview\": {",
+											"                    \"program\": {",
+											"                        \"id\": \"1\"",
+											"                    },",
+											"                    \"comments\": \"test comment\",",
+											"                    \"rating\": 5",
+											"                }",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    createProgramReview(programId: 1, rating: 5, comments: \"test comment\") {\n        programReview {\n            program {\n                id\n            }\n            comments\n            rating\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Conflict",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c38cf924-fff6-4c4c-8138-92ce67165260",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected_code = \"RESOURCE_CONFLICT_ERROR\";",
+											"    var expected_msg = \"User already reviewed this program\";",
+											"    pm.expect(result.errors[0].context.code).to.eql(expected_code);",
+											"    pm.expect(result.errors[0].context.message).to.eql(expected_msg);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    createProgramReview(programId: 1, rating: 5, comments: \"test comment\") {\n        programReview {\n            program {\n                id\n            }\n            comments\n            rating\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Bad Request - Missing comments",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6f06035c-798c-446d-be97-a51b7f87831b",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = \"Field \\\"createProgramReview\\\" argument \\\"comments\\\" of type \\\"String!\\\" is required but not provided.\";",
+											"    pm.expect(result.errors[0].message).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    createProgramReview(programId: 1, rating: 5) {\n        programReview {\n            program {\n                id\n            }\n            comments\n            rating\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Bad Request - Missing rating",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "995ece06-0564-495e-b37a-02c5a8752a58",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = \"Field \\\"createProgramReview\\\" argument \\\"rating\\\" of type \\\"Int!\\\" is required but not provided.\";",
+											"    pm.expect(result.errors[0].message).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    createProgramReview(programId: 1, comments: \"test comment\") {\n        programReview {\n            program {\n                id\n            }\n            comments\n            rating\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Bad Request - Missing programId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "58e2cd3f-11c8-4169-a9cd-64288c3cf227",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = \"Field \\\"createProgramReview\\\" argument \\\"programId\\\" of type \\\"Int!\\\" is required but not provided.\";",
+											"    pm.expect(result.errors[0].message).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    createProgramReview(rating: 5, comments: \"test comment\") {\n        programReview {\n            program {\n                id\n            }\n            comments\n            rating\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "2. Queries: program review, program reviews",
+					"item": [
+						{
+							"name": "program reviews query",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "53887b7b-6a32-4ab9-a433-bf6f47eb0c9e",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"programReviews\": [",
+											"                {",
+											"                    \"comments\": \"test comment\",",
+											"                    \"rating\": 5,",
+											"                    \"program\": {",
+											"                        \"name\": \"max's program\",",
+											"                        \"description\": \"dummy description 3\"",
+											"                    }",
+											"                }",
+											"            ]",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\n    programReviews {\n        comments\n        rating\n        program {\n            name\n            description\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "program review query",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "1c5fc845-dbf9-43a7-aea6-117d5dbef4bc",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"programReview\": {",
+											"                \"comments\": \"test comment\",",
+											"                \"rating\": 5,",
+											"                \"program\": {",
+											"                    \"name\": \"max's program\",",
+											"                    \"description\": \"dummy description 3\"",
+											"                }",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\n    programReview(programId: 1) {\n        comments\n        rating\n        program {\n            name\n            description\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "3. Mutation: deleteProgramReview",
+					"item": [
+						{
+							"name": "Delete program review",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "1cf31077-b0b4-4093-b724-5ffa0cfd7767",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"deleteProgramReview\": {",
+											"                \"ok\": true",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    deleteProgramReview(programId: 1) {\n        ok\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete non-existant program review",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "aa650bd8-33ff-4235-ae5f-8fa63ad05e80",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected_code = \"NOT_FOUND_ERROR\";",
+											"    var expected_msg = \"Review not found.\";",
+											"    pm.expect(result.errors[0].context.code).to.eql(expected_code);",
+											"    pm.expect(result.errors[0].context.message).to.eql(expected_msg);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    deleteProgramReview(programId: 1) {\n        ok\n    }\n}",
 										"variables": ""
 									}
 								},

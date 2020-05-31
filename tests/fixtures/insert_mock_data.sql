@@ -22,6 +22,13 @@ VALUES
         'chengchu',
         'richard.wei@gmail.com',
         NULL
+    ),
+    (
+        'user_id_4',
+        'test name',
+        'test username',
+        'test@email.com',
+        NULL
     );
 
 -- create dummy programs
@@ -74,6 +81,15 @@ VALUES
         'workout 3 description',
         12
     );
+
+-- create dummy program reviews
+INSERT INTO
+    program_reviews (program_id, reviewer_id, rating, comments, created_at)
+VALUES
+    (1, 'user_id_1', 5, 'Best program!', '2020-03-17 12:00:00'),
+    (1, 'user_id_2', 4, 'Amazing!', '2020-03-18 13:00:00'),
+    (2, 'user_id_2', 5, 'The best!', '2020-04-01 14:00:00'),
+    (3, 'user_id_3', 4, 'Great!', '2020-04-02 15:00:00');
 
 -- update program with new workouts
 INSERT INTO

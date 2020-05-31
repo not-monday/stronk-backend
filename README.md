@@ -34,14 +34,13 @@ Ensure you have[python3](https://www.python.org/downloads/), [
 1. Set up your virtualenv by following [this guide](https://docs.python.org/3/library/venv.html)
 2. `pip install -r requirements.txt`
 3. Create a Postgres database. This database will have a database (connect) url in the format `postgresql://{username}:{password}@localhost:{port}/{database name}`
-3. Make a copy of `dotenv` and rename it to `.env` and fill in the environment variables. You should also look at `.flaskenv` where you can change `FLASK_ENV`.
-4. Set up a Firebase Service Account for Stronk if you do not already have one and download the json credentials file
-5. Rename the json file to `stronk-google-credentials.json` and copy it to the the root of the project
-6. Run the database migrations `flask db upgrade`
-7. Run the server `flask run`
+4. Make a copy of `dotenv` and rename it to `.env` and fill in the environment variables. You should also look at `.flaskenv` where you can change `FLASK_ENV`.
+5. Set up a Firebase Service Account for Stronk if you do not already have one and download the json credentials file
+6. Rename the json file to `stronk-google-credentials.json` and copy it to the the root of the project
+7. Run the database migrations `flask db upgrade`
+8. Run the server `flask run`
 
 Server will be live on port 5000
-
 
 # Setting up the database
 
@@ -65,12 +64,14 @@ DATABASE_URL="postgresql://{username}:{password}@localhost:{port}/{database name
 ```
 
 ## Connecting to the database
+
 ```
 # run this on your host if you need to connect to the database in the container
 psql -h localhost -p {port} -U postgres --password
 ```
 
-## Executing a command 
+## Executing a command
+
 ```
 # psql -h localhost -p {port} -U {username} -c "CREATE DATABASE {database name};" --password
 
@@ -93,8 +94,16 @@ psql -h localhost -p {port} -U {user name} -d {database name} -a -f ./tests/fixt
 
 # Testing
 
-1. In another terminal, set the environment variable, `TEST_DATABASE_URL` to the address exposed by the `db` service.
-2. Run `./scripts/test.sh`
+1.
+
+```
+export FLASK_ENV=testing
+
+flask run
+```
+
+2. In another terminal, set the environment variable, `TEST_DATABASE_URL` to the address exposed by the `db` service.
+3. Run `./scripts/test.sh`
 
 Server will be live on port 5000
 
