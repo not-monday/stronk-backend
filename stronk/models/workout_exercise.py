@@ -1,9 +1,14 @@
+from sqlalchemy.exc import DBAPIError
+
 from stronk import db
+from stronk.constants import DATABASE_ERROR_MSG
 from stronk.models.exercise import Exercise
 from stronk.models.workout import Workout
 
 from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.orm.exc import NoResultFound
+
+from stronk.errors.unexpected_error import UnexpectedError
 
 class WorkoutExercise(db.Model):
     workout_id = db.Column(db.Integer,
@@ -19,6 +24,10 @@ class WorkoutExercise(db.Model):
     workout_weights = db.Column(ARRAY(db.Float), nullable=False)
     workout_reps = db.Column(ARRAY(db.Integer), nullable=False)
     rest_time = db.Column(db.Integer, nullable=False)
+
+    @staticmethod
+    def create(program_id, workout_id, workout_weights, workout_reps, rest_time):
+        TODO
 
     def to_dict(self):
         """Returns a dictionary representing the attributes of the
@@ -66,7 +75,22 @@ class WorkoutExercise(db.Model):
         if attrs.get('rest_time'):
             self.rest_time = attrs.get('rest_time')
 
+    def delete(self):
+        try:
+            db.session.delete(self)
+            db.session.commit()
+            data = {
+                "message": "Workout exercise successfully deleted."
+            }
+        except DBAPIError as err:
+            raise UnexpectedError(DATABASE_ERROR_MSG)
+
     @staticmethod
     def find_workout_exercises(workout_id):
         """Returns list of workout exercises that belong to a workout with workout_id."""
         return WorkoutExercise.query.filter_by(workout_id=workout_id)
+
+    @staticmethod
+    def find_workout_exercise(workout_id, exercise_id):
+        """Returns the workout exercise for a workout"""
+        return WorkoutExercise.query.filter_by(workout_id=workout_id).filter_by(exercise_id=exercise_id).first

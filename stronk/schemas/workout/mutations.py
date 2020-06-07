@@ -2,11 +2,14 @@ import graphene
 
 from stronk.constants import PROGRAM_NOT_FOUND_MSG
 from stronk.errors.not_found import NotFound
+
 from stronk.schemas.workout.type import Workout
+from stronk.schemas.exercise.type import WorkoutExercise as WorkoutExercise
+
 from stronk.models.program import Program as ProgramModel
 from stronk.models.program_workouts import ProgramWorkouts as ProgramWorkoutsModel
 from stronk.models.workout import Workout as WorkoutModel
-
+from stronk.models.workout_exercise import WorkoutExercise as WorkoutExerciseModel
 
 class CreateWorkout(graphene.Mutation):
     """ creates a workout and adds it to a program - result is the new workout
@@ -84,6 +87,52 @@ class DeleteWorkout(graphene.Mutation):
         ok = True
 
         return DeleteWorkout(ok=ok)
+
+
+class DeleteWorkoutExercise(graphene.Mutation):
+    """ removes an exercise from a workout
+    """
+    # mutation results
+    ok = graphene.Boolean()
+
+    class Arguments:
+        workout_id = graphene.Int(required=True)
+        exercise_id = graphene.Int(required=True)
+
+    def mutate(root, info, workout_id: str, exercise_id: str):
+        workoutExercise = WorkoutExerciseModel.find_workout_exercise(
+            workout_id, exercise_id)
+        if not workoutExercise:
+            raise NotFound("Workout exercise not found.")
+
+        workoutExercise.delete()
+        ok = True
+
+        return DeleteWorkout(ok=ok)
+
+
+class AddWorkoutExercise(graphene.Mutation):
+    """ adds an exercise to a workout
+    """
+
+    # mutation results
+    workoutExercise = graphene.Field(WorkoutExercise)
+    class Arguments:
+        workout_id = graphene.Int(required=True)
+        exercise_id = graphene.Int(required=True)
+        workout_weights = graphene.List(graphene.Int(True))
+        workout_reps = graphene.List(graphene.Int(True))
+        rest_time = graphene.List(graphene.Int(True))
+
+    def mutate(root, info, workout_id: str, exercise_id: str, workout_weights: int, workout_reps: int, rest_time: int):
+        # todo check that the weights and reps list sizes are the same
+        workoutExercise = WorkoutExerciseModel.create(workout_id, exercise_id, workout_weights, workout_reps, rest_time)
+
+        return DeleteWorkout(workoutExercise=workoutExercise)
+
+class UpdateWorkoutExercise(graphene.Mutation):
+    """ updates an exercise for a workout
+    """
 
 
 class Mutation(graphene.ObjectType):

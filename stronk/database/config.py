@@ -9,5 +9,5 @@ class Config(object):
 
 class TestConfig(object):
     """Represents a database configuration for testing."""
-    SQLALCHEMY_DATABASE_URI = os.getenv('TEST_DATABASE_URL')
+    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
