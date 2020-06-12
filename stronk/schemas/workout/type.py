@@ -11,8 +11,8 @@ class Workout(SQLAlchemyObjectType):
     class Meta:
         model = WorkoutModel
 
-    exercises = graphene.List(WorkoutExercise)
+    workout_exercises = graphene.List(WorkoutExercise)
     
-    def resolve_exercises(parent, info):
+    def resolve_workout_exercises(parent, info):
         # root is the workout model
         return WorkoutExerciseModel.find_workout_exercises(workout_id = parent.id)

@@ -60,7 +60,8 @@ INSERT INTO
 VALUES
     ('bicep curls', 'bicep curls description'),
     ('squats', 'squats description'),
-    ('pullups', 'pullups curls description');
+    ('pullups', 'pullups curls description'),
+    ('unused exercise', 'deletable');
 
 -- create dummy workouts
 INSERT INTO

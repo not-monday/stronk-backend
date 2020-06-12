@@ -10,11 +10,14 @@ from stronk.schemas.user.mutations import Mutation as UserMutation
 from stronk.schemas.user.query import Query as UserQuery
 from stronk.schemas.workout.mutations import Mutation as WorkoutMutation
 from stronk.schemas.workout.query import Query as WorkoutQuery
+from stronk.schemas.workout_exercise.mutations import Mutation as WorkoutExerciseMutation
+from stronk.schemas.workout_exercise.query import Query as WorkoutExerciseQuery
 
 
 class Query(ProgramQuery,
             ProgramReviewsQuery,
             WorkoutQuery,
+            WorkoutExerciseQuery,
             ExerciseQuery,
             UserQuery,
             graphene.ObjectType):
@@ -24,6 +27,7 @@ class Query(ProgramQuery,
 class Mutation(ProgramMutation,
                ProgramReviewsMutation,
                WorkoutMutation,
+               WorkoutExerciseMutation,
                ExerciseMutation,
                UserMutation,
                graphene.ObjectType):

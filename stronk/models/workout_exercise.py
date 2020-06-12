@@ -15,6 +15,9 @@ from sqlalchemy.orm.exc import NoResultFound
 from psycopg2.errors import UniqueViolation, ForeignKeyViolation
 from sqlalchemy.exc import DBAPIError, IntegrityError
 
+MISMATCHED_LENGTHS_ERROR_MSG = "Number of weights needs to be the same as the number of reps"
+
+
 class WorkoutExercise(db.Model):
     workout_id = db.Column(db.Integer,
                            db.ForeignKey('workout.id'),
@@ -41,8 +44,8 @@ class WorkoutExercise(db.Model):
         )
 
         if (len(workout_weights) != len(workout_reps)):
-            raise BadAttributes("Number of weights needs to be the same as the number of reps")
-      
+            raise BadAttributes(MISMATCHED_LENGTHS_ERROR_MSG)
+
         try:
             db.session.add(workoutExercise)
             db.session.commit()
@@ -50,7 +53,8 @@ class WorkoutExercise(db.Model):
             return workoutExercise
         except IntegrityError as err:
             if isinstance(err.orig, UniqueViolation):
-                raise Conflict("Exercise has already been added to this workout")
+                raise Conflict(
+                    "Exercise has already been added to this workout")
             elif isinstance(err.orig, ForeignKeyViolation):
                 raise BadAttributes("User or exercise not found")
             else:
@@ -99,10 +103,24 @@ class WorkoutExercise(db.Model):
                 self.exercise_id = new_id
             else:
                 raise NoResultFound('Exercise ID does not exist')
-        if attrs.get('workout_weights'):
-            self.workout_weights = attrs.get('workout_weights')
-        if attrs.get('workout_reps'):
-            self.workout_reps = attrs.get('workout_reps')
+
+        newWorkoutsWeights = attrs.get('workout_weights')
+        newWorkoutReps = attrs.get('workout_reps')
+       
+        # check if the list of new workout weights and list of reps have the same length
+        newWorkoutWeightsLen = len(
+            newWorkoutsWeights) if newWorkoutsWeights else len(self.workout_weights)
+        newWorkoutRepsLen = len(
+            newWorkoutReps) if newWorkoutReps else len(self.workout_reps)
+
+        if newWorkoutWeightsLen != newWorkoutRepsLen:
+            raise BadAttributes(MISMATCHED_LENGTHS_ERROR_MSG)
+
+        if newWorkoutsWeights:
+            self.workout_weights = newWorkoutsWeights
+        if newWorkoutReps:
+            self.workout_reps = newWorkoutReps
+
         if attrs.get('rest_time'):
             self.rest_time = attrs.get('rest_time')
 
@@ -115,6 +133,13 @@ class WorkoutExercise(db.Model):
             }
         except DBAPIError as err:
             raise UnexpectedError(DATABASE_ERROR_MSG)
+
+    @staticmethod
+    def deleteWorkoutExercises(workout_id):
+        """deletes all workout exercises associated with a workout"""
+        workoutExercises = WorkoutExercise.find_workout_exercises(workout_id)
+        for workoutExercise in workoutExercises:
+            workoutExercise.delete()
 
     @staticmethod
     def find_workout_exercises(workout_id):
