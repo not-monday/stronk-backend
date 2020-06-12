@@ -4,7 +4,7 @@ from stronk.constants import PROGRAM_NOT_FOUND_MSG, WORKOUT_NOT_FOUND_MSG
 from stronk.errors.not_found import NotFound
 
 from stronk.schemas.workout.type import Workout
-from stronk.schemas.exercise.type import WorkoutExercise as WorkoutExercise
+from stronk.schemas.workout_exercise.type import WorkoutExercise as WorkoutExercise
 
 from stronk.models.program import Program as ProgramModel
 from stronk.models.program_workouts import ProgramWorkouts as ProgramWorkoutsModel

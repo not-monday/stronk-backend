@@ -3,7 +3,7 @@ import graphene
 from stronk.constants import WORKOUT_EXERCISE_NOT_FOUND_MSG
 from stronk.errors.not_found import NotFound
 
-from stronk.schemas.exercise.type import WorkoutExercise as WorkoutExercise
+from stronk.schemas.workout_exercise.type import WorkoutExercise as WorkoutExercise
 from stronk.models.workout_exercise import WorkoutExercise as WorkoutExerciseModel
 
 class AddWorkoutExercise(graphene.Mutation):
