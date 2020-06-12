@@ -5,10 +5,15 @@ from stronk.constants import DATABASE_ERROR_MSG
 from stronk.models.exercise import Exercise
 from stronk.models.workout import Workout
 
+from stronk.errors.unexpected_error import UnexpectedError
+from stronk.errors.conflict import Conflict
+from stronk.errors.bad_attributes import BadAttributes
+
 from sqlalchemy.dialects.postgresql import ARRAY
 from sqlalchemy.orm.exc import NoResultFound
 
-from stronk.errors.unexpected_error import UnexpectedError
+from psycopg2.errors import UniqueViolation, ForeignKeyViolation
+from sqlalchemy.exc import DBAPIError, IntegrityError
 
 class WorkoutExercise(db.Model):
     workout_id = db.Column(db.Integer,
@@ -26,8 +31,34 @@ class WorkoutExercise(db.Model):
     rest_time = db.Column(db.Integer, nullable=False)
 
     @staticmethod
-    def create(program_id, workout_id, workout_weights, workout_reps, rest_time):
-        TODO
+    def create(workout_id, exercise_id, workout_weights, workout_reps, rest_time):
+        workoutExercise = WorkoutExercise(
+            workout_id=workout_id,
+            exercise_id=exercise_id,
+            workout_weights=workout_weights,
+            workout_reps=workout_reps,
+            rest_time=rest_time if rest_time else 0
+        )
+
+        if (len(workout_weights) != len(workout_reps)):
+            raise BadAttributes("Number of weights needs to be the same as the number of reps")
+      
+        try:
+            db.session.add(workoutExercise)
+            db.session.commit()
+
+            return workoutExercise
+        except IntegrityError as err:
+            if isinstance(err.orig, UniqueViolation):
+                raise Conflict("Exercise has already been added to this workout")
+            elif isinstance(err.orig, ForeignKeyViolation):
+                raise BadAttributes("User or exercise not found")
+            else:
+                raise UnexpectedError(DATABASE_ERROR_MSG)
+        except DBAPIError as err:
+            print("* err")
+            print(err)
+            raise UnexpectedError(DATABASE_ERROR_MSG)
 
     def to_dict(self):
         """Returns a dictionary representing the attributes of the
