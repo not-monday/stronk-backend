@@ -149,4 +149,4 @@ class WorkoutExercise(db.Model):
     @staticmethod
     def find_workout_exercise(workout_id, exercise_id):
         """Returns the workout exercise for a workout"""
-        return WorkoutExercise.query.filter_by(workout_id=workout_id).filter_by(exercise_id=exercise_id).first
+        return WorkoutExercise.query.filter_by(workout_id=workout_id).filter_by(exercise_id=exercise_id).first()

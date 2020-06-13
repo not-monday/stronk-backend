@@ -18,7 +18,7 @@ class AddWorkoutExercise(graphene.Mutation):
         exercise_id = graphene.Int(required=True)
         workout_weights = graphene.List(graphene.Int, required=True)
         workout_reps = graphene.List(graphene.Int, required=True)
-        rest_time = graphene.List(graphene.Int, required=True)
+        rest_time = graphene.Int(required=True)
 
     def mutate(root, info, workout_id: str, exercise_id: str, workout_weights: int, workout_reps: int, rest_time: int):
         workoutExercise = WorkoutExerciseModel.create(
@@ -37,7 +37,7 @@ class UpdateWorkoutExercise(graphene.Mutation):
         exercise_id = graphene.Int(required=True)
         workout_weights = graphene.List(graphene.Int, required=False)
         workout_reps = graphene.List(graphene.Int, required=False)
-        rest_time = graphene.List(graphene.Int, required=False)
+        rest_time = graphene.Int(required=False)
 
     def mutate(root, info, workout_id, exercise_id, workout_weights, workout_reps, rest_time):
         workoutExercise = WorkoutExerciseModel.find_workout_exercise(

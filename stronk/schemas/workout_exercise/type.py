@@ -10,7 +10,7 @@ class WorkoutExercise(SQLAlchemyObjectType):
     class Meta:
         model = WorkoutExerciseModel
 
-    exercise = graphene.List(Exercise)
+    exercise = graphene.Field(Exercise)
 
     def resolve_exercise(parent: WorkoutExerciseModel, info):
         # root is the workout model

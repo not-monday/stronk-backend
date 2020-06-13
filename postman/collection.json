@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "686745c8-dc93-49e5-b433-a8def24ce4f2",
+		"_postman_id": "7b549acb-1ca8-4bc8-baa3-f3566639632d",
 		"name": "Stronk",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -17,7 +17,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "56e64bbb-553c-42d2-ade9-4ba6d1b647fc",
+										"id": "73319c42-68d7-4a04-aa0a-b0ca701f1b8f",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -155,7 +155,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3e43e8ce-8ddf-44dd-81c4-fcc7e9e373a3",
+										"id": "46b417bd-5eb2-4150-8311-04577518909f",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -260,7 +260,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3cc6ca62-b4c3-4dfa-9e3c-a76661c48e6b",
+										"id": "526bf004-7677-49f0-bf9e-cef6b9944263",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -362,7 +362,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "020d6efb-60e2-467d-801a-44642e71c8f5",
+										"id": "82268988-1a74-4ea5-a554-8d16be67ce78",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -464,7 +464,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "bbc50389-dcc7-4b8e-8ea4-6af3275ec05b",
+										"id": "d71a484a-7138-4601-b783-a079adb0b2c6",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -566,7 +566,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "a0bb9941-1f50-4188-863e-3e68d56f075b",
+										"id": "c4b029b4-d1c6-411a-af83-e3d5b6a1f3cc",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -667,7 +667,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "00005bc0-3c45-4b7c-8e50-5d3e45c69aaa",
+										"id": "3956b910-544c-4e1e-84e6-8a240955a2fa",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -769,7 +769,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "625dc72d-fa1a-4528-aef4-930f2541d0d2",
+										"id": "99e61320-ab13-4343-94ba-31bd7d7e4502",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -861,7 +861,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "da057dad-99ad-4aed-a9cb-4a0af906c1a6",
+										"id": "3927787f-bedf-4fc3-bb3f-0e424d5af070",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -951,7 +951,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "83e52768-fa4a-43cd-9b58-f18cc4d2d71b",
+										"id": "ecfb568b-b9c2-40f5-8411-7f6c9d1cb26b",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -1041,7 +1041,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "db6aa69b-0b21-49af-b07e-1fea55f0e777",
+										"id": "9ea225bb-c4ab-4e3d-b2f5-71a97abfdc43",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -1138,7 +1138,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "372021b6-3df4-4d28-9040-3ff43601efcc",
+										"id": "33715768-6c30-4251-9acc-926e09683196",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1187,7 +1187,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "3a8cf370-9795-43b0-aeb5-4584e0502312",
+										"id": "f2fb2635-8d0c-4921-83cd-c1acdb82ecd6",
 										"exec": [
 											""
 										],
@@ -1197,7 +1197,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "ddcf2efa-f3f3-458c-8ca2-bc7014e6327f",
+										"id": "41b777ce-4eec-41f8-bbfc-31c5eb70f77f",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1258,7 +1258,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "771b4599-6351-43a2-8d87-961052483912",
+										"id": "232595fc-1cca-4694-8b7f-fb3085f7d215",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1319,7 +1319,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "38b52d9a-2f9c-4725-b750-f76647709100",
+										"id": "08483bcb-558f-45a0-a8af-cdc351f607ff",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1380,7 +1380,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "6831c7a7-b7f4-49c6-a943-48ab524246a9",
+										"id": "01e5db68-31ed-4317-a43f-13c103e8af5f",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1450,7 +1450,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "5ae8f4f0-0b92-4f0e-8977-5f023707b0a8",
+										"id": "a27eab00-40c0-4741-bab8-2098ebbec200",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1503,7 +1503,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "e4be1449-c5c4-4fe5-9325-2c4460d51642",
+										"id": "31405605-df44-4313-be69-10758395479e",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1556,7 +1556,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "6a355175-33c4-4dde-be96-e99741562c39",
+						"id": "a4f6b76f-b11a-4a32-8e7a-4b5721b999b1",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1566,7 +1566,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "0d4b39bd-cc24-49c4-86d4-de4e6719f807",
+						"id": "a5d68b02-c37c-4e70-a9fe-469181eae48a",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1588,7 +1588,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3c3e91a4-9933-4301-b01a-51693f89d099",
+										"id": "72a5ab0a-211b-46c5-946a-56846082b847",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1613,6 +1613,11 @@
 											"                    \"id\": \"3\",",
 											"                    \"name\": \"pullups\",",
 											"                    \"description\": \"pullups curls description\"",
+											"                },",
+											"                {",
+											"                    \"id\": \"4\",",
+											"                    \"name\": \"unused exercise\",",
+											"                    \"description\": \"deletable\"",
 											"                }",
 											"            ]",
 											"        }",
@@ -1655,7 +1660,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "7061cbf4-6044-4a85-8694-efd8f20f2e2c",
+										"id": "3d55bd0c-f407-4964-86bf-5ca63b126551",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1710,7 +1715,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "6057808d-4a11-4347-8234-298b08be9374",
+										"id": "b8141229-7ac0-4235-8519-8da9d5748d0e",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1765,7 +1770,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "27decb15-4edd-4fc6-8461-499799d24fea",
+										"id": "b2f86345-8826-43fb-8ccd-401abfeb650f",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1820,7 +1825,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d7eeb50e-ab4a-452f-9ed0-135766eae169",
+										"id": "3eeb14df-c288-46b4-8937-366b8165e488",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1878,7 +1883,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3410d9b2-3d02-4a70-a628-c358d69be282",
+										"id": "34b6a38b-011f-400d-8bc7-4e4b11284aba",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1935,7 +1940,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d3f6bd8a-2c54-4447-bfae-d1b35d4f0a63",
+										"id": "22bdf0cd-4466-4ff3-8fc1-0af3c905505c",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1985,7 +1990,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "9572cd64-221f-4560-9970-3a8c60df7f7f",
+										"id": "a66ce9a8-2493-45f6-a626-1b7097960be8",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -2033,7 +2038,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "03f06e2f-3a52-4ee6-9825-818bfd5ab08c",
+										"id": "fdf759a7-5bc4-4c28-98cf-c3ad6fdb4f1e",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -2052,7 +2057,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "36e0fcd7-0b6c-4404-bce6-19aea77ddc54",
+										"id": "56ce04b3-f919-4930-a534-e6429ce147e1",
 										"exec": [
 											""
 										],
@@ -2098,7 +2103,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "ba16149c-9ed5-4bf3-be30-c1bd74bc1097",
+										"id": "b68e6f5e-adb5-472a-a35e-8fe95c832df9",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2147,7 +2152,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b4b2dcd4-d245-4dcc-93c3-5d50195ec628",
+										"id": "48628988-32c5-47de-adf5-cc1e8a933da6",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2159,9 +2164,9 @@
 											"        \"data\": {",
 											"            \"updateExercise\": {",
 											"                \"exercise\": {",
-											"                    \"id\": \"1\",",
+											"                    \"id\": \"4\",",
 											"                    \"name\": \"New Exercise\",",
-											"                    \"description\": \"bicep curls description\"",
+											"                    \"description\": \"deletable\"",
 											"                }",
 											"            }",
 											"        }",
@@ -2180,7 +2185,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n    updateExercise(id: 1, name: \"new exercise\") {\n        exercise {\n            id\n            name\n            description\n        }\n    }\n}",
+										"query": "mutation {\n    updateExercise(id: 4, name: \"new exercise\") {\n        exercise {\n            id\n            name\n            description\n        }\n    }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -2205,7 +2210,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "468f8288-f9b6-405c-98ef-8e278a19f180",
+										"id": "b8fbd536-3ee5-4fbe-9f8e-e248fa788a56",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2217,7 +2222,7 @@
 											"        \"data\": {",
 											"            \"updateExercise\": {",
 											"                \"exercise\": {",
-											"                    \"id\": \"1\",",
+											"                    \"id\": \"4\",",
 											"                    \"name\": \"New Exercise\",",
 											"                    \"description\": \"new description\"",
 											"                }",
@@ -2238,7 +2243,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n    updateExercise(id: 1, desc: \"new description\") {\n        exercise {\n            id\n            name\n            description\n        }\n    }\n}",
+										"query": "mutation {\n    updateExercise(id: 4, desc: \"new description\") {\n        exercise {\n            id\n            name\n            description\n        }\n    }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -2265,12 +2270,12 @@
 					"name": "4. Mutation: deleteExercise",
 					"item": [
 						{
-							"name": "Delete existing exercise",
+							"name": "Delete existing unused exercise",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "cd67ed10-e438-4f66-9504-a7c99072238b",
+										"id": "52007882-bd1a-4054-9d6d-4b143acb625c",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2300,7 +2305,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n    deleteExercise(id: 1) {\n        ok\n    }\n}",
+										"query": "mutation {\n    deleteExercise(id: 4) {\n        ok\n    }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -2325,7 +2330,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c3fe6ba0-23f8-48ba-9687-e8aa15e661c7",
+										"id": "fe638630-8cd8-464c-8454-78442c962f2c",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2387,7 +2392,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "140bb895-93c0-4ec9-b5bb-9be401fa62ec",
+										"id": "1bae39a5-2f0c-4d72-be9b-c8687e9d3165",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2446,7 +2451,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "905492aa-2e78-4fdc-bc6b-37e5f8f1b459",
+										"id": "c847c94e-92d7-4b45-90b5-5951139a802f",
 										"exec": [
 											"",
 											"pm.test(\"Status test\", function () {",
@@ -2512,7 +2517,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "498a34e1-d6e0-4945-b3e5-e8471db33ec0",
+										"id": "457b38d5-81f1-447f-ae50-68c9c57d7b23",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2570,7 +2575,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "9d788ba4-b8cb-49e4-952e-cfd13788f065",
+										"id": "b91c3383-14a5-4fba-8eb9-f80413579349",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2628,7 +2633,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "494877fc-6517-4c69-a9a8-10e414941c25",
+										"id": "c2ef6eb9-cb24-4a60-9cc1-9afc5c36a911",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2693,7 +2698,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "9c9172e8-0749-453a-9e2c-1e29ca472a89",
+										"id": "bcdea6a6-3fd8-4ab0-81b9-fea4cd75f683",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2752,7 +2757,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "0dc921e1-af23-47dc-9977-a24b144879ca",
+										"id": "da4780f3-ce85-41a1-986c-e5f53bd2d6ea",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2808,7 +2813,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c599c490-a6e8-459a-8f8c-b64940b3ec3b",
+										"id": "b73df7e5-4dda-4c9f-928d-b9bd9ef249d7",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2837,7 +2842,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n  deleteWorkout(id: 1) {\n    ok\n  }\n}\n",
+										"query": "mutation {\n  deleteWorkout(id: 3) {\n    ok\n  }\n}\n",
 										"variables": ""
 									},
 									"options": {
@@ -2862,7 +2867,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "2d469931-2580-4448-8efb-c69b8fc192a4",
+										"id": "8a0555a0-4b2a-403c-9447-85a909acc394",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2910,7 +2915,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "0885b1c5-63ad-4545-bb61-252c56ab3f35",
+								"id": "b74f954d-520e-4b0d-af8a-c37a33b3b13f",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -2920,7 +2925,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "b404a7bf-edc3-4a0a-9cdc-e1f3e315296e",
+								"id": "ca0d82a6-6ad0-4a3b-a45b-2482df7d8d27",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -2946,7 +2951,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "30395a85-94a6-4b9c-b661-11f2dce65a75",
+										"id": "19b9f319-9b7a-480c-9929-33284b61186c",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3025,7 +3030,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "531293da-9cd0-4070-88eb-dfd106a8f51e",
+										"id": "12aa211d-e7fd-466c-ad98-0a07f1c84ed2",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3082,7 +3087,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "902c1730-6689-47b4-aab0-9682aa08ca0a",
+										"id": "74a2dfe4-b87c-4852-aeb8-351f5fe59309",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3139,7 +3144,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f5378d1e-c4c7-451a-8055-50fe0bfa9770",
+										"id": "14c420ed-fac6-4cee-8705-4a4e7a28cf05",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3203,7 +3208,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f0aaa24e-fa8f-40c9-8ed5-31f57924fe2d",
+										"id": "9b4c5b7d-5279-4a8b-8093-e1e9daecb74a",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3261,7 +3266,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "4e9d2fcf-53da-421a-ad4f-f2c21ac6d8d8",
+										"id": "0fcd366d-da47-4de1-a46b-8d16130f10bb",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3308,7 +3313,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "ca1c687d-c46a-4ebb-8db7-15ea699edbcd",
+										"id": "5e351eed-97c7-4e2c-bbf2-0bae235b5255",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -3353,7 +3358,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "23ee9301-329e-4afb-b62f-fdd127af46be",
+										"id": "ddb465bf-9433-416e-89dc-a4c3c6a8018a",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3400,7 +3405,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "be4e1d58-0437-4efb-b81d-0a3fa236911b",
+										"id": "0e7abe2a-ab2d-44b5-8d9c-0f08b77ebf7e",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -3445,7 +3450,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c0b2dad5-830a-41bc-87c3-ecfed5213bcb",
+										"id": "66c3dc8b-4d14-481d-9263-be2faf92e7e9",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -3497,7 +3502,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "609b9d42-194b-4625-aa8e-11aab05b3e3f",
+										"id": "f3cde7be-cad5-4b85-976e-626a42980f97",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3555,7 +3560,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b26d7ec0-cf2b-452c-bca2-2f39cb7415ce",
+										"id": "337252e6-26cf-4de9-809a-5591674cdb27",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3608,7 +3613,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "fb805447-920f-4bea-9aea-701029e3f699",
+										"id": "31fd7e98-cda7-4f94-a2f9-1c24bf1a05ab",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3659,7 +3664,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "39241a8d-a411-4e26-b6b9-fcd2e6113f0d",
+										"id": "b39dc069-2e36-4bc7-9244-6e4a8b7f3b7c",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3718,7 +3723,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "70df9a36-e10d-49a6-be73-7a53625d86e6",
+										"id": "95ebe9d7-1b84-4363-ab6e-4172ac9e3550",
 										"exec": [
 											"",
 											"",
@@ -3776,7 +3781,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c38cf924-fff6-4c4c-8138-92ce67165260",
+										"id": "10d2164b-99cd-4931-a5f1-bf7747c324e9",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3822,7 +3827,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "6f06035c-798c-446d-be97-a51b7f87831b",
+										"id": "ce5336b3-c037-4707-b762-bf87dc2f5e4c",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -3866,7 +3871,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "995ece06-0564-495e-b37a-02c5a8752a58",
+										"id": "696a6ee6-e1e1-4d26-9489-8a15cfe07075",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -3910,7 +3915,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "58e2cd3f-11c8-4169-a9cd-64288c3cf227",
+										"id": "8a9a501d-9a34-4fcf-b886-8be433881d0e",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -3961,7 +3966,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "53887b7b-6a32-4ab9-a433-bf6f47eb0c9e",
+										"id": "d6b9165c-e765-4ac3-9996-17fadd9778a1",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4018,7 +4023,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "1c5fc845-dbf9-43a7-aea6-117d5dbef4bc",
+										"id": "2e3a0d10-974b-48b2-9753-42f8c5535a4e",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4080,7 +4085,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "1cf31077-b0b4-4093-b724-5ffa0cfd7767",
+										"id": "5e1ef213-3eef-4625-a1dd-d18397b7459f",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4130,7 +4135,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "aa650bd8-33ff-4235-ae5f-8fa63ad05e80",
+										"id": "442f335d-c303-4a82-85f9-d7c7086d22d3",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4156,6 +4161,632 @@
 									"graphql": {
 										"query": "mutation {\n    deleteProgramReview(programId: 1) {\n        ok\n    }\n}",
 										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "workout_exercise",
+			"item": [
+				{
+					"name": "1. Queries: workoutExercise, workoutExercises",
+					"item": [
+						{
+							"name": "workout exercises query by workout id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "70254a51-40f3-4b22-83b8-95487560563a",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"workoutExercises\": [",
+											"                {",
+											"                    \"workoutId\": \"1\",",
+											"                    \"exerciseId\": \"1\",",
+											"                    \"workoutWeights\": [",
+											"                        10.0,",
+											"                        10.0,",
+											"                        10.0",
+											"                    ],",
+											"                    \"workoutReps\": [",
+											"                        10,",
+											"                        10,",
+											"                        10",
+											"                    ],",
+											"                    \"restTime\": 10",
+											"                },",
+											"                {",
+											"                    \"workoutId\": \"1\",",
+											"                    \"exerciseId\": \"2\",",
+											"                    \"workoutWeights\": [",
+											"                        10.0,",
+											"                        10.0,",
+											"                        10.0",
+											"                    ],",
+											"                    \"workoutReps\": [",
+											"                        10,",
+											"                        10,",
+											"                        10",
+											"                    ],",
+											"                    \"restTime\": 10",
+											"                },",
+											"                {",
+											"                    \"workoutId\": \"1\",",
+											"                    \"exerciseId\": \"3\",",
+											"                    \"workoutWeights\": [",
+											"                        10.0,",
+											"                        10.0,",
+											"                        10.0",
+											"                    ],",
+											"                    \"workoutReps\": [",
+											"                        10,",
+											"                        10,",
+											"                        10",
+											"                    ],",
+											"                    \"restTime\": 10",
+											"                }",
+											"            ]",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\n  workoutExercises(workoutId: 1) {\n    workoutId, exerciseId, workoutWeights, workoutReps, restTime \n  }\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "workout exercise query",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4b889e0b-1eb7-4ec2-bfe8-fba7979bd328",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"workoutExercise\": {",
+											"                \"workoutId\": \"1\",",
+											"                \"exerciseId\": \"1\",",
+											"                \"workoutWeights\": [",
+											"                    10.0,",
+											"                    10.0,",
+											"                    10.0",
+											"                ],",
+											"                \"workoutReps\": [",
+											"                    10,",
+											"                    10,",
+											"                    10",
+											"                ],",
+											"                \"restTime\": 10,",
+											"                \"exercise\": {",
+											"                    \"name\": \"bicep curls\"",
+											"                }",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\n  workoutExercise(workoutId: 1, exerciseId: 1) {\n    workoutId, exerciseId, workoutWeights, workoutReps, restTime, exercise {\n      name\n    }\n  }\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "2. Mutation: add workout exercise to workout",
+					"item": [
+						{
+							"name": "add workout exercise from workout",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "f3284fdc-b4e2-42ba-b6e9-3a729be96193",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"addWorkoutExercise\": {",
+											"                \"workoutExercise\": {",
+											"                    \"workoutId\": \"4\",",
+											"                    \"exerciseId\": \"1\",",
+											"                    \"workoutWeights\": [",
+											"                        10.0,",
+											"                        10.0",
+											"                    ],",
+											"                    \"workoutReps\": [",
+											"                        1,",
+											"                        2",
+											"                    ],",
+											"                    \"restTime\": 10,",
+											"                    \"exercise\": {",
+											"                        \"name\": \"bicep curls\"",
+											"                    }",
+											"                }",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n  addWorkoutExercise(\n    workoutId: 4, \n    exerciseId: 1, \n    workoutWeights : [10, 10], \n    workoutReps: [1, 2] \n    restTime: 10\n  ) {\n    workoutExercise {\n      workoutId, exerciseId, workoutWeights, workoutReps, restTime, exercise {\n        name\n      }\n    }\n  }\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add duplicate workout exercise from workout Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "31fa8d8c-7bd1-4d5c-bd69-30282f52f1f4",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected_code = \"RESOURCE_CONFLICT_ERROR\";",
+											"    var expected_msg = \"Exercise has already been added to this workout\";",
+											"    pm.expect(result.errors[0].context.code).to.eql(expected_code);",
+											"    pm.expect(result.errors[0].context.message).to.eql(expected_msg);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n  addWorkoutExercise(\n    workoutId: 4, \n    exerciseId: 1, \n    workoutWeights : [10, 10], \n    workoutReps: [1, 2] \n    restTime: 10\n  ) {\n    workoutExercise {\n      workoutId, exerciseId, workoutWeights, workoutReps, restTime, exercise {\n        name\n      }\n    }\n  }\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b22992a4-c49d-4282-8b6e-fda94e5e32c6",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "5efb8ce1-2f3c-4d9d-831c-fcf2143f106d",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "3. Mutation: update workout exercise",
+					"item": [
+						{
+							"name": "update workout exercise with correct params from workout",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a452e4b3-cc08-4940-a786-6054de0d4890",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"updateWorkoutExercise\": {",
+											"                \"workoutExercise\": {",
+											"                    \"workoutId\": \"4\",",
+											"                    \"exerciseId\": \"1\",",
+											"                    \"workoutWeights\": [",
+											"                        10.0,",
+											"                        10.0,",
+											"                        10.0",
+											"                    ],",
+											"                    \"workoutReps\": [",
+											"                        1,",
+											"                        2,",
+											"                        3",
+											"                    ],",
+											"                    \"restTime\": 2,",
+											"                    \"exercise\": {",
+											"                        \"name\": \"bicep curls\"",
+											"                    }",
+											"                }",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n  updateWorkoutExercise(\n    workoutId: 4, \n    exerciseId: 1, \n    workoutWeights : [10, 10, 10], \n    workoutReps: [1, 2, 3] \n    restTime: 2\n  ) {\n    workoutExercise {\n      workoutId, exerciseId, workoutWeights, workoutReps, restTime, exercise {\n        name\n      }\n    }\n  }\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update workout exercise mismatched weights and reps",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ebb1f599-a180-48b3-8b3e-132f4cd03417",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected_code = \"BAD_REQUEST_ERROR\";",
+											"    var expected_msg = \"Number of weights needs to be the same as the number of reps\";",
+											"    pm.expect(result.errors[0].context.code).to.eql(expected_code);",
+											"    pm.expect(result.errors[0].context.message).to.eql(expected_msg);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n  updateWorkoutExercise(\n    workoutId: 4, \n    exerciseId: 1, \n    workoutWeights : [10, 10, 10, 11], \n    workoutReps: [1, 2] \n    restTime: 2\n  ) {\n    workoutExercise {\n      workoutId, exerciseId, workoutWeights, workoutReps, restTime, exercise {\n        name\n      }\n    }\n  }\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update non-existant workout exercise",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "e5621f35-9c83-4691-bce0-fd28c1af9872",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected_code = \"NOT_FOUND_ERROR\";",
+											"    var expected_msg = \"Workout exercise not found.\";",
+											"    pm.expect(result.errors[0].context.code).to.eql(expected_code);",
+											"    pm.expect(result.errors[0].context.message).to.eql(expected_msg);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n  updateWorkoutExercise(\n    workoutId: 0, \n    exerciseId: 1, \n    workoutWeights : [10], \n    workoutReps: [1] \n    restTime: 2\n  ) {\n    workoutExercise {\n      workoutId, exerciseId, workoutWeights, workoutReps, restTime, exercise {\n        name\n      }\n    }\n  }\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "4. Mutation: remove workout exercise from workout",
+					"item": [
+						{
+							"name": "remove workout exercise from workout",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "2f9cae54-d838-4537-8e39-2d2a666d8b2b",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"removeWorkoutExercise\": {",
+											"                \"ok\": true",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n  removeWorkoutExercise(\n    workoutId: 4, \n    exerciseId: 1\n  ) {\n    ok\n  }\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "remove non-existant workout exercise from workout",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ff296a86-18c8-40ae-a021-ec94a1349c03",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected_code = \"NOT_FOUND_ERROR\";",
+											"    var expected_msg = \"Workout exercise not found.\";",
+											"    pm.expect(result.errors[0].context.code).to.eql(expected_code);",
+											"    pm.expect(result.errors[0].context.message).to.eql(expected_msg);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n  removeWorkoutExercise(\n    workoutId: 4, \n    exerciseId: 1\n  ) {\n    ok\n  }\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
 									}
 								},
 								"url": {

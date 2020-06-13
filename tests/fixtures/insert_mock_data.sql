@@ -81,6 +81,11 @@ VALUES
         'workout 3',
         'workout 3 description',
         12
+    ),
+    (
+        'workout 4',
+        'has not exercises',
+        12
     );
 
 -- create dummy program reviews
