@@ -1,7 +1,6 @@
 venv
 .vscode
 .env
-.flaskenv
 
 */__pycache__
 *.pyc

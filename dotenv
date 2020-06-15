@@ -1,4 +1,22 @@
 DB_NAME=DB_NAME
 DB_PASSWORD=DB_PASSWORD
+
+# these are the URLS used by apps within docker containers
+# when using docker compose, this should be the url to access the db from the same, default network
 DATABASE_URL=DATABASE_URL
-TEST_DATABASE_URL=TEST_DATABASE_URL_USED_BY_WEB_SERVICE
+TEST_DATABASE_URL=TEST_DATABASE_URL
+
+# url of database used by the test script
+# when using docker compose, this should be the url to access the db from the host
+TEST_RUNNER_DATABASE_URL=TEST_RUNNER_DATABASE_URL
+
+# Example .env configuration
+#
+# DB_NAME=stronk
+# DB_PASSWORD=test
+# 
+# DATABASE_URL="postgresql://postgres:test@db:5432/stronk"
+# TEST_DATABASE_URL="postgresql://postgres:test@db:5432/stronk"
+#
+# TEST_RUNNER_DATABASE_URL="postgresql://postgres:test@localhost:5001/stronk"
+#

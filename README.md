@@ -94,7 +94,7 @@ psql -h localhost -p {port} -U {user name} -d {database name} -a -f ./tests/fixt
 
 # Testing
 
-1.
+1. Make sure your `.flaskenv` file is configured for testing and run the app
 
 ```
 export FLASK_ENV=testing
