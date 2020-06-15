@@ -1,3 +1,3 @@
 FLASK_APP=stronk
-FLASK_ENV=testing
+FLASK_ENV=development
 GOOGLE_APPLICATION_CREDENTIALS=stronk-google-credentials.json
