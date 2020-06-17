@@ -56,12 +56,10 @@ class WorkoutExercise(db.Model):
                 raise Conflict(
                     "Exercise has already been added to this workout")
             elif isinstance(err.orig, ForeignKeyViolation):
-                raise BadAttributes("User or exercise not found")
+                raise BadAttributes("Workout or exercise not found")
             else:
                 raise UnexpectedError(DATABASE_ERROR_MSG)
         except DBAPIError as err:
-            print("* err")
-            print(err)
             raise UnexpectedError(DATABASE_ERROR_MSG)
 
     def to_dict(self):

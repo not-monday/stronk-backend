@@ -57,8 +57,8 @@ class UpdateWorkoutExercise(graphene.Mutation):
         return UpdateWorkoutExercise(workoutExercise=workoutExercise)
 
 
-class RemoveWorkoutExercise(graphene.Mutation):
-    """ removes an exercise from a workout
+class DeleteWorkoutExercise(graphene.Mutation):
+    """ deletes an exercise workout from a workout
     """
     # mutation results
     ok = graphene.Boolean()
@@ -76,10 +76,10 @@ class RemoveWorkoutExercise(graphene.Mutation):
         workoutExercise.delete()
         ok = True
 
-        return RemoveWorkoutExercise(ok=ok)
+        return DeleteWorkoutExercise(ok=ok)
 
 
 class Mutation(graphene.ObjectType):
     add_workout_exercise = AddWorkoutExercise.Field()
     update_workout_exercise = UpdateWorkoutExercise.Field()
-    remove_workout_exercise = RemoveWorkoutExercise.Field()
+    delete_workout_exercise = DeleteWorkoutExercise.Field()

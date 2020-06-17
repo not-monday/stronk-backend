@@ -4696,7 +4696,7 @@
 					"name": "4. Mutation: remove workout exercise from workout",
 					"item": [
 						{
-							"name": "remove workout exercise from workout",
+							"name": "delete workout exercise from workout",
 							"event": [
 								{
 									"listen": "test",
@@ -4711,7 +4711,7 @@
 											"    var result = pm.response.json();",
 											"    var expected = {",
 											"        \"data\": {",
-											"            \"removeWorkoutExercise\": {",
+											"            \"deleteWorkoutExercise\": {",
 											"                \"ok\": true",
 											"            }",
 											"        }",
@@ -4731,7 +4731,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n  removeWorkoutExercise(\n    workoutId: 4, \n    exerciseId: 1\n  ) {\n    ok\n  }\n}",
+										"query": "mutation {\n  deleteWorkoutExercise(\n    workoutId: 4, \n    exerciseId: 1\n  ) {\n    ok\n  }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -4751,7 +4751,7 @@
 							"response": []
 						},
 						{
-							"name": "remove non-existant workout exercise from workout",
+							"name": "delete non-existant workout exercise from workout",
 							"event": [
 								{
 									"listen": "test",
@@ -4782,7 +4782,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n  removeWorkoutExercise(\n    workoutId: 4, \n    exerciseId: 1\n  ) {\n    ok\n  }\n}",
+										"query": "mutation {\n  deleteWorkoutExercise(\n    workoutId: 4, \n    exerciseId: 1\n  ) {\n    ok\n  }\n}",
 										"variables": ""
 									},
 									"options": {
