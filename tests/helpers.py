@@ -9,7 +9,7 @@ load_dotenv()
 
 def get_test_db_session():
     """Creates a DB session for testing."""
-    db_url = os.getenv("TEST_DATABASE_URL")
+    db_url = os.getenv("TEST_RUNNER_DATABASE_URL")
     engine = create_engine(db_url)
     Session = sessionmaker(bind=engine)
     return Session()

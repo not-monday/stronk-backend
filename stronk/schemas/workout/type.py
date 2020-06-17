@@ -1,16 +1,17 @@
+import graphene
 from graphene_sqlalchemy import SQLAlchemyObjectType
 
-from stronk.models.program_workouts import ProgramWorkouts as ProgramWorkoutModel
 from stronk.models.workout import Workout as WorkoutModel
 from stronk.models.workout_exercise import WorkoutExercise as WorkoutExerciseModel
 
+from stronk.schemas.workout_exercise.type import WorkoutExercise
+
 class Workout(SQLAlchemyObjectType):
-    class Meta: 
+    class Meta:
         model = WorkoutModel
 
-
-# the `SQLAlchemyObjectType` rep of relations that serve to connect a two models should always be located
-# in the file for the foreign relation (since they are used only for it)
-class ProgramWorkouts(SQLAlchemyObjectType):
-    class Meta:
-        model = ProgramWorkoutModel
+    workout_exercises = graphene.List(WorkoutExercise)
+    
+    def resolve_workout_exercises(parent, info):
+        # root is the workout model
+        return WorkoutExerciseModel.find_workout_exercises(workout_id = parent.id)

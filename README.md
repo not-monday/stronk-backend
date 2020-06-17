@@ -20,7 +20,7 @@ Ensure you have [Docker](https://docs.docker.com/install/), [python3](https://ww
 8. Ensure you create a database in PostgreSQL that matches the one in `DATABASE_URL` in `.env`. If you don't, follow the instructions below to set up the database!
 9. Set up a Firebase Service Account for Stronk if you do not already have one and download the json credentials file
 10. Rename the json file to `stronk-google-credentials.json` and copy it to the the root of the project
-11. Run `docker-compose up`
+11. Run `docker-compose -f docker-compose.yml -f docker-compose.dev.yml up` for development and `docker-compose up` otherwise. Running in development mounts the project dir in the container and lets the app reflect changes you make during development without being forced to rebuild each time.
 
 Server will be live on port 5000 and database on port 5001.
 
@@ -94,7 +94,7 @@ psql -h localhost -p {port} -U {user name} -d {database name} -a -f ./tests/fixt
 
 # Testing
 
-1.
+1. Make sure your `.flaskenv` file is configured for testing and run the app
 
 ```
 export FLASK_ENV=testing

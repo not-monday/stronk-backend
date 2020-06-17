@@ -1,11 +1,15 @@
 import graphene
 
-from stronk.constants import PROGRAM_NOT_FOUND_MSG
+from stronk.constants import PROGRAM_NOT_FOUND_MSG, WORKOUT_NOT_FOUND_MSG
 from stronk.errors.not_found import NotFound
+
 from stronk.schemas.workout.type import Workout
+from stronk.schemas.workout_exercise.type import WorkoutExercise as WorkoutExercise
+
 from stronk.models.program import Program as ProgramModel
 from stronk.models.program_workouts import ProgramWorkouts as ProgramWorkoutsModel
 from stronk.models.workout import Workout as WorkoutModel
+from stronk.models.workout_exercise import WorkoutExercise as WorkoutExerciseModel
 
 
 class CreateWorkout(graphene.Mutation):
@@ -48,7 +52,7 @@ class UpdateWorkout(graphene.Mutation):
     def mutate(root, info, id: str, name: str = None, description: str = None, projected_time: int = None):
         workout = WorkoutModel.find_by_id(id)
         if not workout:
-            raise NotFound("Workout not found.")
+            raise NotFound(WORKOUT_NOT_FOUND_MSG)
 
         attrs = {}
         if name:
@@ -74,7 +78,10 @@ class DeleteWorkout(graphene.Mutation):
     def mutate(root, info, id):
         workout = WorkoutModel.find_by_id(id)
         if not workout:
-            raise NotFound("Workout not found.")
+            raise NotFound(WORKOUT_NOT_FOUND_MSG)
+
+        # delete workout exercises associated with this workout
+        WorkoutExerciseModel.deleteWorkoutExercises(id)
 
         # each workout should be unique to a program
         program_workout = ProgramWorkoutsModel.find_by_workout_id(id)
@@ -84,7 +91,6 @@ class DeleteWorkout(graphene.Mutation):
         ok = True
 
         return DeleteWorkout(ok=ok)
-
 
 class Mutation(graphene.ObjectType):
     create_workout = CreateWorkout.Field()
