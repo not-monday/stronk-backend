@@ -8,6 +8,8 @@ from stronk.schemas.program_reviews.mutations import Mutation as ProgramReviewsM
 from stronk.schemas.program_reviews.query import Query as ProgramReviewsQuery
 from stronk.schemas.user.mutations import Mutation as UserMutation
 from stronk.schemas.user.query import Query as UserQuery
+from stronk.schemas.weights.query import Query as WeightQuery
+from stronk.schemas.weights.mutation import Mutation as WeightMutation
 from stronk.schemas.workout.mutations import Mutation as WorkoutMutation
 from stronk.schemas.workout.query import Query as WorkoutQuery
 from stronk.schemas.workout_exercise.mutations import Mutation as WorkoutExerciseMutation
@@ -16,6 +18,7 @@ from stronk.schemas.workout_exercise.query import Query as WorkoutExerciseQuery
 
 class Query(ProgramQuery,
             ProgramReviewsQuery,
+            WeightQuery,
             WorkoutQuery,
             WorkoutExerciseQuery,
             ExerciseQuery,
@@ -26,6 +29,7 @@ class Query(ProgramQuery,
 
 class Mutation(ProgramMutation,
                ProgramReviewsMutation,
+               WeightMutation,
                WorkoutMutation,
                WorkoutExerciseMutation,
                ExerciseMutation,

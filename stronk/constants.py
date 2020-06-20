@@ -11,6 +11,7 @@ PROGRAM_NOT_FOUND_MSG = "Program not found."
 USER_NOT_FOUND_MSG = "User not found."
 WORKOUT_NOT_FOUND_MSG = "Workout not found."
 WORKOUT_EXERCISE_NOT_FOUND_MSG = "Workout exercise not found."
+WEIGHT_NOT_FOUND_MSG = "Weight not found."
 
 DATABASE_ERROR_MSG = "Database Error"
 

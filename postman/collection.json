@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "7b549acb-1ca8-4bc8-baa3-f3566639632d",
+		"_postman_id": "75ae7bca-8987-4870-b4cc-81534c8e03ef",
 		"name": "Stronk",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -17,7 +17,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "73319c42-68d7-4a04-aa0a-b0ca701f1b8f",
+										"id": "394cbac0-e7a5-4b90-a03d-5848bd0e52b5",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -155,7 +155,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "46b417bd-5eb2-4150-8311-04577518909f",
+										"id": "1cbf732f-e0a6-4fbe-821e-5acec32a3098",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -260,7 +260,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "526bf004-7677-49f0-bf9e-cef6b9944263",
+										"id": "f0958ada-3cd5-4d81-b8f3-cdbd70c4eae7",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -362,7 +362,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "82268988-1a74-4ea5-a554-8d16be67ce78",
+										"id": "6f947a30-b0bc-4681-a95e-a1e0d73ad597",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -464,7 +464,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d71a484a-7138-4601-b783-a079adb0b2c6",
+										"id": "775ba3fa-483a-47a3-8800-f6567625b8f6",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -566,7 +566,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c4b029b4-d1c6-411a-af83-e3d5b6a1f3cc",
+										"id": "8267527b-0874-48aa-8c6b-0c2c875dc9d8",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -667,7 +667,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3956b910-544c-4e1e-84e6-8a240955a2fa",
+										"id": "d2174be2-9352-4984-83c0-6572579d1320",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -769,7 +769,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "99e61320-ab13-4343-94ba-31bd7d7e4502",
+										"id": "fa8f1240-864c-4b21-905f-5b9a13c36241",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -861,7 +861,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3927787f-bedf-4fc3-bb3f-0e424d5af070",
+										"id": "4c2dd05d-9e23-4715-9ed9-41815dccde62",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -951,7 +951,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "ecfb568b-b9c2-40f5-8411-7f6c9d1cb26b",
+										"id": "8704ad4e-100a-43af-b843-fee79a1e1555",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -1041,7 +1041,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "9ea225bb-c4ab-4e3d-b2f5-71a97abfdc43",
+										"id": "6266ccbd-c39c-4eab-bcc4-afe27963c585",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -1138,7 +1138,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "33715768-6c30-4251-9acc-926e09683196",
+										"id": "0a4f24da-ea41-48f6-97bc-12ac84a5f823",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1187,7 +1187,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "f2fb2635-8d0c-4921-83cd-c1acdb82ecd6",
+										"id": "1873b092-6d31-47f7-be53-bd73bc049ffe",
 										"exec": [
 											""
 										],
@@ -1197,7 +1197,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "41b777ce-4eec-41f8-bbfc-31c5eb70f77f",
+										"id": "761f49ac-e4cc-4ccd-8e21-6a148c84945e",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1258,7 +1258,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "232595fc-1cca-4694-8b7f-fb3085f7d215",
+										"id": "f6539b31-53e1-471a-9fff-85f5abd667ac",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1319,7 +1319,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "08483bcb-558f-45a0-a8af-cdc351f607ff",
+										"id": "d5c01e14-f725-4bf8-a7c1-45929a5428b1",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1380,7 +1380,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "01e5db68-31ed-4317-a43f-13c103e8af5f",
+										"id": "5d5c49a0-be11-45e3-9e7b-03b8efa6fa64",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1450,7 +1450,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "a27eab00-40c0-4741-bab8-2098ebbec200",
+										"id": "9402fb57-193f-444e-bb67-4828321e6243",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1503,7 +1503,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "31405605-df44-4313-be69-10758395479e",
+										"id": "1de80245-710f-4ee9-bf60-20aea3375c9e",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1556,7 +1556,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "a4f6b76f-b11a-4a32-8e7a-4b5721b999b1",
+						"id": "0b7754e5-4e5d-42f8-b0be-dd6e81e09073",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1566,7 +1566,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "a5d68b02-c37c-4e70-a9fe-469181eae48a",
+						"id": "a2a30614-c40b-495b-bd5f-e7e7122be251",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1588,7 +1588,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "72a5ab0a-211b-46c5-946a-56846082b847",
+										"id": "c2fdb192-6f14-4330-90f4-c170bad0b387",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1660,7 +1660,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3d55bd0c-f407-4964-86bf-5ca63b126551",
+										"id": "0c03f4a4-85d6-465e-813f-2a8b1f55bf1d",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1715,7 +1715,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b8141229-7ac0-4235-8519-8da9d5748d0e",
+										"id": "b15d4fae-8f16-4430-97c5-715e30506c8b",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1770,7 +1770,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b2f86345-8826-43fb-8ccd-401abfeb650f",
+										"id": "a23641c4-2de6-4976-9b59-09fb4c0f25c4",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1825,7 +1825,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3eeb14df-c288-46b4-8937-366b8165e488",
+										"id": "3fab74c7-c016-4188-860b-36a9f2a78592",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1883,7 +1883,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "34b6a38b-011f-400d-8bc7-4e4b11284aba",
+										"id": "bda523c2-4aac-468a-afc6-65f104a2223f",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1940,7 +1940,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "22bdf0cd-4466-4ff3-8fc1-0af3c905505c",
+										"id": "05f65bbb-5819-4ed8-94c0-6a0635d784a6",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1990,7 +1990,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "a66ce9a8-2493-45f6-a626-1b7097960be8",
+										"id": "4d225491-d9b7-4bdd-b1e0-9bdfbb0a895d",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -2038,7 +2038,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "fdf759a7-5bc4-4c28-98cf-c3ad6fdb4f1e",
+										"id": "4d1759ce-723b-4fad-ab9e-1f288a0092a2",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -2057,7 +2057,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "56ce04b3-f919-4930-a534-e6429ce147e1",
+										"id": "2a382924-ffce-4ee3-880b-4c003113c889",
 										"exec": [
 											""
 										],
@@ -2103,7 +2103,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b68e6f5e-adb5-472a-a35e-8fe95c832df9",
+										"id": "5726fa71-54ed-49da-9ecd-ceaad261dee6",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2152,7 +2152,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "48628988-32c5-47de-adf5-cc1e8a933da6",
+										"id": "5d599c7f-f0f4-4fe3-b084-4c5b17b46e06",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2210,7 +2210,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b8fbd536-3ee5-4fbe-9f8e-e248fa788a56",
+										"id": "3fdd9601-9235-4259-800f-f9fe07262ef5",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2275,7 +2275,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "52007882-bd1a-4054-9d6d-4b143acb625c",
+										"id": "4a46a3cf-88bd-4e43-97c8-edffa2e2029a",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2330,7 +2330,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "fe638630-8cd8-464c-8454-78442c962f2c",
+										"id": "9e997da6-d2ff-430c-9ee5-f90b6655cbd3",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2392,7 +2392,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "1bae39a5-2f0c-4d72-be9b-c8687e9d3165",
+										"id": "2939872b-4cd6-460e-a781-dfc959de52aa",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2451,7 +2451,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c847c94e-92d7-4b45-90b5-5951139a802f",
+										"id": "d475cac4-faac-4205-87f1-ec3917effb9f",
 										"exec": [
 											"",
 											"pm.test(\"Status test\", function () {",
@@ -2517,7 +2517,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "457b38d5-81f1-447f-ae50-68c9c57d7b23",
+										"id": "e6fa084f-afe2-45f7-bd51-d82013e29e5c",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2575,7 +2575,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b91c3383-14a5-4fba-8eb9-f80413579349",
+										"id": "68ba62a3-4b47-411a-a2fc-18d7139f3e03",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2633,7 +2633,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c2ef6eb9-cb24-4a60-9cc1-9afc5c36a911",
+										"id": "74eb3eea-595f-40a4-9c50-b3a3db263969",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2698,7 +2698,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "bcdea6a6-3fd8-4ab0-81b9-fea4cd75f683",
+										"id": "6f607f1a-0e22-4389-bf66-909f0584dc59",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2757,7 +2757,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "da4780f3-ce85-41a1-986c-e5f53bd2d6ea",
+										"id": "e61b8957-5019-4847-bbcc-d194fff9fad2",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2813,7 +2813,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b73df7e5-4dda-4c9f-928d-b9bd9ef249d7",
+										"id": "5be2445c-1918-44f6-8900-f07d79470576",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2867,7 +2867,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "8a0555a0-4b2a-403c-9447-85a909acc394",
+										"id": "5ffc5e38-2b0e-43fe-ba79-1652b2f42cb8",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2915,7 +2915,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "b74f954d-520e-4b0d-af8a-c37a33b3b13f",
+								"id": "fb6eeb99-9de4-450e-ae75-65d0e123e459",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -2925,7 +2925,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "ca0d82a6-6ad0-4a3b-a45b-2482df7d8d27",
+								"id": "41563e63-a99a-46b7-9512-3588935f90ad",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -2951,7 +2951,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "19b9f319-9b7a-480c-9929-33284b61186c",
+										"id": "a75b5fbe-240d-41f6-86a3-d0d7cd369ec7",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3010,6 +3010,9 @@
 									"graphql": {
 										"query": "query {\n    programs {\n        id\n        author {\n            name\n            username\n        }\n        name\n        duration\n        description\n    }\n}",
 										"variables": ""
+									},
+									"options": {
+										"graphql": {}
 									}
 								},
 								"url": {
@@ -3030,7 +3033,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "12aa211d-e7fd-466c-ad98-0a07f1c84ed2",
+										"id": "74c650ce-46a9-42b1-a855-eb5d2076dc9a",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3067,6 +3070,9 @@
 									"graphql": {
 										"query": "query {\n    program(id: 1) {\n        id\n        author {\n            name\n            username\n        }\n        name\n        duration\n        description\n    }\n}",
 										"variables": ""
+									},
+									"options": {
+										"graphql": {}
 									}
 								},
 								"url": {
@@ -3087,7 +3093,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "74a2dfe4-b87c-4852-aeb8-351f5fe59309",
+										"id": "00483799-8322-4d41-bc49-541ce03ce4a1",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3124,6 +3130,9 @@
 									"graphql": {
 										"query": "query {\n    program(name: \"max's program\") {\n        id\n        author {\n            name\n            username\n        }\n        name\n        duration\n        description\n    }\n}",
 										"variables": ""
+									},
+									"options": {
+										"graphql": {}
 									}
 								},
 								"url": {
@@ -3144,7 +3153,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "14c420ed-fac6-4cee-8705-4a4e7a28cf05",
+										"id": "135cc703-0ef2-4d59-9305-05df9dcf41f0",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3181,6 +3190,9 @@
 									"graphql": {
 										"query": "query {\n    program(author: \"user_id_2\") {\n        id\n        author {\n            name\n            username\n        }\n        name\n        duration\n        description\n    }\n}",
 										"variables": ""
+									},
+									"options": {
+										"graphql": {}
 									}
 								},
 								"url": {
@@ -3208,7 +3220,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "9b4c5b7d-5279-4a8b-8093-e1e9daecb74a",
+										"id": "c1d2c410-21f8-47a2-b80e-61407cf100dc",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3246,6 +3258,9 @@
 									"graphql": {
 										"query": "mutation {\n  createProgram(name:\"new program\", author: \"user_id_1\", duration: 10, desc: \"newest program\") {\n    program {\n      name\n      author {\n        name\n      }\n      duration\n      description\n    }\n  }\n}",
 										"variables": ""
+									},
+									"options": {
+										"graphql": {}
 									}
 								},
 								"url": {
@@ -3266,7 +3281,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "0fcd366d-da47-4de1-a46b-8d16130f10bb",
+										"id": "daec31ed-3335-4408-b501-95b237b552fd",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3293,6 +3308,9 @@
 									"graphql": {
 										"query": "mutation {\n  createProgram(name:\"new program\", author: \"user_id_1\", duration: 10, desc: \"newest program\") {\n    program {\n      name\n      author {\n        name\n      }\n      duration\n      description\n    }\n  }\n}",
 										"variables": ""
+									},
+									"options": {
+										"graphql": {}
 									}
 								},
 								"url": {
@@ -3313,7 +3331,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "5e351eed-97c7-4e2c-bbf2-0bae235b5255",
+										"id": "b9e3dae4-df95-427f-8ae6-75e7e783d463",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -3338,6 +3356,9 @@
 									"graphql": {
 										"query": "mutation {\n  createProgram(author: \"user_id_1\", duration: 10, desc: \"newest program\") {\n    program {\n      name\n      author {\n        name\n      }\n      duration\n      description\n    }\n  }\n}",
 										"variables": ""
+									},
+									"options": {
+										"graphql": {}
 									}
 								},
 								"url": {
@@ -3358,7 +3379,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "ddb465bf-9433-416e-89dc-a4c3c6a8018a",
+										"id": "3d362009-1e52-43a7-ad9b-57140e2e824b",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3385,6 +3406,9 @@
 									"graphql": {
 										"query": "mutation {\n  createProgram(name:\"new program\", author: \"user_id_1\", duration: 10, desc: \"newest program\") {\n    program {\n      name\n      author {\n        name\n      }\n      duration\n      description\n    }\n  }\n}",
 										"variables": ""
+									},
+									"options": {
+										"graphql": {}
 									}
 								},
 								"url": {
@@ -3405,7 +3429,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "0e7abe2a-ab2d-44b5-8d9c-0f08b77ebf7e",
+										"id": "1d69476f-13bb-4c88-bee5-8cde9212467d",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -3430,6 +3454,9 @@
 									"graphql": {
 										"query": "mutation {\n  createProgram(name:\"new program\", author: \"user_id_1\", desc: \"newest program\") {\n    program {\n      name\n      author {\n        name\n      }\n      duration\n      description\n    }\n  }\n}",
 										"variables": ""
+									},
+									"options": {
+										"graphql": {}
 									}
 								},
 								"url": {
@@ -3450,7 +3477,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "66c3dc8b-4d14-481d-9263-be2faf92e7e9",
+										"id": "99a305c2-ecc3-4cb6-82ba-9ced15b1423d",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -3475,6 +3502,9 @@
 									"graphql": {
 										"query": "mutation {\n  createProgram(name:\"new program\", author: \"user_id_1\", duration: 10) {\n    program {\n      name\n      author {\n        name\n      }\n      duration\n      description\n    }\n  }\n}",
 										"variables": ""
+									},
+									"options": {
+										"graphql": {}
 									}
 								},
 								"url": {
@@ -3502,7 +3532,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f3cde7be-cad5-4b85-976e-626a42980f97",
+										"id": "e4b4b82c-a542-4b15-aa66-68bf7edb5b78",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3540,6 +3570,9 @@
 									"graphql": {
 										"query": "mutation {\n    updateProgram(id: 4, name: \"new program 1\", author: \"user_id_2\", duration: 11, desc: \"newest program 1\") {\n        program {\n            name\n            author {\n                name\n            }\n            duration\n            description\n        }\n    }\n}",
 										"variables": ""
+									},
+									"options": {
+										"graphql": {}
 									}
 								},
 								"url": {
@@ -3560,7 +3593,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "337252e6-26cf-4de9-809a-5591674cdb27",
+										"id": "9c0380b2-2826-4697-9e52-1d06dbbd0896",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3586,6 +3619,9 @@
 									"graphql": {
 										"query": "mutation {\n    updateProgram(id: 10, name: \"new program 1\", author: \"user_id_2\", duration: 11, desc: \"newest program 1\") {\n        program {\n            name\n            author {\n                name\n            }\n            duration\n            description\n        }\n    }\n}",
 										"variables": ""
+									},
+									"options": {
+										"graphql": {}
 									}
 								},
 								"url": {
@@ -3613,7 +3649,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "31fd7e98-cda7-4f94-a2f9-1c24bf1a05ab",
+										"id": "0d2ecce6-c36f-4e0a-a097-1afd2ae76341",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3644,6 +3680,9 @@
 									"graphql": {
 										"query": "mutation {\n    deleteProgram(id: 4) {\n        ok\n    }\n}",
 										"variables": ""
+									},
+									"options": {
+										"graphql": {}
 									}
 								},
 								"url": {
@@ -3664,7 +3703,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b39dc069-2e36-4bc7-9244-6e4a8b7f3b7c",
+										"id": "b0b534b9-1e98-4991-b829-5811d919fe17",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3690,6 +3729,9 @@
 									"graphql": {
 										"query": "mutation {\n    deleteProgram(id: 4) {\n        ok\n    }\n}",
 										"variables": ""
+									},
+									"options": {
+										"graphql": {}
 									}
 								},
 								"url": {
@@ -3723,7 +3765,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "95ebe9d7-1b84-4363-ab6e-4172ac9e3550",
+										"id": "d9232e82-3542-4b42-ae00-50e6771ee2bc",
 										"exec": [
 											"",
 											"",
@@ -3761,6 +3803,9 @@
 									"graphql": {
 										"query": "mutation {\n    createProgramReview(programId: 1, rating: 5, comments: \"test comment\") {\n        programReview {\n            program {\n                id\n            }\n            comments\n            rating\n        }\n    }\n}",
 										"variables": ""
+									},
+									"options": {
+										"graphql": {}
 									}
 								},
 								"url": {
@@ -3781,7 +3826,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "10d2164b-99cd-4931-a5f1-bf7747c324e9",
+										"id": "7df9ba23-fd28-4bc2-b442-d67b3108ef4e",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3807,6 +3852,9 @@
 									"graphql": {
 										"query": "mutation {\n    createProgramReview(programId: 1, rating: 5, comments: \"test comment\") {\n        programReview {\n            program {\n                id\n            }\n            comments\n            rating\n        }\n    }\n}",
 										"variables": ""
+									},
+									"options": {
+										"graphql": {}
 									}
 								},
 								"url": {
@@ -3827,7 +3875,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "ce5336b3-c037-4707-b762-bf87dc2f5e4c",
+										"id": "1f7f0aae-73ee-480b-8c7e-dd953bd5017f",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -3851,6 +3899,9 @@
 									"graphql": {
 										"query": "mutation {\n    createProgramReview(programId: 1, rating: 5) {\n        programReview {\n            program {\n                id\n            }\n            comments\n            rating\n        }\n    }\n}",
 										"variables": ""
+									},
+									"options": {
+										"graphql": {}
 									}
 								},
 								"url": {
@@ -3871,7 +3922,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "696a6ee6-e1e1-4d26-9489-8a15cfe07075",
+										"id": "14a76b77-938b-4058-b44b-2cd42e2c6b77",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -3895,6 +3946,9 @@
 									"graphql": {
 										"query": "mutation {\n    createProgramReview(programId: 1, comments: \"test comment\") {\n        programReview {\n            program {\n                id\n            }\n            comments\n            rating\n        }\n    }\n}",
 										"variables": ""
+									},
+									"options": {
+										"graphql": {}
 									}
 								},
 								"url": {
@@ -3915,7 +3969,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "8a9a501d-9a34-4fcf-b886-8be433881d0e",
+										"id": "3ebf6200-8a35-415a-b276-98c3110e4343",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -3939,6 +3993,9 @@
 									"graphql": {
 										"query": "mutation {\n    createProgramReview(rating: 5, comments: \"test comment\") {\n        programReview {\n            program {\n                id\n            }\n            comments\n            rating\n        }\n    }\n}",
 										"variables": ""
+									},
+									"options": {
+										"graphql": {}
 									}
 								},
 								"url": {
@@ -3966,7 +4023,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d6b9165c-e765-4ac3-9996-17fadd9778a1",
+										"id": "3d523e5e-5103-450e-877d-1c20f40bc300",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4003,6 +4060,9 @@
 									"graphql": {
 										"query": "query {\n    programReviews {\n        comments\n        rating\n        program {\n            name\n            description\n        }\n    }\n}",
 										"variables": ""
+									},
+									"options": {
+										"graphql": {}
 									}
 								},
 								"url": {
@@ -4023,7 +4083,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "2e3a0d10-974b-48b2-9753-42f8c5535a4e",
+										"id": "78dbb4f2-8b59-4801-8e32-201a0a14908c",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4058,6 +4118,9 @@
 									"graphql": {
 										"query": "query {\n    programReview(programId: 1) {\n        comments\n        rating\n        program {\n            name\n            description\n        }\n    }\n}",
 										"variables": ""
+									},
+									"options": {
+										"graphql": {}
 									}
 								},
 								"url": {
@@ -4085,7 +4148,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "5e1ef213-3eef-4625-a1dd-d18397b7459f",
+										"id": "faf86791-01c0-44f9-8a96-addef7ba5cf9",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4115,6 +4178,9 @@
 									"graphql": {
 										"query": "mutation {\n    deleteProgramReview(programId: 1) {\n        ok\n    }\n}",
 										"variables": ""
+									},
+									"options": {
+										"graphql": {}
 									}
 								},
 								"url": {
@@ -4135,7 +4201,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "442f335d-c303-4a82-85f9-d7c7086d22d3",
+										"id": "a73a18c6-ff9f-4f64-9b72-014757ac5cfb",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4161,6 +4227,9 @@
 									"graphql": {
 										"query": "mutation {\n    deleteProgramReview(programId: 1) {\n        ok\n    }\n}",
 										"variables": ""
+									},
+									"options": {
+										"graphql": {}
 									}
 								},
 								"url": {
@@ -4194,7 +4263,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "70254a51-40f3-4b22-83b8-95487560563a",
+										"id": "17ee55c9-a69a-43b8-8955-1e72c7c0ff86",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4293,7 +4362,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "4b889e0b-1eb7-4ec2-bfe8-fba7979bd328",
+										"id": "cffd979d-0482-4bdc-830a-a8ed4fe8ca61",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4370,7 +4439,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f3284fdc-b4e2-42ba-b6e9-3a729be96193",
+										"id": "714d7117-44af-4703-a483-1c6c89fbb9bd",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4440,7 +4509,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "31fa8d8c-7bd1-4d5c-bd69-30282f52f1f4",
+										"id": "6ca12970-7d89-4aaf-a679-37bf8e60894e",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4490,7 +4559,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "b22992a4-c49d-4282-8b6e-fda94e5e32c6",
+								"id": "1306e772-d667-491e-bfcc-16061c5c6c44",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -4500,7 +4569,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "5efb8ce1-2f3c-4d9d-831c-fcf2143f106d",
+								"id": "a25fd60c-f950-48fd-9243-008718ba306c",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -4520,7 +4589,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "a452e4b3-cc08-4940-a786-6054de0d4890",
+										"id": "ec29cf47-06d5-4619-84ab-f57e529e5cf0",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4592,7 +4661,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "ebb1f599-a180-48b3-8b3e-132f4cd03417",
+										"id": "c09b5045-5ef2-4f45-adf7-e572dfb08f32",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4643,7 +4712,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "e5621f35-9c83-4691-bce0-fd28c1af9872",
+										"id": "e45c54d1-6427-442c-9b3c-3381db85dbd9",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4701,7 +4770,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "2f9cae54-d838-4537-8e39-2d2a666d8b2b",
+										"id": "ae7d5047-94fb-4520-9242-dbb05d81a66b",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4756,7 +4825,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "ff296a86-18c8-40ae-a021-ec94a1349c03",
+										"id": "cbdb7b0b-b927-42bd-88ee-627a2d860cfd",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4807,6 +4876,440 @@
 				}
 			],
 			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "weight",
+			"item": [
+				{
+					"name": "1. Queries: weight, weights",
+					"item": [
+						{
+							"name": "weight",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "8598c18e-26ff-4f47-bb54-73c9b2ec0103",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"weight\": {",
+											"                \"weight\": 104.5,",
+											"                \"measuredAt\": \"2020-01-20T12:00:00+00:00\"",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\n    weight(measuredAt: \"2020-01-20\") {\n        weight\n        measuredAt\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "weights",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ec28d628-5a48-4b29-8366-3927de8ea349",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"weights\": [",
+											"                {",
+											"                    \"weight\": 104.5,",
+											"                    \"measuredAt\": \"2020-01-20T12:00:00+00:00\"",
+											"                },",
+											"                {",
+											"                    \"weight\": 102.0,",
+											"                    \"measuredAt\": \"2020-01-19T12:00:00+00:00\"",
+											"                },",
+											"                {",
+											"                    \"weight\": 101.5,",
+											"                    \"measuredAt\": \"2020-01-18T12:00:00+00:00\"",
+											"                }",
+											"            ]",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\n    weights {\n        weight\n        measuredAt\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "2. Mutation: add weight",
+					"item": [
+						{
+							"name": "add weight",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "6dd9fff4-de48-4bbf-b76f-51518077b17b",
+										"exec": [
+											"",
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"addWeight\": {",
+											"                \"weight\": {",
+											"                    \"weight\": 999.99",
+											"                }",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    addWeight(weight: 999.99) {\n        weight {\n            weight\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "3. Mutation: update weight",
+					"item": [
+						{
+							"name": "update existing weight",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "0de8f1a6-41f0-465d-b1e8-f131e84751f3",
+										"exec": [
+											"",
+											"",
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"updateWeight\": {",
+											"                \"weight\": {",
+											"                    \"weight\": 999.99,",
+											"                    \"measuredAt\": \"2020-01-20T12:00:00+00:00\"",
+											"                }",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    updateWeight(weight: 999.99, measuredAt: \"2020-01-20\") {\n        weight {\n            weight\n            measuredAt\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "update non-existent weight",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "63cbad7c-ca03-4f9b-98ff-2f41a5501a14",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected_code = \"NOT_FOUND_ERROR\";",
+											"    var expected_msg = \"Weight not found.\";",
+											"    pm.expect(result.errors[0].context.code).to.eql(expected_code);",
+											"    pm.expect(result.errors[0].context.message).to.eql(expected_msg);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    updateWeight(weight: 999.99, measuredAt: \"2020-01-02\") {\n        weight {\n            weight\n            measuredAt\n        }\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "4. Mutation: delete weight",
+					"item": [
+						{
+							"name": "delete existing weight",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "46797a90-b0a5-4700-9252-c2258ec1288b",
+										"exec": [
+											"",
+											"",
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"deleteWeight\": {",
+											"                \"ok\": true",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    deleteWeight(measuredAt: \"2020-01-20\") {\n        ok\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete non-existing weight",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "05ffa972-7fc9-46d1-b76f-aa4ffa4e8edd",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected_code = \"NOT_FOUND_ERROR\";",
+											"    var expected_msg = \"Weight not found.\";",
+											"    pm.expect(result.errors[0].context.code).to.eql(expected_code);",
+											"    pm.expect(result.errors[0].context.message).to.eql(expected_msg);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    deleteWeight(measuredAt: \"2020-01-20\") {\n        ok\n    }\n}",
+										"variables": ""
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "062bec3c-7fe4-40c4-aa59-cad5210fbce4",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "4bc8e1a5-5261-44a1-942a-f9c0387e54db",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	],
 	"protocolProfileBehavior": {}

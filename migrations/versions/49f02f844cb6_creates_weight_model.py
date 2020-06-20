@@ -21,7 +21,8 @@ def upgrade():
     op.create_table('weight',
                     sa.Column('user_id', sa.String(), nullable=False),
                     sa.Column('weight', sa.Float(), nullable=False),
-                    sa.Column('measured_at', sa.DateTime(), nullable=False),
+                    sa.Column('measured_at', sa.DateTime(
+                        timezone=True), nullable=False),
                     sa.ForeignKeyConstraint(['user_id'], ['user.id'], ),
                     sa.PrimaryKeyConstraint('user_id', 'measured_at')
                     )
