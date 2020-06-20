@@ -1,4 +1,12 @@
+from datetime import datetime
+from datetime import timedelta
+from psycopg2.errors import ForeignKeyViolation
+from sqlalchemy.exc import DBAPIError, IntegrityError
+
 from stronk import db
+from stronk.constants import DATABASE_ERROR_MSG, USER_NOT_FOUND_MSG
+from stronk.errors.bad_attributes import BadAttributes
+from stronk.errors.unexpected_error import UnexpectedError
 from stronk.models.user import User
 
 
@@ -9,23 +17,55 @@ class Weight(db.Model):
                         index=True,
                         nullable=False)
     weight = db.Column(db.Float, nullable=False)
-    measured_at = db.Column(db.DateTime, primary_key=True, nullable=False)
+    measured_at = db.Column(db.DateTime(timezone=True),
+                            primary_key=True, nullable=False)
 
-    @classmethod
-    def get_weights_by_user_id(cls, user_id):
-        """Returns a list of all weights for a user with user id."""
-        res = cls.query.filter_by(user_id=user_id)
-        weights = []
-        for row in res:
-            weights.append({
-                "measured_at": row.measured_at,
-                "weight": row.weight
-            })
+    @staticmethod
+    def create(user_id, weight):
+        """Insert a weight for a user."""
+        now = str(datetime.utcnow())
+        weight = Weight(user_id=user_id, weight=weight, measured_at=now)
 
-        return {
-            "user": self.get_user(user_id=user_id).to_dict(),
-            "reviews": weights
-        }
+        try:
+            db.session.add(weight)
+            db.session.commit()
+
+            return weight
+        except IntegrityError as err:
+            if isinstance(err.orig, ForeignKeyViolation):
+                raise BadAttributes(USER_NOT_FOUND_MSG)
+            else:
+                raise UnexpectedError(DATABASE_ERROR_MSG)
+        except DBAPIError as err:
+            raise UnexpectedError(DATABASE_ERROR_MSG)
+
+    @staticmethod
+    def get_weights_by_user_id(user_id, limit=None):
+        """Returns a list of all weights for a user sorted by decreasing
+           measuredAt."""
+        q = (Weight
+             .query
+             .order_by(Weight.measured_at.desc())
+             .filter_by(user_id=user_id))
+
+        if limit:
+            return q.limit(limit).all()
+
+        return q.all()
+
+    @staticmethod
+    def get_weight_by_date(user_id, measured_at):
+        """Returns the weight of a user measured on a date. Date should be in
+        UTC.
+        """
+        start_date = datetime.strptime(measured_at, '%Y-%m-%d')
+        end_date = start_date + timedelta(days=1)
+        return (Weight
+                .query
+                .filter(Weight.measured_at >= str(start_date),
+                        Weight.measured_at < str(end_date),
+                        Weight.user_id == user_id)
+                .first())
 
     def get_user(self, user_id=None):
         """Returns User object for the Weight. """
@@ -35,12 +75,30 @@ class Weight(db.Model):
             return res
         raise NoResultFound('User does not exist.')
 
-    def to_dict(self):
-        """Returns a dictionary representing the attributes of the
-           ProgramReviews. Key is the name of the attribute and value is the
-           value of the attribute."""
-        return {
-            "user_id": self.get_user().to_dict(),
-            "weight": self.weight,
-            "measured_at": self.measured_at
-        }
+    def update(self, attrs):
+        """Updates model given attrs.
+
+        Params:
+            attrs: Dictionary containing attributes to update. Key is the 
+                   attribute name and value is the new value.
+        """
+        if attrs.get('weight'):
+            self.weight = attrs.get('weight')
+
+        try:
+            db.session.add(self)
+            db.session.commit()
+        except IntegrityError as err:
+            if isinstance(err.orig, ForeignKeyViolation):
+                raise BadAttributes(USER_NOT_FOUND_MSG)
+            else:
+                raise UnexpectedError(DATABASE_ERROR_MSG)
+        except DBAPIError as err:
+            raise UnexpectedError(DATABASE_ERROR_MSG)
+
+    def delete(self):
+        try:
+            db.session.delete(self)
+            db.session.commit()
+        except DBAPIError as err:
+            raise UnexpectedError(DATABASE_ERROR_MSG)
