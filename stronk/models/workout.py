@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import current_app
 from sqlalchemy.exc import DBAPIError
 
@@ -12,6 +13,7 @@ class Workout(db.Model):
     name = db.Column(db.String(128), index=True, nullable=False)
     description = db.Column(db.String(500), nullable=False)
     projected_time = db.Column(db.Integer, nullable=False)
+    scheduled_time = db.Column(db.DateTime(timezone=True), nullable=False)
 
     def to_dict(self):
         """Returns a dictionary representing the attributes of the program.
@@ -21,7 +23,8 @@ class Workout(db.Model):
             "id": self.id,
             "name": self.name,
             "description": self.description,
-            "projected_time": self.projected_time
+            "projected_time": self.projected_time,
+            "scheduled_time": self.scheduled_time
         }
 
     def update(self, attrs):
@@ -37,6 +40,8 @@ class Workout(db.Model):
             self.description = attrs.get('description')
         if attrs.get('projected_time'):
             self.projected_time = attrs.get('projected_time')
+        if attrs.get("scheduled_time"):
+            self.scheduled_time = attrs.get("scheduled_time")
 
     def delete(self):
         try:
@@ -46,11 +51,12 @@ class Workout(db.Model):
             raise UnexpectedError(DATABASE_ERROR_MSG)
 
     @staticmethod
-    def create(name, description, projected_time):
+    def create(name, description, projected_time, scheduled_time: datetime):
         workout = Workout(
             name=name,
             description=description if description else "",
-            projected_time=projected_time if projected_time else 0
+            projected_time=projected_time if projected_time else 0,
+            scheduled_time=scheduled_time
         )
 
         try:

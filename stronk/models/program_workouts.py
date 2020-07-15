@@ -93,6 +93,7 @@ class ProgramWorkouts(db.Model):
         if attrs.get("workout_id"):
             self.workout_id = attrs.get("workout_id")
 
+
     def delete(self):
         try:
             db.session.delete(self)
