@@ -17,7 +17,7 @@ class Query(graphene.ObjectType):
         query = Program.get_query(info)
         return query.all()
 
-    def resolve_program(root, info, id: int = None, name: str = None, author: str = None, user_id:int = None, ):
+    def resolve_program(root, info, id: int = None, name: str = None, author: str = None, user_id: str = None):
         """Search for program in decreasing order of precedence: id, name, author,
            and user id. If an author created more than one program, a list of
            programs is returned."""
