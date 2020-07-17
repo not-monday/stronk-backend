@@ -3,8 +3,9 @@ from flask import current_app
 from sqlalchemy.exc import DBAPIError
 
 from stronk import db
-from stronk.constants import DATABASE_ERROR_MSG
+from stronk.constants import DATABASE_ERROR_MSG, INVALID_WORKOUT_START_TIME
 from stronk.errors.conflict import Conflict
+from stronk.errors.bad_attributes import BadAttributes
 from stronk.errors.unexpected_error import UnexpectedError
 
 
@@ -52,6 +53,10 @@ class Workout(db.Model):
 
     @staticmethod
     def create(name, description, projected_time, scheduled_time: datetime):
+        # ensure that the workout is being created the current or a future time
+        if (scheduled_time < datetime.now(scheduled_time.tzinfo)):
+            raise BadAttributes(INVALID_WORKOUT_START_TIME)
+
         workout = Workout(
             name=name,
             description=description if description else "",

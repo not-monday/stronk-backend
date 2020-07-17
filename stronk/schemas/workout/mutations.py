@@ -10,7 +10,7 @@ from stronk.models.program import Program as ProgramModel
 from stronk.models.program_workouts import ProgramWorkouts as ProgramWorkoutsModel
 from stronk.models.workout import Workout as WorkoutModel
 from stronk.models.workout_exercise import WorkoutExercise as WorkoutExerciseModel
-from stronk.utils.date import str_to_date
+from stronk.utils.date import date_time_str_to_date
 
 
 class CreateWorkout(graphene.Mutation):
@@ -31,14 +31,14 @@ class CreateWorkout(graphene.Mutation):
         if not program:
             raise NotFound(PROGRAM_NOT_FOUND_MSG)
 
-        workout = WorkoutModel.create(
-            name=name, description=description, projected_time=projected_time)
-
         # convert date time string to datetime object
-        formatted_time = str_to_date(scheduled_time)
+        formatted_time = date_time_str_to_date(scheduled_time)
+
+        workout = WorkoutModel.create(
+            name=name, description=description, projected_time=projected_time, scheduled_time=formatted_time)
 
         program_workout = ProgramWorkoutsModel.create(
-            program_id=program.id, workout_id=workout.id, scheduled_time=formatted_time)
+            program_id=program.id, workout_id=workout.id)
         return CreateWorkout(workout=workout)
 
 
@@ -68,7 +68,7 @@ class UpdateWorkout(graphene.Mutation):
         if projected_time:
             attrs['projected_time'] = projected_time
         if scheduled_time:
-            attrs['scheduled_time'] = str_to_date(scheduled_time)
+            attrs['scheduled_time'] = date_time_str_to_date(scheduled_time)
         
         workout.update(attrs)
 

@@ -135,27 +135,31 @@ VALUES
 
 -- create dummy workouts
 INSERT INTO
-    workout (name, description, projected_time)
+    workout (name, description, projected_time, scheduled_time)
 VALUES
     (
         'workout 1',
         'workout 1 description',
-        10
+        10,
+        '2020-12-17 12:00:00'
     ),
     (
         'workout 2',
         'workout 2 description',
-        11
+        11,
+        '2020-12-18 12:00:00'
     ),
     (
         'workout 3',
         'workout 3 description',
-        12
+        12,
+        '2020-12-25 12:00:00'
     ),
     (
         'workout 4',
         'has not exercises',
-        12
+        12,
+        '2020-7-17 12:00:00'
     );
 
 -- create dummy program reviews

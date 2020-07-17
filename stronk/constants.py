@@ -6,6 +6,7 @@ CONFLICT_ERROR_CODE = "RESOURCE_CONFLICT_ERROR"
 NOT_FOUND_ERROR_CODE = "NOT_FOUND_ERROR"
 
 # ERROR MESSAGES
+INVALID_WORKOUT_START_TIME = "Workout cannot be scheduled in the past."
 UNEXPECTED_ERROR_MSG = "An unexpected error has occured."
 PROGRAM_NOT_FOUND_MSG = "Program not found."
 USER_NOT_FOUND_MSG = "User not found."

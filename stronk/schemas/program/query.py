@@ -11,7 +11,8 @@ class Query(graphene.ObjectType):
     program = graphene.Field(Program,
                              id=graphene.Int(),
                              name=graphene.String(),
-                             author=graphene.String())
+                             author=graphene.String(),
+                             user_id=graphene.String())
 
     def resolve_programs(root, info):
         query = Program.get_query(info)
