@@ -1,10 +1,9 @@
 import graphene
 
-from stronk.constants import PROGRAM_NOT_FOUND_MSG, WORKOUT_NOT_FOUND_MSG, PROGRAM_WORKOUT_NOT_FOUND_MSG
+from stronk.constants import PROGRAM_NOT_FOUND_MSG, WORKOUT_NOT_FOUND_MSG
 from stronk.errors.not_found import NotFound
 
 from stronk.schemas.workout.type import Workout
-from stronk.schemas.p import Workout
 from stronk.schemas.workout_exercise.type import WorkoutExercise as WorkoutExercise
 
 from stronk.models.program import Program as ProgramModel
@@ -12,6 +11,7 @@ from stronk.models.program_workouts import ProgramWorkouts as ProgramWorkoutsMod
 from stronk.models.workout import Workout as WorkoutModel
 from stronk.models.workout_exercise import WorkoutExercise as WorkoutExerciseModel
 from stronk.utils.date import str_to_date
+
 
 class CreateWorkout(graphene.Mutation):
     """ creates a workout and adds it to a program - result is the new workout
@@ -103,5 +103,4 @@ class DeleteWorkout(graphene.Mutation):
 class Mutation(graphene.ObjectType):
     create_workout = CreateWorkout.Field()
     update_workout = UpdateWorkout.Field()
-    update_program_workout = UpdateProgramWorkout.Field()
     delete_workout = DeleteWorkout.Field()
