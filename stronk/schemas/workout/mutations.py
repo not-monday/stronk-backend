@@ -10,6 +10,7 @@ from stronk.models.program import Program as ProgramModel
 from stronk.models.program_workouts import ProgramWorkouts as ProgramWorkoutsModel
 from stronk.models.workout import Workout as WorkoutModel
 from stronk.models.workout_exercise import WorkoutExercise as WorkoutExerciseModel
+from stronk.utils.date import date_time_str_to_date
 
 
 class CreateWorkout(graphene.Mutation):
@@ -23,14 +24,18 @@ class CreateWorkout(graphene.Mutation):
         description = graphene.String(required=False)
         projected_time = graphene.Int(required=False)
         program_id = graphene.Int(required=True)
+        scheduled_time = graphene.String(required=True)
 
-    def mutate(root, info, name: str, program_id: int, description: str = None, projected_time: int = None):
+    def mutate(root, info, name: str, program_id: int, scheduled_time: str, description: str = None, projected_time: int = None):
         program = ProgramModel.find_by_id(program_id)
         if not program:
             raise NotFound(PROGRAM_NOT_FOUND_MSG)
 
+        # convert date time string to datetime object
+        formatted_time = date_time_str_to_date(scheduled_time)
+
         workout = WorkoutModel.create(
-            name=name, description=description, projected_time=projected_time)
+            name=name, description=description, projected_time=projected_time, scheduled_time=formatted_time)
 
         program_workout = ProgramWorkoutsModel.create(
             program_id=program.id, workout_id=workout.id)
@@ -48,8 +53,9 @@ class UpdateWorkout(graphene.Mutation):
         name = graphene.String(required=False)
         description = graphene.String(required=False)
         projected_time = graphene.Int(required=False)
+        scheduled_time = graphene.String(required=False)
 
-    def mutate(root, info, id: str, name: str = None, description: str = None, projected_time: int = None):
+    def mutate(root, info, id: str, name: str = None, description: str = None, projected_time: int = None, scheduled_time: str = None):
         workout = WorkoutModel.find_by_id(id)
         if not workout:
             raise NotFound(WORKOUT_NOT_FOUND_MSG)
@@ -61,10 +67,12 @@ class UpdateWorkout(graphene.Mutation):
             attrs['description'] = description
         if projected_time:
             attrs['projected_time'] = projected_time
+        if scheduled_time:
+            attrs['scheduled_time'] = date_time_str_to_date(scheduled_time)
+        
         workout.update(attrs)
 
         return UpdateWorkout(workout=workout)
-
 
 class DeleteWorkout(graphene.Mutation):
     """ removes a workout from a program

@@ -8,6 +8,7 @@ from stronk.constants import DATABASE_ERROR_MSG, USER_NOT_FOUND_MSG
 from stronk.errors.bad_attributes import BadAttributes
 from stronk.errors.unexpected_error import UnexpectedError
 from stronk.models.user import User
+from stronk.utils.date import date_str_to_date
 
 
 class Weight(db.Model):
@@ -58,7 +59,7 @@ class Weight(db.Model):
         """Returns the weight of a user measured on a date. Date should be in
         UTC.
         """
-        start_date = datetime.strptime(measured_at, '%Y-%m-%d')
+        start_date = date_str_to_date(measured_at)
         end_date = start_date + timedelta(days=1)
         return (Weight
                 .query

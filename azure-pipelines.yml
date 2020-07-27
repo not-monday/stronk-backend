@@ -14,7 +14,7 @@ pool:
 steps:
   - task: UsePythonVersion@0
     inputs:
-      versionSpec: "3.6"
+      versionSpec: "3.7"
   - script: pip install -r requirements.txt
     displayName: "Install packages"
   - script: python3 -m unittest
