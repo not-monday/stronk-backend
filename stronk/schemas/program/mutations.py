@@ -59,6 +59,20 @@ class UpdateProgram(graphene.Mutation):
 
         return UpdateProgram(program=program)
 
+class SubscribeToProgram(graphene.Mutation):
+    """subscribe to a program"""
+    new_program = graphene.Field(Program)
+
+    class Arguments:
+        id = graphene.Int(required=True)
+
+    def mutate(root, info, id: int):
+        program = ProgramModel.find_by_id(id)
+        if not program:
+            raise NotFound(PROGRAM_NOT_FOUND_MSG)
+
+        return program.duplicate()
+
 
 class DeleteProgram(graphene.Mutation):
     """Delete a program."""
@@ -89,3 +103,4 @@ class Mutation(graphene.ObjectType):
     create_program = CreateProgram.Field()
     update_program = UpdateProgram.Field()
     delete_program = DeleteProgram.Field()
+    subscribe_to_program = SubscribeToProgram.Field()
