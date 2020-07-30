@@ -151,6 +151,16 @@ class WorkoutExercise(db.Model):
         except DBAPIError as err:
             raise UnexpectedError(DATABASE_ERROR_MSG)
 
+    def clone(self, new_workout_id: int):
+        return WorkoutExerciseModel.create(
+                    workout_id=new_workout_id, 
+                    exercise_id=self.exercise_id, 
+                    superset_exercise_id=self.superset_exercise_id, 
+                    workout_weights=self.workout_weights, 
+                    workout_reps=self.workout_reps, 
+                    rest_time=self.rest_time
+                )
+
     @staticmethod
     def deleteWorkoutExercises(workout_id):
         """deletes all workout exercises associated with a workout"""

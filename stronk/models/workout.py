@@ -75,3 +75,11 @@ class Workout(db.Model):
     @staticmethod
     def find_by_id(id):
         return Workout.query.filter_by(id=id).first()
+
+    def clone(self):
+        return Workout.create(
+            name=self.name, 
+            description=self.description, 
+            projected_time=self.projected_time, 
+            scheduled_time=self.scheduled_time
+        )

@@ -89,12 +89,6 @@ class Program(db.Model):
         except DBAPIError as err:
             raise UnexpectedError(DATABASE_ERROR_MSG)
 
-    def duplicate(self):
-        # duplicate self
-        print("original id {id}")
-        new_program = Program.create(self.author, self.name, self.duration, self.description)
-        print("duplicate id {new_program.id}")
-
     def delete(self):
         try:
             db.session.delete(self)
