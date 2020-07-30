@@ -33,7 +33,7 @@ class WorkoutExercise(db.Model):
                                       db.ForeignKey('exercise.id'),
                                       primary_key=True,
                                       index=True,
-                                      nullable=False)
+                                      nullable=True)
     workout_weights = db.Column(ARRAY(db.Float), nullable=False)
     workout_reps = db.Column(ARRAY(db.Integer), nullable=False)
     rest_time = db.Column(db.Integer, nullable=False)
@@ -86,8 +86,7 @@ class WorkoutExercise(db.Model):
         return Exercise.query.filter_by(id=self.exercise_id)
 
     def get_superset_exercise(self):
-        """Returns excercise object for the super set of the
-           WorkoutExerciseSuperSets. """
+        """Returns excercise object for the super set of the WorkoutExercise"""
         return Exercise.query.filter_by(id=self.superset_exercise_id)
 
 
