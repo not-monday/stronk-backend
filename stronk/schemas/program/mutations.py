@@ -103,8 +103,7 @@ class SubscribeToProgram(graphene.Mutation):
         new_program = old_program.clone()
 
         # clone related relations
-        old_program_workouts = ProgramWorkoutsModel.filter_by_program_id(
-            old_program.id)
+        old_program_workouts = ProgramWorkoutsModel.filter_by_program_id(old_program.id)
         for old_program_workout in old_program_workouts:
             
             # create new workout
@@ -115,8 +114,8 @@ class SubscribeToProgram(graphene.Mutation):
             new_workout = old_workout.clone()
             # create new program workout with the new program id and workout
             new_program_workout = old_program_workout.clone(
-                new_program_id=new_workout.id, 
-                new_workout_id=new_program.id
+                new_program_id=new_program.id, 
+                new_workout_id=new_workout.id
             )
 
             old_workout_exercises = WorkoutExerciseModel.find_workout_exercises(workout_id=old_program_workout.workout_id)

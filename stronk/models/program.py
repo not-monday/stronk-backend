@@ -95,3 +95,11 @@ class Program(db.Model):
             db.session.commit()
         except DBAPIError as err:
             raise UnexpectedError(DATABASE_ERROR_MSG)
+
+    def clone(self):
+        return Program.create(
+            author=self.author,
+            name=self.name,
+            duration=self.duration,
+            description=self.description
+        )

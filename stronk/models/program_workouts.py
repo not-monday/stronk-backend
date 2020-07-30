@@ -100,7 +100,7 @@ class ProgramWorkouts(db.Model):
         except DBAPIError as err:
             raise UnexpectedError(DATABASE_ERROR_MSG)
 
-    def clone(self, new_program_id: int, new_workout_id: int) -> ProgramWorkouts:
+    def clone(self, new_program_id: int, new_workout_id: int):
         return ProgramWorkouts.create(
             program_id=new_program_id,
             workout_id=new_workout_id
