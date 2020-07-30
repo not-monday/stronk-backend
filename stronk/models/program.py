@@ -16,7 +16,7 @@ class Program(db.Model):
                        db.ForeignKey(f'{User.__tablename__}.id'),
                        index=True,
                        nullable=False)
-    name = db.Column(db.String(128), index=True, nullable=False, unique=True)
+    name = db.Column(db.String(128), index=True, nullable=False, unique=False)
     duration = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String(256), nullable=False)
 
