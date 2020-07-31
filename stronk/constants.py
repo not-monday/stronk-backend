@@ -13,6 +13,7 @@ USER_NOT_FOUND_MSG = "User not found."
 WORKOUT_NOT_FOUND_MSG = "Workout not found."
 WORKOUT_EXERCISE_NOT_FOUND_MSG = "Workout exercise not found."
 WEIGHT_NOT_FOUND_MSG = "Weight not found."
+UNAUTHORIZED_ACTION_OR_RESOURCE_MSG = "User does not have access to this resource or action."
 
 DATABASE_ERROR_MSG = "Database Error"
 

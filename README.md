@@ -8,7 +8,7 @@ This is a [Flask](https://flask.palletsprojects.com/en/1.1.x/blueprints/) backen
 
 ## Pre-requisites
 
-Ensure you have [Docker](https://docs.docker.com/install/), [python3](https://www.python.org/downloads/), [pip](https://pip.pypa.io/en/stable/installing/), [postgreSQL](https://www.postgresql.org/) and [newman](https://github.com/postmanlabs/newman) installed.
+Ensure you have [Docker](https://docs.docker.com/install/), [python3.7](https://www.python.org/downloads/), [pip](https://pip.pypa.io/en/stable/installing/), [postgreSQL](https://www.postgresql.org/) and [newman](https://github.com/postmanlabs/newman) installed.
 
 1. `git clone https://github.com/not-monday/stronk-backend.git`
 2. `cd stronk-backend`

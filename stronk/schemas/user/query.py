@@ -1,36 +1,42 @@
 import graphene
+from flask import g
 
+from stronk.constants import USER_NOT_FOUND_MSG
+from stronk.errors.not_found import NotFound
 from stronk.models.user import User as UserModel
+from stronk.schemas.protected_user.type import ProtectedUser
 from stronk.schemas.user.type import User
+from stronk.schemas.user_interface.type import UserInterface
 
 
 class Query(graphene.ObjectType):
-    users = graphene.List(User)
-    user = graphene.Field(lambda: User,
-                          id=graphene.String(),
-                          username=graphene.String(),
-                          email=graphene.String(),
-                          currentProgram=graphene.Int())
+    user = graphene.Field(
+        UserInterface, username=graphene.String(required=True))
+    users = graphene.List(UserInterface)
 
     def resolve_users(root, info):
-        query = User.get_query(info)
-        return query.all()
-
-    def resolve_user(root, info, id=None, username=None, email=None, currentProgram=None):
-        """Search for user in decreasing order of precedence: id, username,
-        email and current program.
+        """Returns UserInterface[] information about all users.
+        Other users are type ProtectedUser whereas the user itself is type User.
         """
-        query = User.get_query(info)
-        if id:
-            return query.filter(UserModel.id == id).first()
+        users = User.get_query(info).all()
+        result = []
+        for user in users:
+            if user.id == g.id:
+                result.append(user)
+            else:
+                result.append(ProtectedUser(
+                    name=user.name, username=user.username))
 
-        if username:
-            return query.filter(UserModel.username == username).first()
+        return result
 
-        if email:
-            return query.filter(UserModel.email == email).first()
+    def resolve_user(root, info, username):
+        """Returns user's information based on the username.
+        Other users are returned as type ProtectedUser whereas the user itself
+        is type User.
+        """
+        u = UserModel.find_by_username(username)
+        if not u:
+            raise NotFound(USER_NOT_FOUND_MSG)
 
-        if currentProgram:
-            return query.filter(UserModel.current_program == currentProgram).first()
-
-        return None
+        return u if u.id == g.id else ProtectedUser(name=u.name,
+                                                    username=u.username)

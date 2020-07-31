@@ -5,12 +5,14 @@ from stronk.models.program import Program as ProgramModel
 from stronk.models.user import User as UserModel
 from stronk.models.weight import Weight as WeightModel
 from stronk.schemas.program.type import Program
+from stronk.schemas.user_interface.type import UserInterface
 from stronk.schemas.weights.type import Weight
 
 
 class User(SQLAlchemyObjectType):
     class Meta:
         model = UserModel
+        interfaces = (UserInterface, )
 
     # Add nested querying
     currentProgram = graphene.Field(Program)

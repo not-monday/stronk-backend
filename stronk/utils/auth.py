@@ -2,9 +2,12 @@ from firebase_admin import auth
 from flask import request, g
 from werkzeug import exceptions as e
 
+from stronk.errors.unauthorized import Unauthorized
+from stronk.constants import UNAUTHORIZED_ACTION_OR_RESOURCE_MSG
+
 
 def verify_token():
-    """Returns the uid for the user with id_token if id_token is valid and
+    """Returns the uid of the user if their authorization token is valid and
        not revoked."""
     if request.endpoint == 'graphql':
         id_token = request.headers.get("Authorization")
@@ -30,3 +33,9 @@ def verify_token():
         except auth.InvalidIdTokenError:
             # Token is invalid
             raise e.BadRequest("Token is not valid.")
+
+
+def is_authorized(id: str):
+    """Raises Unauthorized error if g.id (user's id) is not the same as id."""
+    if not (id == g.id):
+        raise Unauthorized(UNAUTHORIZED_ACTION_OR_RESOURCE_MSG)

@@ -7,17 +7,23 @@ from stronk.errors.conflict import Conflict
 from stronk.errors.unexpected_error import UnexpectedError
 
 from stronk import db
+from stronk.models.user import User
 
 
 class Exercise(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), index=True, nullable=False, unique=True)
+    author = db.Column(db.String(),
+                       db.ForeignKey(f'{User.__tablename__}.id'),
+                       index=True,
+                       nullable=False)
     description = db.Column(db.String(500), nullable=False)
 
     @staticmethod
-    def create(name, description):
+    def create(name, description, author):
         exercise = Exercise(name=string.capwords(name),
-                            description=description)
+                            description=description,
+                            author=author)
 
         try:
             db.session.add(exercise)
@@ -43,7 +49,8 @@ class Exercise(db.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "description": self.description,
+            "author": self.author,
+            "description": self.description
         }
 
     def update(self, attrs):
@@ -57,6 +64,8 @@ class Exercise(db.Model):
             self.name = string.capwords(attrs.get('name'))
         if attrs.get('description'):
             self.description = attrs.get('description')
+        if attrs.get('author'):
+            self.author = attrs.get('author')
 
         try:
             db.session.add(self)

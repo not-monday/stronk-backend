@@ -1,4 +1,5 @@
 import graphene
+from datetime import datetime, timezone
 from flask import g
 
 from stronk.constants import WEIGHT_NOT_FOUND_MSG
@@ -13,9 +14,13 @@ class AddWeight(graphene.Mutation):
 
     class Arguments:
         weight = graphene.Float(required=True)
+        measured_at = graphene.String()
 
-    def mutate(root, info, weight: float):
-        weight = WeightModel.create(g.id, weight)
+    def mutate(root, info, weight: float, measured_at: str = None):
+        if not measured_at:
+            measured_at = str(datetime.utc(timezone.utc))
+
+        weight = WeightModel.create(g.id, weight, measured_at)
 
         return AddWeight(weight=weight)
 

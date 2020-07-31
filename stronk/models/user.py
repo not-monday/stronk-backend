@@ -53,6 +53,10 @@ class User(db.Model):
         return User.query.filter_by(id=id).first()
 
     @staticmethod
+    def find_by_username(username):
+        return User.query.filter_by(username=username).first()
+
+    @staticmethod
     def find_by_program_id(program_id):
         """Return users who's current program has program_id."""
         return User.query.filter_by(current_program=program_id).all()
@@ -70,7 +74,8 @@ class User(db.Model):
         }
 
     def update(self, attrs):
-        """Updates model given attrs.
+        """Updates model given attrs. If the current_program is -1,
+        then we nullify the user's current program.
 
         Params:
             attrs: Dictionary containing attributes to update. Key is the 
@@ -83,7 +88,8 @@ class User(db.Model):
         if 'username' in attrs:
             self.username = attrs.get('username')
         if 'current_program' in attrs:
-            self.current_program = attrs.get('current_program')
+            new_program = attrs.get('current_program')
+            self.current_program = None if new_program == -1 else new_program
 
         try:
             db.session.add(self)
