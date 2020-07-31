@@ -48,7 +48,7 @@ class ProgramReviews(db.Model):
             if isinstance(err.orig, UniqueViolation):
                 raise Conflict("User already reviewed this program")
             elif isinstance(err.orig, ForeignKeyViolation):
-                raise BadAttributes(PROGRAM_NOT_FOUND_MSG)
+                raise BadAttributes("User or Program not found.")
             else:
                 raise UnexpectedError(DATABASE_ERROR_MSG)
         except DBAPIError as err:

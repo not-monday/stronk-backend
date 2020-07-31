@@ -6,6 +6,7 @@ from stronk.constants import USER_NOT_FOUND_MSG
 from stronk.errors.not_found import NotFound
 from stronk.models.user import User as UserModel
 from stronk.schemas.user.type import User
+from stronk.utils.auth import is_authorized
 
 
 class CreateUser(graphene.Mutation):
@@ -42,6 +43,8 @@ class UpdateUser(graphene.Mutation):
 
     def mutate(root, info, id, name=None, username=None, email=None,
                currentProgram=None):
+        is_authorized(id)
+
         user = UserModel.find_by_id(id)
         if not user:
             raise NotFound(USER_NOT_FOUND_MSG)
@@ -68,6 +71,8 @@ class DeleteUser(graphene.Mutation):
         id = graphene.String(required=True)
 
     def mutate(root, info, id):
+        is_authorized(id)
+
         user = UserModel.find_by_id(id)
         if not user:
             raise NotFound(USER_NOT_FOUND_MSG)

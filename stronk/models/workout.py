@@ -1,5 +1,4 @@
 from datetime import datetime
-from flask import current_app
 from sqlalchemy.exc import DBAPIError
 
 from stronk import db
@@ -7,10 +6,14 @@ from stronk.constants import DATABASE_ERROR_MSG, INVALID_WORKOUT_START_TIME
 from stronk.errors.conflict import Conflict
 from stronk.errors.bad_attributes import BadAttributes
 from stronk.errors.unexpected_error import UnexpectedError
-
+from stronk.models.user import User
 
 class Workout(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    author = db.Column(db.String(),
+                       db.ForeignKey(f'{User.__tablename__}.id'),
+                       index=True,
+                       nullable=False)
     name = db.Column(db.String(128), index=True, nullable=False)
     description = db.Column(db.String(500), nullable=False)
     projected_time = db.Column(db.Integer, nullable=False)
@@ -22,6 +25,7 @@ class Workout(db.Model):
            attribute. """
         return {
             "id": self.id,
+            "author": User.find_by_id(self.author).to_dict(),
             "name": self.name,
             "description": self.description,
             "projected_time": self.projected_time,
@@ -35,6 +39,8 @@ class Workout(db.Model):
             attrs: Dictionary containing attributes to update. Key is the 
                    attribute name and value is the new value.
         """
+        if attrs.get('author'):
+            self.author = attrs.get('author')
         if attrs.get('name'):
             self.name = attrs.get('name')
         if attrs.get('description'):
@@ -53,10 +59,11 @@ class Workout(db.Model):
             raise UnexpectedError(DATABASE_ERROR_MSG)
 
     @staticmethod
-    def create(name, description, projected_time, scheduled_time: datetime):
+    def create(author, name, description, projected_time, scheduled_time: datetime):
         Workout.ensure_valid_time(scheduled_time)
 
         workout = Workout(
+            author=author,
             name=name,
             description=description if description else "",
             projected_time=projected_time if projected_time else 0,
@@ -84,6 +91,7 @@ class Workout(db.Model):
 
     def clone(self):
         return Workout.create(
+            author=self.author,
             name=self.name, 
             description=self.description, 
             projected_time=self.projected_time, 

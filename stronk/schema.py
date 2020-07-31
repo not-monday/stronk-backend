@@ -14,6 +14,9 @@ from stronk.schemas.workout.mutations import Mutation as WorkoutMutation
 from stronk.schemas.workout.query import Query as WorkoutQuery
 from stronk.schemas.workout_exercise.mutations import Mutation as WorkoutExerciseMutation
 from stronk.schemas.workout_exercise.query import Query as WorkoutExerciseQuery
+# Concrete objects for graphql interfaces
+from stronk.schemas.user.type import User
+from stronk.schemas.protected_user.type import ProtectedUser
 
 
 class Query(ProgramQuery,
@@ -38,4 +41,5 @@ class Mutation(ProgramMutation,
     pass
 
 
-schema = graphene.Schema(query=Query, mutation=Mutation)
+schema = graphene.Schema(query=Query, mutation=Mutation,
+                         types=[User, ProtectedUser])

@@ -31,76 +31,6 @@ VALUES
         NULL
     );
 
--- disable integrity checks for weight table
-ALTER TABLE weight DISABLE TRIGGER ALL;
-
--- create dummy weights for users
-INSERT INTO
-    weight (user_id, weight, measured_at)
-VALUES (
-    'user_id_1',
-    123.0,
-    '2020-03-17 12:00:00'
-),
-(
-    'user_id_1',
-    123.5,
-    '2020-03-18 12:00:00'
-),
-(
-    'user_id_1',
-    124.2,
-    '2020-03-19 12:00:00'
-),
-(
-    'user_id_2',
-    101.5,
-    '2020-03-18 12:00:00'
-),
-(
-    'user_id_2',
-    102.0,
-    '2020-03-19 12:00:00'
-),
-(
-    'user_id_2',
-    104.5,
-    '2020-03-20 12:00:00'
-),
-(
-    'user_id_3',
-    101.5,
-    '2020-01-18 12:00:00'
-),
-(
-    'user_id_3',
-    102.0,
-    '2020-01-19 12:00:00'
-),
-(
-    'user_id_3',
-    104.5,
-    '2020-01-20 12:00:00'
-),
-(
-    'test_id',
-    101.5,
-    '2020-01-18 12:00:00'
-),
-(
-    'test_id',
-    102.0,
-    '2020-01-19 12:00:00'
-),
-(
-    'test_id',
-    104.5,
-    '2020-01-20 12:00:00'
-);
-
--- enable integrity checks for weight table
-ALTER TABLE weight ENABLE TRIGGER ALL;
-
 -- create dummy programs
 INSERT INTO
     program (author, name, duration, description)
@@ -124,39 +54,48 @@ VALUES
         'dummy description 1'
     );
 
+-- disable integrity checks for exercise table
+ALTER TABLE exercise DISABLE TRIGGER ALL;
+
 -- create dummy exercises
 INSERT INTO
-    exercise (name, description)
+    exercise (name, description, author)
 VALUES
-    ('bicep curls', 'bicep curls description'),
-    ('squats', 'squats description'),
-    ('pullups', 'pullups curls description'),
-    ('unused exercise', 'deletable');
+    ('bicep curls', 'bicep curls description', 'user_id_1'),
+    ('squats', 'squats description', 'user_id_1'),
+    ('pullups', 'pullups curls description', 'user_id_1');
+
+-- enable integrity checks for exercise table
+ALTER TABLE exercise ENABLE TRIGGER ALL;
 
 -- create dummy workouts
 INSERT INTO
-    workout (name, description, projected_time, scheduled_time)
+    workout (name, author, description, projected_time, scheduled_time)
 VALUES
     (
         'workout 1',
+        'user_id_1',
         'workout 1 description',
         10,
         '2020-12-17 12:00:00'
     ),
     (
         'workout 2',
+        'user_id_2',
         'workout 2 description',
         11,
         '2020-12-18 12:00:00'
     ),
     (
         'workout 3',
+        'user_id_3',
         'workout 3 description',
         12,
         '2020-12-25 12:00:00'
     ),
     (
         'workout 4',
+        'user_id_4',
         'has not exercises',
         12,
         '2020-7-17 12:00:00'

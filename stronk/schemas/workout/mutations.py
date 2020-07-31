@@ -1,4 +1,5 @@
 import graphene
+from flask import g
 
 from stronk.constants import PROGRAM_NOT_FOUND_MSG, WORKOUT_NOT_FOUND_MSG
 from stronk.errors.not_found import NotFound
@@ -11,6 +12,7 @@ from stronk.models.program_workouts import ProgramWorkouts as ProgramWorkoutsMod
 from stronk.models.workout import Workout as WorkoutModel
 from stronk.models.workout_exercise import WorkoutExercise as WorkoutExerciseModel
 from stronk.utils.date import date_time_str_to_date
+from stronk.utils.auth import is_authorized
 
 
 class CreateWorkout(graphene.Mutation):
@@ -34,11 +36,14 @@ class CreateWorkout(graphene.Mutation):
         # convert date time string to datetime object
         formatted_time = date_time_str_to_date(scheduled_time)
 
-        workout = WorkoutModel.create(
-            name=name, description=description, projected_time=projected_time, scheduled_time=formatted_time)
+        workout = WorkoutModel.create(author=g.id,
+                                      name=name,
+                                      description=description,
+                                      projected_time=projected_time,
+                                      scheduled_time=formatted_time)
 
-        program_workout = ProgramWorkoutsModel.create(
-            program_id=program.id, workout_id=workout.id)
+        program_workout = ProgramWorkoutsModel.create(program_id=program.id,
+                                                      workout_id=workout.id)
         return CreateWorkout(workout=workout)
 
 
@@ -59,6 +64,8 @@ class UpdateWorkout(graphene.Mutation):
         workout = WorkoutModel.find_by_id(id)
         if not workout:
             raise NotFound(WORKOUT_NOT_FOUND_MSG)
+        
+        is_authorized(workout.author)
 
         attrs = {}
         if name:
@@ -87,7 +94,8 @@ class DeleteWorkout(graphene.Mutation):
         workout = WorkoutModel.find_by_id(id)
         if not workout:
             raise NotFound(WORKOUT_NOT_FOUND_MSG)
-
+        
+        is_authorized(workout.author)
         # delete workout exercises associated with this workout
         WorkoutExerciseModel.deleteWorkoutExercises(id)
 

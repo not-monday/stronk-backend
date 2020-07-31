@@ -1,4 +1,3 @@
-from datetime import datetime
 from datetime import timedelta
 from psycopg2.errors import ForeignKeyViolation
 from sqlalchemy.exc import DBAPIError, IntegrityError
@@ -22,10 +21,11 @@ class Weight(db.Model):
                             primary_key=True, nullable=False)
 
     @staticmethod
-    def create(user_id, weight):
+    def create(user_id, weight, measured_at):
         """Insert a weight for a user."""
-        now = str(datetime.utcnow())
-        weight = Weight(user_id=user_id, weight=weight, measured_at=now)
+
+        weight = Weight(user_id=user_id, weight=weight,
+                        measured_at=measured_at)
 
         try:
             db.session.add(weight)

@@ -1,4 +1,5 @@
 import graphene
+from flask import g
 
 from stronk.constants import PROGRAM_NOT_FOUND_MSG, WORKOUT_NOT_FOUND_MSG, USER_NOT_FOUND_MSG
 from stronk.errors.not_found import NotFound
@@ -10,7 +11,7 @@ from stronk.models.user import User as UserModel
 
 from stronk.schemas.user.type import User
 from stronk.schemas.program.type import Program
-from flask import g
+from stronk.utils.auth import is_authorized
 
 
 class CreateProgram(graphene.Mutation):
@@ -51,6 +52,8 @@ class UpdateProgram(graphene.Mutation):
         if not program:
             raise NotFound(PROGRAM_NOT_FOUND_MSG)
 
+        is_authorized(program.author)
+
         attrs = {}
         if author:
             attrs['author'] = author
@@ -76,6 +79,9 @@ class DeleteProgram(graphene.Mutation):
         program = ProgramModel.find_by_id(id)
         if not program:
             raise NotFound(PROGRAM_NOT_FOUND_MSG)
+
+        is_authorized(program.author)
+
         # delete program workout associations
         res = ProgramWorkoutsModel.filter_by_program_id(id)
         for r in res:
@@ -98,7 +104,6 @@ class SubscribeToProgram(graphene.Mutation):
         program_id = graphene.Int(required=True)
 
     def mutate(root, info, program_id: int):
-        print("test ${g.id}")
         user = UserModel.find_by_id(g.id)
         if not user:
             raise NotFound(USER_NOT_FOUND_MSG)
