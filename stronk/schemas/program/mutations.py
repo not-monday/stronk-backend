@@ -122,7 +122,7 @@ class SubscribeToProgram(graphene.Mutation):
             for old_workout_exercise in old_workout_exercises:
                 old_workout_exercise.clone(new_workout_id=new_workout.id)
 
-        return program.duplicate()
+        return SubscribeToProgram(new_program=new_program)
 
 
 class Mutation(graphene.ObjectType):

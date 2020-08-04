@@ -21,7 +21,7 @@ class AddWorkoutExercise(graphene.Mutation):
         workout_reps = graphene.List(graphene.Int, required=True)
         rest_time = graphene.Int(required=True)
 
-    def mutate(root, info, workout_id: str, exercise_id: str, workout_weights: int, workout_reps: int, rest_time: int, superset_exercise_id : int = None):
+    def mutate(root, info, workout_id: str, exercise_id: str, workout_weights: int, workout_reps: int, rest_time: int, superset_exercise_id:str=None):
         workoutExercise = WorkoutExerciseModel.create(
             workout_id, exercise_id, superset_exercise_id, workout_weights, workout_reps, rest_time)
         return AddWorkoutExercise(workoutExercise=workoutExercise)
@@ -41,7 +41,7 @@ class UpdateWorkoutExercise(graphene.Mutation):
         workout_reps = graphene.List(graphene.Int, required=False)
         rest_time = graphene.Int(required=False)
 
-    def mutate(root, info, workout_id, exercise_id, workout_weights, workout_reps, rest_time, superset_exercise_id : int = None):
+    def mutate(root, info, workout_id, exercise_id, workout_weights, workout_reps, rest_time, superset_exercise_id:str=None):
         workoutExercise = WorkoutExerciseModel.find_workout_exercise(
             workout_id, exercise_id)
         if not workoutExercise:

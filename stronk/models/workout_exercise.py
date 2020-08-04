@@ -32,8 +32,7 @@ class WorkoutExercise(db.Model):
     superset_exercise_id = db.Column(db.Integer,
                                       db.ForeignKey('exercise.id'),
                                       primary_key=False,
-                                      index=True,
-                                      nullable=True)
+                                      index=True)
     workout_weights = db.Column(ARRAY(db.Float), nullable=False)
     workout_reps = db.Column(ARRAY(db.Integer), nullable=False)
     rest_time = db.Column(db.Integer, nullable=False)
@@ -155,7 +154,7 @@ class WorkoutExercise(db.Model):
             raise UnexpectedError(DATABASE_ERROR_MSG)
 
     def clone(self, new_workout_id: int):
-        return WorkoutExerciseModel.create(
+        return WorkoutExercise.create(
                     workout_id=new_workout_id, 
                     exercise_id=self.exercise_id, 
                     superset_exercise_id=self.superset_exercise_id, 
