@@ -16,13 +16,14 @@ class AddWorkoutExercise(graphene.Mutation):
     class Arguments:
         workout_id = graphene.Int(required=True)
         exercise_id = graphene.Int(required=True)
+        superset_exercise_id = graphene.Int(required=False)
         workout_weights = graphene.List(graphene.Int, required=True)
         workout_reps = graphene.List(graphene.Int, required=True)
         rest_time = graphene.Int(required=True)
 
-    def mutate(root, info, workout_id: str, exercise_id: str, workout_weights: int, workout_reps: int, rest_time: int):
+    def mutate(root, info, workout_id: str, exercise_id: str, workout_weights: int, workout_reps: int, rest_time: int, superset_exercise_id : int = None):
         workoutExercise = WorkoutExerciseModel.create(
-            workout_id, exercise_id, workout_weights, workout_reps, rest_time)
+            workout_id, exercise_id, superset_exercise_id, workout_weights, workout_reps, rest_time)
         return AddWorkoutExercise(workoutExercise=workoutExercise)
 
 
@@ -35,17 +36,20 @@ class UpdateWorkoutExercise(graphene.Mutation):
     class Arguments:
         workout_id = graphene.Int(required=True)
         exercise_id = graphene.Int(required=True)
+        superset_exercise_id = graphene.Int(required=False)
         workout_weights = graphene.List(graphene.Int, required=False)
         workout_reps = graphene.List(graphene.Int, required=False)
         rest_time = graphene.Int(required=False)
 
-    def mutate(root, info, workout_id, exercise_id, workout_weights, workout_reps, rest_time):
+    def mutate(root, info, workout_id, exercise_id, workout_weights, workout_reps, rest_time, superset_exercise_id : int = None):
         workoutExercise = WorkoutExerciseModel.find_workout_exercise(
             workout_id, exercise_id)
         if not workoutExercise:
             raise NotFound(WORKOUT_EXERCISE_NOT_FOUND_MSG)
 
         attrs = {}
+        if superset_exercise_id:
+            attrs["superset_exercise_id"] = superset_exercise_id
         if workout_weights:
             attrs["workout_weights"] = workout_weights
         if workout_reps:
@@ -56,7 +60,25 @@ class UpdateWorkoutExercise(graphene.Mutation):
 
         return UpdateWorkoutExercise(workoutExercise=workoutExercise)
 
+class RemoveSuperSetExercise(graphene.Mutation):
+    """ removes a superset from an exercise for a workout
+    """
+    workoutExercise = graphene.Field(WorkoutExercise)
 
+    class Arguments:
+        workout_id = graphene.Int(required=True)
+        exercise_id = graphene.Int(required=True)
+
+    def mutate(root, info, workout_id, exercise_id):
+        workoutExercise = WorkoutExerciseModel.find_workout_exercise(
+            workout_id, exercise_id)
+        if not workoutExercise:
+            raise NotFound(WORKOUT_EXERCISE_NOT_FOUND_MSG)
+
+        workoutExercise.removeSuperSet()
+
+        return RemoveSuperSetExercise(workoutExercise=workoutExercise)
+    
 class DeleteWorkoutExercise(graphene.Mutation):
     """ deletes an exercise workout from a workout
     """
@@ -83,3 +105,4 @@ class Mutation(graphene.ObjectType):
     add_workout_exercise = AddWorkoutExercise.Field()
     update_workout_exercise = UpdateWorkoutExercise.Field()
     delete_workout_exercise = DeleteWorkoutExercise.Field()
+    remove_workout_superset = RemoveSuperSetExercise.Field()

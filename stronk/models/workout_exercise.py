@@ -31,7 +31,7 @@ class WorkoutExercise(db.Model):
                             nullable=False)
     superset_exercise_id = db.Column(db.Integer,
                                       db.ForeignKey('exercise.id'),
-                                      primary_key=True,
+                                      primary_key=False,
                                       index=True,
                                       nullable=True)
     workout_weights = db.Column(ARRAY(db.Float), nullable=False)
@@ -140,6 +140,9 @@ class WorkoutExercise(db.Model):
 
         if attrs.get('rest_time'):
             self.rest_time = attrs.get('rest_time')
+
+    def removeSuperSet(self):
+        self.superset_exercise_id = None
 
     def delete(self):
         try:

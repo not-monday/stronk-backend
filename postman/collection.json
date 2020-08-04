@@ -4597,7 +4597,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n  addWorkoutExercise(\n    workoutId: 4, \n    exerciseId: 1, \n    workoutWeights : [10, 10], \n    workoutReps: [1, 2] \n    restTime: 10\n  ) {\n    workoutExercise {\n      workoutId, exerciseId, workoutWeights, workoutReps, restTime, exercise {\n        name\n      }\n    }\n  }\n}",
+										"query": "mutation {\n  addWorkoutExercise(\n    workoutId: 4, \n    exerciseId: 1, \n    supersetExerciseId: 2,\n    workoutWeights : [10, 10], \n    workoutReps: [1, 2] \n    restTime: 10\n  ) {\n    workoutExercise {\n      workoutId, exerciseId, workoutWeights, workoutReps, restTime, exercise {\n        name\n      }\n    }\n  }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -4648,7 +4648,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n  addWorkoutExercise(\n    workoutId: 4, \n    exerciseId: 1, \n    workoutWeights : [10, 10], \n    workoutReps: [1, 2] \n    restTime: 10\n  ) {\n    workoutExercise {\n      workoutId, exerciseId, workoutWeights, workoutReps, restTime, exercise {\n        name\n      }\n    }\n  }\n}",
+										"query": "mutation {\n  addWorkoutExercise(\n    workoutId: 4, \n    exerciseId: 1, \n    supersetExerciseId: 2,\n    workoutWeights : [10, 10], \n    workoutReps: [1, 2] \n    restTime: 10\n  ) {\n    workoutExercise {\n      workoutId, exerciseId, workoutWeights, workoutReps, restTime, exercise {\n        name\n      }\n    }\n  }\n}",
 										"variables": ""
 									},
 									"options": {

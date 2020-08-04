@@ -42,7 +42,7 @@ class Workout(db.Model):
         if attrs.get('projected_time'):
             self.projected_time = attrs.get('projected_time')
         if attrs.get("scheduled_time"):
-            ensure_valid_time(scheduled_time)
+            Workout.ensure_valid_time(scheduled_time)
             self.scheduled_time = attrs.get("scheduled_time")
 
     def delete(self):
@@ -54,7 +54,7 @@ class Workout(db.Model):
 
     @staticmethod
     def create(name, description, projected_time, scheduled_time: datetime):
-        ensure_valid_time(scheduled_time)
+        Workout.ensure_valid_time(scheduled_time)
 
         workout = Workout(
             name=name,
@@ -71,6 +71,7 @@ class Workout(db.Model):
         except DBAPIError as err:
             raise UnexpectedError(DATABASE_ERROR_MSG)
 
+    @staticmethod
     def ensure_valid_time(scheduled_time: datetime):
         # fail if the scheduled time is not in the future
         if (scheduled_time and scheduled_time < datetime.now(scheduled_time.tzinfo)):
