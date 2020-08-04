@@ -40,7 +40,6 @@ def downgrade():
     sa.ForeignKeyConstraint(['src_exercise_id'], ['exercise.id'], name='workout_exercise_super_sets_src_exercise_id_fkey'),
     sa.ForeignKeyConstraint(['src_workout_id'], ['workout.id'], name='workout_exercise_super_sets_src_workout_id_fkey'),
     sa.ForeignKeyConstraint(['super_set_exercise_id'], ['exercise.id'], name='workout_exercise_super_sets_super_set_exercise_id_fkey'),
-    sa.PrimaryKeyConstraint('src_workout_id', 'src_exercise_id', name='workout_exercise_pkey')
     )
     op.create_index('ix_workout_exercise_super_sets_super_set_exercise_id', 'workout_exercise_super_sets', ['super_set_exercise_id'], unique=False)
     op.create_index('ix_workout_exercise_super_sets_src_workout_id', 'workout_exercise_super_sets', ['src_workout_id'], unique=False)
