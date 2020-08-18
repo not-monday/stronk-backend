@@ -21,3 +21,5 @@ ERROR_RESPONSE_BODY = {
     'code': -1,
     'message': ""
 }
+
+DEV_USER_ID = "user_id_1"

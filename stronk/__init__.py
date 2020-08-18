@@ -9,6 +9,7 @@ import firebase_admin
 from tests.constants import TEST_ID
 from stronk.database.config import Config, TestConfig
 from stronk.utils import auth
+from stronk.constants import DEV_USER_ID
 
 # Load environment variables from .env
 load_dotenv()
@@ -53,14 +54,21 @@ app.register_error_handler(HTTPException, h.handle_http_exception)
 app.register_error_handler(Exception, h.handle_unexpected_errors)
 
 # Environment specific settings
-if app.config['ENV'] != 'testing':
-    app.before_request(auth.verify_token)
-else:
+if app.config['ENV'] == 'testing':
     def initialize_test_g():
         """Initialize values of g for testing purposes."""
         g.id = TEST_ID
 
     app.before_request(initialize_test_g)
+elif app.config['ENV'] == 'development':
+    def initialize_dev_g():
+        """Initialize values of g for dev purposes."""
+        g.id = DEV_USER_ID
+    app.before_request(initialize_dev_g)
+else:
+    app.before_request(auth.verify_token)
+
+
 
 """ graphql route
 this uses the flask as_view utility which transforms a class to a view function, passing its args to the class constructor
