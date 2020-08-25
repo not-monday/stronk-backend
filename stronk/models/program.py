@@ -16,7 +16,8 @@ class Program(db.Model):
                        db.ForeignKey(f'{User.__tablename__}.id'),
                        index=True,
                        nullable=False)
-    name = db.Column(db.String(128), index=True, nullable=False, unique=True)
+    name = db.Column(db.String(128), index=True, nullable=False, unique=False)
+    parent_id = db.Column(db.Integer)
     duration = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String(256), nullable=False)
 
@@ -95,3 +96,14 @@ class Program(db.Model):
             db.session.commit()
         except DBAPIError as err:
             raise UnexpectedError(DATABASE_ERROR_MSG)
+
+    def clone(self):
+        new_program = Program.create(
+            author=self.author,
+            name=self.name,
+            duration=self.duration,
+            description=self.description
+        )
+       
+        new_program.parent_id = self.id
+        return new_program

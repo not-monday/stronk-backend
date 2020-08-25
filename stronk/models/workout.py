@@ -14,7 +14,7 @@ class Workout(db.Model):
     name = db.Column(db.String(128), index=True, nullable=False)
     description = db.Column(db.String(500), nullable=False)
     projected_time = db.Column(db.Integer, nullable=False)
-    scheduled_time = db.Column(db.DateTime(timezone=True), nullable=False)
+    scheduled_time = db.Column(db.DateTime(timezone=True), nullable=True)
 
     def to_dict(self):
         """Returns a dictionary representing the attributes of the program.
@@ -42,6 +42,7 @@ class Workout(db.Model):
         if attrs.get('projected_time'):
             self.projected_time = attrs.get('projected_time')
         if attrs.get("scheduled_time"):
+            Workout.ensure_valid_time(scheduled_time)
             self.scheduled_time = attrs.get("scheduled_time")
 
     def delete(self):
@@ -53,9 +54,7 @@ class Workout(db.Model):
 
     @staticmethod
     def create(name, description, projected_time, scheduled_time: datetime):
-        # ensure that the workout is being created the current or a future time
-        if (scheduled_time < datetime.now(scheduled_time.tzinfo)):
-            raise BadAttributes(INVALID_WORKOUT_START_TIME)
+        Workout.ensure_valid_time(scheduled_time)
 
         workout = Workout(
             name=name,
@@ -73,5 +72,20 @@ class Workout(db.Model):
             raise UnexpectedError(DATABASE_ERROR_MSG)
 
     @staticmethod
+    def ensure_valid_time(scheduled_time: datetime):
+        """ checks if the supplied scheduled time is not in the future
+        """
+        if (scheduled_time < datetime.now(scheduled_time.tzinfo)):
+            raise BadAttributes(INVALID_WORKOUT_START_TIME)
+
+    @staticmethod
     def find_by_id(id):
         return Workout.query.filter_by(id=id).first()
+
+    def clone(self):
+        return Workout.create(
+            name=self.name, 
+            description=self.description, 
+            projected_time=self.projected_time, 
+            scheduled_time=self.scheduled_time
+        )

@@ -2529,7 +2529,7 @@
 											"        \"data\": {",
 											"            \"createWorkout\": {",
 											"                \"workout\": {",
-											"                    \"name\": \"test program\",",
+											"                    \"name\": \"test workout\",",
 											"                    \"description\": \"blah blah blah\",",
 											"                    \"projectedTime\": 100,",
 											"                    \"scheduledTime\": \"2099-01-20T12:00:00+00:00\"",
@@ -2551,7 +2551,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n  createWorkout(\n    name: \"test program\",\n    programId: 1,\n    description: \"blah blah blah\",\n    projectedTime: 100,\n    scheduledTime: \"2099-01-20T12:00:00+00:00\"\n  ) {\n    workout {\n        name\n        description\n        projectedTime\n        scheduledTime\n    }\n  }\n}\n",
+										"query": "mutation {\n  createWorkout(\n    name: \"test workout\",\n    programId: 2,\n    description: \"blah blah blah\",\n    projectedTime: 100,\n    scheduledTime: \"2099-01-20T12:00:00+00:00\"\n  ) {\n    workout {\n        name\n        description\n        projectedTime\n        scheduledTime\n    }\n  }\n}\n",
 										"variables": ""
 									},
 									"options": {
@@ -2610,7 +2610,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n  createWorkout(\n    name: \"test program\",\n    programId: 1,\n    projectedTime: 100,\n    scheduledTime: \"2099-01-20T12:00:00+00:00\"\n  ) {\n    workout {\n      name\n      description\n      projectedTime\n      scheduledTime\n    }\n  }\n}\n",
+										"query": "mutation {\n  createWorkout(\n    name: \"test program\",\n    programId: 2,\n    projectedTime: 100,\n    scheduledTime: \"2099-01-20T12:00:00+00:00\"\n  ) {\n    workout {\n      name\n      description\n      projectedTime\n      scheduledTime\n    }\n  }\n}\n",
 										"variables": "{\n\t\"name\": \"test program\",\n\t\"programId\": 1,\n\t\"projectedTime\": 100\n}"
 									},
 									"options": {
@@ -2669,7 +2669,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n  createWorkout(\n    name: \"test program\",\n    programId: 1,\n    description: \"blah blah blah\",\n    scheduledTime: \"2099-01-20T12:00:00+00:00\"\n) {\n    workout {\n      name\n      description\n      projectedTime\n      scheduledTime\n    }\n  }\n}\n",
+										"query": "mutation {\n  createWorkout(\n    name: \"test program\",\n    programId: 2,\n    description: \"blah blah blah\",\n    scheduledTime: \"2099-01-20T12:00:00+00:00\"\n) {\n    workout {\n      name\n      description\n      projectedTime\n      scheduledTime\n    }\n  }\n}\n",
 										"variables": ""
 									},
 									"options": {
@@ -3389,56 +3389,6 @@
 							"response": []
 						},
 						{
-							"name": "Conflict",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "3e7696d4-5535-4ca2-8a4f-15a94e7a770f",
-										"exec": [
-											"pm.test(\"Status test\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"Response body test\", function () {",
-											"    var result = pm.response.json();",
-											"    var expected_code = \"RESOURCE_CONFLICT_ERROR\";",
-											"    var expected_msg = \"Name already used by another program\";",
-											"    pm.expect(result.errors[0].context.code).to.eql(expected_code);",
-											"    pm.expect(result.errors[0].context.message).to.eql(expected_msg);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "graphql",
-									"graphql": {
-										"query": "mutation {\n  createProgram(name:\"new program\", author: \"user_id_1\", duration: 10, desc: \"newest program\") {\n    program {\n      name\n      author {\n        name\n      }\n      duration\n      description\n    }\n  }\n}",
-										"variables": ""
-									},
-									"options": {
-										"graphql": {}
-									}
-								},
-								"url": {
-									"raw": "{{base_url}}/graphql",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"graphql"
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "Missing name",
 							"event": [
 								{
@@ -3487,7 +3437,7 @@
 							"response": []
 						},
 						{
-							"name": "Missing author",
+							"name": "Non-existent author",
 							"event": [
 								{
 									"listen": "test",
@@ -3500,8 +3450,8 @@
 											"",
 											"pm.test(\"Response body test\", function () {",
 											"    var result = pm.response.json();",
-											"    var expected_code = \"RESOURCE_CONFLICT_ERROR\";",
-											"    var expected_msg = \"Name already used by another program\";",
+											"    var expected_code = \"BAD_REQUEST_ERROR\";",
+											"    var expected_msg = \"User not found.\";",
 											"    pm.expect(result.errors[0].context.code).to.eql(expected_code);",
 											"    pm.expect(result.errors[0].context.message).to.eql(expected_msg);",
 											"});",
@@ -3517,7 +3467,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n  createProgram(name:\"new program\", author: \"user_id_1\", duration: 10, desc: \"newest program\") {\n    program {\n      name\n      author {\n        name\n      }\n      duration\n      description\n    }\n  }\n}",
+										"query": "mutation {\n  createProgram(name:\"new program\", author: \"not_real_id\", duration: 10, desc: \"newest program\") {\n    program {\n      name\n      author {\n        name\n      }\n      duration\n      description\n    }\n  }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -3858,6 +3808,167 @@
 								}
 							},
 							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "5. Mutation: subscribe",
+					"item": [
+						{
+							"name": "Subscribe to program",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "ed7ed6c3-f5a0-44fb-a873-299a3015d738",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"subscribeToProgram\": {",
+											"                \"updatedUser\": {",
+											"                    \"currentProgram\": {",
+											"                        \"author\": {",
+											"                            \"username\": \"mxwvy\"",
+											"                        },",
+											"                        \"name\": \"Max's Program\",",
+											"                        \"workouts\": [",
+											"                            {",
+											"                                \"name\": \"workout 1\",",
+											"                                \"workoutExercises\": [",
+											"                                    {",
+											"                                        \"exercise\": {",
+											"                                            \"name\": \"bicep curls\"",
+											"                                        }",
+											"                                    },",
+											"                                    {",
+											"                                        \"exercise\": {",
+											"                                            \"name\": \"squats\"",
+											"                                        }",
+											"                                    },",
+											"                                    {",
+											"                                        \"exercise\": {",
+											"                                            \"name\": \"pullups\"",
+											"                                        }",
+											"                                    }",
+											"                                ]",
+											"                            }",
+											"                        ]",
+											"                    }",
+											"                }",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    subscribeToProgram(programId: 1) {\n        updatedUser { \n            currentProgram {\n                author {\n                    username\n                }\n                name\n                workouts {\n                    name, workoutExercises {\n                        exercise {\n                            name\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Subscribe to non-existent program",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "169fa75c-6aec-41f9-b50a-990c330b4678",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected_code = \"NOT_FOUND_ERROR\";",
+											"    var expected_msg = \"Program not found.\";",
+											"    pm.expect(result.errors[0].context.code).to.eql(expected_code);",
+											"    pm.expect(result.errors[0].context.message).to.eql(expected_msg);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    subscribeToProgram(programId: 10) {\n        updatedUser { \n            currentProgram {\n                name\n            }\n        }\n    }\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "69c9aa8f-b534-4892-aa6c-ea3bf11769a7",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "bffd5ba6-3bb2-4ac5-930d-9c85ec42fec2",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
 						}
 					],
 					"protocolProfileBehavior": {},
@@ -4566,18 +4677,7 @@
 											"                \"workoutExercise\": {",
 											"                    \"workoutId\": \"4\",",
 											"                    \"exerciseId\": \"1\",",
-											"                    \"workoutWeights\": [",
-											"                        10.0,",
-											"                        10.0",
-											"                    ],",
-											"                    \"workoutReps\": [",
-											"                        1,",
-											"                        2",
-											"                    ],",
-											"                    \"restTime\": 10,",
-											"                    \"exercise\": {",
-											"                        \"name\": \"bicep curls\"",
-											"                    }",
+											"                    \"supersetExerciseId\": 2",
 											"                }",
 											"            }",
 											"        }",
@@ -4597,7 +4697,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n  addWorkoutExercise(\n    workoutId: 4, \n    exerciseId: 1, \n    workoutWeights : [10, 10], \n    workoutReps: [1, 2] \n    restTime: 10\n  ) {\n    workoutExercise {\n      workoutId, exerciseId, workoutWeights, workoutReps, restTime, exercise {\n        name\n      }\n    }\n  }\n}",
+										"query": "mutation {\n  addWorkoutExercise(\n    workoutId: 4, \n    exerciseId: 1, \n    supersetExerciseId: 2,\n    workoutWeights : [10, 10], \n    workoutReps: [1, 2] \n    restTime: 10\n  ) {\n    workoutExercise {\n      workoutId, exerciseId, supersetExerciseId\n    }\n  }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -4648,7 +4748,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n  addWorkoutExercise(\n    workoutId: 4, \n    exerciseId: 1, \n    workoutWeights : [10, 10], \n    workoutReps: [1, 2] \n    restTime: 10\n  ) {\n    workoutExercise {\n      workoutId, exerciseId, workoutWeights, workoutReps, restTime, exercise {\n        name\n      }\n    }\n  }\n}",
+										"query": "mutation {\n  addWorkoutExercise(\n    workoutId: 4, \n    exerciseId: 1, \n    supersetExerciseId: 2,\n    workoutWeights : [10, 10], \n    workoutReps: [1, 2] \n    restTime: 10\n  ) {\n    workoutExercise {\n      workoutId, exerciseId, supersetExerciseId\n    }\n  }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -4716,6 +4816,7 @@
 											"                \"workoutExercise\": {",
 											"                    \"workoutId\": \"4\",",
 											"                    \"exerciseId\": \"1\",",
+											"                    \"supersetExerciseId\": 3,",
 											"                    \"workoutWeights\": [",
 											"                        10.0,",
 											"                        10.0,",
@@ -4749,7 +4850,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n  updateWorkoutExercise(\n    workoutId: 4, \n    exerciseId: 1, \n    workoutWeights : [10, 10, 10], \n    workoutReps: [1, 2, 3] \n    restTime: 2\n  ) {\n    workoutExercise {\n      workoutId, exerciseId, workoutWeights, workoutReps, restTime, exercise {\n        name\n      }\n    }\n  }\n}",
+										"query": "mutation {\n  updateWorkoutExercise(\n    workoutId: 4, \n    exerciseId: 1, \n    supersetExerciseId: 3,\n    workoutWeights : [10, 10, 10], \n    workoutReps: [1, 2, 3] \n    restTime: 2\n  ) {\n    workoutExercise {\n      workoutId, exerciseId, supersetExerciseId, workoutWeights, workoutReps, restTime, exercise {\n        name\n      }\n    }\n  }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -4800,7 +4901,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n  updateWorkoutExercise(\n    workoutId: 4, \n    exerciseId: 1, \n    workoutWeights : [10, 10, 10, 11], \n    workoutReps: [1, 2] \n    restTime: 2\n  ) {\n    workoutExercise {\n      workoutId, exerciseId, workoutWeights, workoutReps, restTime, exercise {\n        name\n      }\n    }\n  }\n}",
+										"query": "mutation {\n  updateWorkoutExercise(\n    workoutId: 1, \n    exerciseId: 1, \n    workoutWeights : [10, 10, 10, 11], \n    workoutReps: [1, 2] \n    restTime: 2\n  ) {\n    workoutExercise {\n      workoutId, exerciseId, workoutWeights, workoutReps, restTime, exercise {\n        name\n      }\n    }\n  }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -4826,6 +4927,57 @@
 									"listen": "test",
 									"script": {
 										"id": "f0daa404-e45d-4dee-927c-a298122290b6",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected_code = \"NOT_FOUND_ERROR\";",
+											"    var expected_msg = \"Workout exercise not found.\";",
+											"    pm.expect(result.errors[0].context.code).to.eql(expected_code);",
+											"    pm.expect(result.errors[0].context.message).to.eql(expected_msg);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n  updateWorkoutExercise(\n    workoutId: 0, \n    exerciseId: 1, \n    workoutWeights : [10], \n    workoutReps: [1] \n    restTime: 2\n  ) {\n    workoutExercise {\n      workoutId, exerciseId, workoutWeights, workoutReps, restTime, exercise {\n        name\n      }\n    }\n  }\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "remove superset from workout exercise",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "8cf9da2f-2199-471e-8c5f-e88e258188da",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",

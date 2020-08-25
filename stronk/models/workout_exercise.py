@@ -29,15 +29,19 @@ class WorkoutExercise(db.Model):
                             primary_key=True,
                             index=True,
                             nullable=False)
+    superset_exercise_id = db.Column(db.Integer,
+                                      db.ForeignKey('exercise.id'),
+                                      index=True)
     workout_weights = db.Column(ARRAY(db.Float), nullable=False)
     workout_reps = db.Column(ARRAY(db.Integer), nullable=False)
     rest_time = db.Column(db.Integer, nullable=False)
 
     @staticmethod
-    def create(workout_id, exercise_id, workout_weights, workout_reps, rest_time):
+    def create(workout_id, exercise_id, superset_exercise_id, workout_weights, workout_reps, rest_time):
         workoutExercise = WorkoutExercise(
             workout_id=workout_id,
             exercise_id=exercise_id,
+            superset_exercise_id=superset_exercise_id,
             workout_weights=workout_weights,
             workout_reps=workout_reps,
             rest_time=rest_time if rest_time else 0
@@ -69,6 +73,7 @@ class WorkoutExercise(db.Model):
         return {
             "workout": self.get_workout().to_dict(),
             "exercise": self.get_exercise().to_dict(),
+            "superset_exercise_id": self.get_superset_exercise().to_dict(),
             "workout_weights": self.workout_weights,
             "workout_reps": self.workout_reps,
             "rest_time": self.rest_time
@@ -77,6 +82,11 @@ class WorkoutExercise(db.Model):
     def get_exercise(self):
         """Returns Exercise object for the exercise of the workoutExercise. """
         return Exercise.query.filter_by(id=self.exercise_id)
+
+    def get_superset_exercise(self):
+        """Returns excercise object for the super set of the WorkoutExercise"""
+        return Exercise.query.filter_by(id=self.superset_exercise_id)
+
 
     def get_workout(self):
         """Returns Workout object for the workout of the workoutExercise. """
@@ -102,6 +112,13 @@ class WorkoutExercise(db.Model):
             else:
                 raise NoResultFound('Exercise ID does not exist')
 
+        if attrs.get('superset_exercise_id'):
+            new_superset_id = attrs.get('superset_exercise_id')
+            if Exercise.query.filter_by(id=new_superset_id):
+                self.superset_exercise_id = new_superset_id
+            else:
+                raise NoResultFound('Superset exercise ID does not exist')  
+
         newWorkoutsWeights = attrs.get('workout_weights')
         newWorkoutReps = attrs.get('workout_reps')
        
@@ -122,6 +139,9 @@ class WorkoutExercise(db.Model):
         if attrs.get('rest_time'):
             self.rest_time = attrs.get('rest_time')
 
+    def removeSuperSet(self):
+        self.superset_exercise_id = None
+
     def delete(self):
         try:
             db.session.delete(self)
@@ -131,6 +151,16 @@ class WorkoutExercise(db.Model):
             }
         except DBAPIError as err:
             raise UnexpectedError(DATABASE_ERROR_MSG)
+
+    def clone(self, new_workout_id: int):
+        return WorkoutExercise.create(
+                    workout_id=new_workout_id, 
+                    exercise_id=self.exercise_id, 
+                    superset_exercise_id=self.superset_exercise_id, 
+                    workout_weights=self.workout_weights, 
+                    workout_reps=self.workout_reps, 
+                    rest_time=self.rest_time
+                )
 
     @staticmethod
     def deleteWorkoutExercises(workout_id):
