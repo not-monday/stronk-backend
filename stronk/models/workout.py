@@ -73,8 +73,9 @@ class Workout(db.Model):
 
     @staticmethod
     def ensure_valid_time(scheduled_time: datetime):
-        # fail if the scheduled time is not in the future
-        if (scheduled_time and scheduled_time < datetime.now(scheduled_time.tzinfo)):
+        """ checks if the supplied scheduled time is not in the future
+        """
+        if (scheduled_time < datetime.now(scheduled_time.tzinfo)):
             raise BadAttributes(INVALID_WORKOUT_START_TIME)
 
     @staticmethod

@@ -31,7 +31,6 @@ class WorkoutExercise(db.Model):
                             nullable=False)
     superset_exercise_id = db.Column(db.Integer,
                                       db.ForeignKey('exercise.id'),
-                                      primary_key=False,
                                       index=True)
     workout_weights = db.Column(ARRAY(db.Float), nullable=False)
     workout_reps = db.Column(ARRAY(db.Integer), nullable=False)
