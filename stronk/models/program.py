@@ -1,6 +1,7 @@
 import string
 from psycopg2.errors import ForeignKeyViolation, UniqueViolation
 from sqlalchemy.exc import DBAPIError, IntegrityError
+from sqlalchemy.schema import UniqueConstraint
 
 from stronk.constants import DATABASE_ERROR_MSG, USER_NOT_FOUND_MSG, PROGRAM_NOT_FOUND_MSG, WORKOUT_NOT_FOUND_MSG
 
@@ -9,13 +10,12 @@ from stronk.errors.bad_attributes import BadAttributes
 from stronk.errors.conflict import Conflict
 from stronk.errors.not_found import NotFound
 from stronk.errors.unexpected_error import UnexpectedError
-
-from stronk.models.program_workouts import ProgramWorkouts
-from stronk.models.workout_exercise import WorkoutExercise
 from stronk.models.user import User
-from stronk.models.workout import Workout
+
 
 class Program(db.Model):
+    __table_args__ = (UniqueConstraint('author', 'name',
+                                       name='unique_program_names_for_author'),)
     id = db.Column(db.Integer, primary_key=True)
     author = db.Column(db.String(),
                        db.ForeignKey(f'{User.__tablename__}.id'),
