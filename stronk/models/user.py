@@ -8,6 +8,7 @@ from stronk.errors.conflict import Conflict
 from stronk.errors.unexpected_error import UnexpectedError
 
 from stronk import db
+from stronk.models.program import Program
 
 table_name = "stronk_user"
 
@@ -89,7 +90,7 @@ class User(db.Model):
             self.username = attrs.get('username')
         if 'current_program' in attrs:
             new_program = attrs.get('current_program')
-            self.current_program = None if new_program == -1 else new_program
+            self._updateSubscription(new_program)
 
         try:
             db.session.add(self)
@@ -108,3 +109,10 @@ class User(db.Model):
             db.session.commit()
         except DBAPIError as err:
             raise UnexpectedError(DATABASE_ERROR_MSG)
+
+    def _subscribe(self, program_id: int):
+        # update the workout for the current user to the new one
+        if (program_id == -1):
+            self.current_program = None
+        else:
+            self.current_program = Program.subscribe(program_id)

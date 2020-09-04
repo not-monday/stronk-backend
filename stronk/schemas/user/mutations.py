@@ -1,10 +1,15 @@
 import graphene
-from firebase_admin import auth
-from flask import current_app, g
+from flask import g
 
-from stronk.constants import USER_NOT_FOUND_MSG
+from stronk.constants import PROGRAM_NOT_FOUND_MSG, WORKOUT_NOT_FOUND_MSG, USER_NOT_FOUND_MSG
+
 from stronk.errors.not_found import NotFound
+from stronk.models.program import Program as ProgramModel
+from stronk.models.program_workouts import ProgramWorkouts as ProgramWorkoutsModel
+from stronk.models.workout_exercise import WorkoutExercise as WorkoutExerciseModel
 from stronk.models.user import User as UserModel
+from stronk.models.workout import Workout as WorkoutModel
+
 from stronk.schemas.user.type import User
 from stronk.utils.auth import is_authorized
 
@@ -76,7 +81,6 @@ class DeleteUser(graphene.Mutation):
         ok = True
 
         return DeleteUser(ok=ok)
-
 
 class Mutation(graphene.ObjectType):
     create_user = CreateUser.Field()
