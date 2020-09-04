@@ -9,6 +9,7 @@ from stronk.models.program_workouts import ProgramWorkouts as ProgramWorkoutsMod
 from stronk.models.user import User as UserModel
 from stronk.models.workout_exercise import WorkoutExercise as WorkoutExerciseModel
 from stronk.models.workout import Workout as WorkoutModel
+from stronk.schemas.user.type import User
 
 from stronk.utils.auth import is_authorized
 
@@ -16,7 +17,7 @@ from stronk.utils.auth import is_authorized
 class CreateUser(graphene.Mutation):
     """Create a user."""
     # declare class attributes
-    user = graphene.Field(UserModel)
+    user = graphene.Field(User)
 
     class Arguments:
         name = graphene.String(required=True)
@@ -75,8 +76,7 @@ def _subscribeToProgram(program_id: int):
     new_program = old_program.clone()
 
     # clone related relations
-    old_program_workouts = ProgramWorkoutsModel.filter_by_program_id(
-        old_program.id)
+    old_program_workouts = ProgramWorkoutsModel.filter_by_program_id(old_program.id)
     for old_program_workout in old_program_workouts:
 
         # create new workout
