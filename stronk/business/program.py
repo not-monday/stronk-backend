@@ -8,12 +8,12 @@ from stronk.models.workout import Workout as WorkoutModel
 from stronk.schemas.user.type import User
 
 
-def subscribeToProgram(program_id: int):
+def subscribeToProgram(program_id: int, user_id: int):
     old_program = ProgramModel.find_by_id(program_id)
     if not old_program:
         raise NotFound(PROGRAM_NOT_FOUND_MSG)
 
-    new_program = old_program.clone()
+    new_program = old_program.clone(user_id)
 
     # clone related relations
     old_program_workouts = ProgramWorkoutsModel.filter_by_program_id(old_program.id)

@@ -58,7 +58,7 @@ class UpdateUser(graphene.Mutation):
             if (currentProgram == -1):
                 attrs["current_program"] = None
             else:
-                attrs["current_program"] = subscribeToProgram(currentProgram).id
+                attrs["current_program"] = subscribeToProgram(currentProgram, g.id).id
         user.update(attrs)
 
         return UpdateUser(user=user)

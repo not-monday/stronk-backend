@@ -102,9 +102,9 @@ class Program(db.Model):
         except DBAPIError as err:
             raise UnexpectedError(DATABASE_ERROR_MSG)
 
-    def clone(self):
+    def clone(self, user_id: int):
         new_program = Program.create(
-            author=self.author,
+            author=user_id,
             name=self.name,
             duration=self.duration,
             description=self.description
