@@ -15,18 +15,19 @@ from stronk.utils.auth import is_authorized
 
 
 class CreateProgram(graphene.Mutation):
-    """Create a program"""
+    """Create a program
+    
+    Author is a user's username."""
     program = graphene.Field(Program)
 
     class Arguments:
-        author = graphene.String(required=True)
         name = graphene.String(required=True)
         duration = graphene.Int(required=True)
         # Use desc instead of description since latter is a reserved word.
         desc = graphene.String(required=True)
 
-    def mutate(root, info, author: str, name: str, duration: int, desc: str):
-        program = ProgramModel.create(author=author,
+    def mutate(root, info, name: str, duration: int, desc: str):
+        program = ProgramModel.create(author=g.id,
                                       name=name,
                                       duration=duration,
                                       description=desc)
@@ -35,6 +36,8 @@ class CreateProgram(graphene.Mutation):
 
 class UpdateProgram(graphene.Mutation):
     """Update an existing program. Throws a NotFound error if program not found.
+
+    Author is a user's username.
     """
     program = graphene.Field(Program)
 
@@ -56,7 +59,10 @@ class UpdateProgram(graphene.Mutation):
 
         attrs = {}
         if author:
-            attrs['author'] = author
+            user = UserModel.find_by_username(author)
+            if not user:
+                raise NotFound(USER_NOT_FOUND_MSG)
+            attrs['author'] = user.id
         if name:
             attrs['name'] = name
         if duration:

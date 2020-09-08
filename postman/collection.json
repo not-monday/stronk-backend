@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "0341911a-1fef-47f0-82d6-5e387d64b318",
-		"name": "Stronk api-permissions",
+		"_postman_id": "1bd357fa-7a3e-462a-ab5c-27521d88006c",
+		"name": "stronk",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -602,7 +602,7 @@
 							]
 						},
 						{
-							"name": "user query by id (full nested)",
+							"name": "user query by username (full nested)",
 							"event": [
 								{
 									"listen": "test",
@@ -908,12 +908,61 @@
 					"name": "3. Mutation: updateUser",
 					"item": [
 						{
-							"name": "Update non-existent / another user",
+							"name": "Update non-existent user",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
 										"id": "bed1a37f-492d-4ffe-99a1-763ff2480dc0",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected_code = \"NOT_FOUND_ERROR\";",
+											"    var expected_msg = \"User not found.\";",
+											"    pm.expect(result.errors[0].context.code).to.eql(expected_code);",
+											"    pm.expect(result.errors[0].context.message).to.eql(expected_msg);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    updateUser(username: \"user_id_x\", name: \"new_name\") {\n        user {\n            id\n            name\n            username\n            email\n            currentProgram {\n                id\n            }\n        }\n    }\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update another user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5330b85e-6c81-4fc5-861e-abae56e71806",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -937,78 +986,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n    updateUser(id: \"user_id_x\", name: \"new_name\") {\n        user {\n            id\n            name\n            username\n            email\n            currentProgram {\n                id\n            }\n        }\n    }\n}",
-										"variables": ""
-									},
-									"options": {
-										"graphql": {}
-									}
-								},
-								"url": {
-									"raw": "{{base_url}}/graphql",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"graphql"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Update username",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "e2adcc6c-dc1b-4903-b004-dc8d91534520",
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"id": "4527dae2-e487-41d8-9786-d1307254d61e",
-										"exec": [
-											"pm.test(\"Status test\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"Response body test\", function () {",
-											"    var result = pm.response.json();",
-											"    var expected = {",
-											"        \"data\": {",
-											"            \"updateUser\": {",
-											"                \"user\": {",
-											"                    \"id\": \"test_id\",",
-											"                    \"name\": \"test_name\",",
-											"                    \"username\": \"new_username\",",
-											"                    \"email\": \"test_email\",",
-											"                    \"currentProgram\": null",
-											"                }",
-											"            }",
-											"        }",
-											"    }",
-											"    pm.expect(result).to.eql(expected);",
-											"});",
-											"",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "graphql",
-									"graphql": {
-										"query": "mutation {\n    updateUser(id: \"test_id\", username: \"new_username\", currentProgram: -1) {\n        user {\n            id\n            name\n            username\n            email\n            currentProgram {\n                id\n            }\n        }\n    }\n}",
+										"query": "mutation {\n    updateUser(username: \"mxwvy\", name: \"new_name\") {\n        user {\n            id\n            name\n            username\n            email\n            currentProgram {\n                id\n            }\n        }\n    }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -1047,7 +1025,7 @@
 											"                \"user\": {",
 											"                    \"id\": \"test_id\",",
 											"                    \"name\": \"test_name\",",
-											"                    \"username\": \"new_username\",",
+											"                    \"username\": \"test_username\",",
 											"                    \"email\": \"new_email\",",
 											"                    \"currentProgram\": null",
 											"                }",
@@ -1069,7 +1047,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n    updateUser(id: \"test_id\", email: \"new_email\") {\n        user {\n            id\n            name\n            username\n            email\n            currentProgram {\n                id\n            }\n        }\n    }\n}",
+										"query": "mutation {\n    updateUser(username: \"test_username\", email: \"new_email\") {\n        user {\n            id\n            name\n            username\n            email\n            currentProgram {\n                id\n            }\n        }\n    }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -1108,7 +1086,7 @@
 											"                \"user\": {",
 											"                    \"id\": \"test_id\",",
 											"                    \"name\": \"new_name\",",
-											"                    \"username\": \"new_username\",",
+											"                    \"username\": \"test_username\",",
 											"                    \"email\": \"new_email\",",
 											"                    \"currentProgram\": null",
 											"                }",
@@ -1130,7 +1108,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n    updateUser(id: \"test_id\", name: \"new_name\") {\n        user {\n            id\n            name\n            username\n            email\n            currentProgram {\n                id\n            }\n        }\n    }\n}",
+										"query": "mutation {\n    updateUser(username: \"test_username\", name: \"new_name\") {\n        user {\n            id\n            name\n            username\n            email\n            currentProgram {\n                id\n            }\n        }\n    }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -1169,7 +1147,7 @@
 											"                \"user\": {",
 											"                    \"id\": \"test_id\",",
 											"                    \"name\": \"new_name\",",
-											"                    \"username\": \"new_username\",",
+											"                    \"username\": \"test_username\",",
 											"                    \"email\": \"new_email\",",
 											"                    \"currentProgram\": {",
 											"                        \"id\": \"2\"",
@@ -1193,7 +1171,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n    updateUser(id: \"test_id\", currentProgram: 2) {\n        user {\n            id\n            name\n            username\n            email\n            currentProgram {\n                id\n            }\n        }\n    }\n}",
+										"query": "mutation {\n    updateUser(username: \"test_username\", currentProgram: 2) {\n        user {\n            id\n            name\n            username\n            email\n            currentProgram {\n                id\n            }\n        }\n    }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -1253,7 +1231,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n    deleteUser(id: \"test_id\") {\n        ok\n    }\n}",
+										"query": "mutation {\n    deleteUser(username: \"test_username\") {\n        ok\n    }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -1273,12 +1251,61 @@
 							"response": []
 						},
 						{
-							"name": "Delete non-existent / another user",
+							"name": "Delete non-existent",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
 										"id": "a1ed52a2-b233-4061-b971-82d728f5aca6",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected_code = \"NOT_FOUND_ERROR\";",
+											"    var expected_msg = \"User not found.\";",
+											"    pm.expect(result.errors[0].context.code).to.eql(expected_code);",
+											"    pm.expect(result.errors[0].context.message).to.eql(expected_msg);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    deleteUser(username: \"test_id_x\") {\n        ok\n    }\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete another user",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "967b3943-2357-43cf-b610-7b4fa52518e9",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1302,7 +1329,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n    deleteUser(id: \"test_id_x\") {\n        ok\n    }\n}",
+										"query": "mutation {\n    deleteUser(username: \"kakit\") {\n        ok\n    }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -1589,116 +1616,6 @@
 							"response": []
 						},
 						{
-							"name": "exercise query by name",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "66b80c35-c12b-4655-9a26-f5f2b43661f1",
-										"exec": [
-											"pm.test(\"Status test\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"Response body test\", function () {",
-											"    var result = pm.response.json();",
-											"    var expected = {",
-											"        \"data\": {",
-											"            \"exercise\": {",
-											"                \"id\": \"2\",",
-											"                \"name\": \"squats\",",
-											"                \"description\": \"squats description\"",
-											"            }",
-											"        }",
-											"    }",
-											"    pm.expect(result).to.eql(expected);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "graphql",
-									"graphql": {
-										"query": "query {\n    exercise(name: \"squats\") {\n        id\n        name\n        description\n    }\n}",
-										"variables": ""
-									},
-									"options": {
-										"graphql": {}
-									}
-								},
-								"url": {
-									"raw": "{{base_url}}/graphql",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"graphql"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "exercise query by desc",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "32f78c6e-5f3f-4d1c-9a51-5159f31526e3",
-										"exec": [
-											"pm.test(\"Status test\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"Response body test\", function () {",
-											"    var result = pm.response.json();",
-											"    var expected = {",
-											"        \"data\": {",
-											"            \"exercise\": {",
-											"                \"id\": \"2\",",
-											"                \"name\": \"squats\",",
-											"                \"description\": \"squats description\"",
-											"            }",
-											"        }",
-											"    }",
-											"    pm.expect(result).to.eql(expected);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "graphql",
-									"graphql": {
-										"query": "query {\n    exercise(desc: \"squats description\") {\n        id\n        name\n        description\n    }\n}",
-										"variables": ""
-									},
-									"options": {
-										"graphql": {}
-									}
-								},
-								"url": {
-									"raw": "{{base_url}}/graphql",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"graphql"
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "exercise query - NULL",
 							"event": [
 								{
@@ -1795,56 +1712,6 @@
 									"mode": "graphql",
 									"graphql": {
 										"query": "mutation {\n    createExercise(name: \"ex1\", desc: \"ex1 desc\") {\n        exercise {\n            name\n            description\n        }\n    }\n}",
-										"variables": ""
-									},
-									"options": {
-										"graphql": {}
-									}
-								},
-								"url": {
-									"raw": "{{base_url}}/graphql",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"graphql"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Conflict",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "57d2eaaa-377c-4ea3-9bdb-027f69830c46",
-										"exec": [
-											"pm.test(\"Status test\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"Response body test\", function () {",
-											"    var result = pm.response.json();",
-											"    var expected_code = \"RESOURCE_CONFLICT_ERROR\";",
-											"    var expected_msg = \"Name already used by another exercise\";",
-											"    pm.expect(result.errors[0].context.code).to.eql(expected_code);",
-											"    pm.expect(result.errors[0].context.message).to.eql(expected_msg);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "graphql",
-									"graphql": {
-										"query": "mutation {\n    createExercise(name: \"ex1\", desc: \"newest exercise\") {\n        exercise {\n            id\n            name\n            description\n        }\n    }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -2123,6 +1990,65 @@
 									"mode": "graphql",
 									"graphql": {
 										"query": "mutation {\n    updateExercise(id: 4, desc: \"new description\") {\n        exercise {\n            id\n            name\n            description\n        }\n    }\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update author",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3ec4ccbc-912b-44de-8746-a16a86b3635c",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"updateExercise\": {",
+											"                \"exercise\": {",
+											"                    \"id\": \"4\",",
+											"                    \"name\": \"New Exercise\",",
+											"                    \"author\": \"test_id\",",
+											"                    \"description\": \"new description\"",
+											"                }",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    updateExercise(id: 4, author: \"test_username\") {\n        exercise {\n            id\n            name\n            author\n            description\n        }\n    }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -2960,6 +2886,68 @@
 							"response": []
 						},
 						{
+							"name": "programs query by author",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7d2ecebe-0df2-4aa5-a861-38986ccbd82a",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"programs\": [",
+											"                {",
+											"                    \"id\": \"3\",",
+											"                    \"author\": {",
+											"                        \"name\": \"richard wei\",",
+											"                        \"username\": \"chengchu\"",
+											"                    },",
+											"                    \"name\": \"richard's program\",",
+											"                    \"duration\": 10,",
+											"                    \"description\": \"dummy description 1\"",
+											"                }",
+											"            ]",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\n    programs(author: \"chengchu\") {\n        id\n        author {\n            name\n            username\n        }\n        name\n        duration\n        description\n    }\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "program query by id",
 							"event": [
 								{
@@ -3078,126 +3066,6 @@
 								}
 							},
 							"response": []
-						},
-						{
-							"name": "program query by author",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "5f821b35-c0fe-4881-86b0-be4e57bef52b",
-										"exec": [
-											"pm.test(\"Status test\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"Response body test\", function () {",
-											"    var result = pm.response.json();",
-											"    var expected = {",
-											"        \"data\": {",
-											"            \"program\": {",
-											"                \"id\": \"2\",",
-											"                \"author\": {",
-											"                    \"name\": \"jason cheung\",",
-											"                    \"username\": \"kakit\"",
-											"                },",
-											"                \"name\": \"jason's program\",",
-											"                \"duration\": 10,",
-											"                \"description\": \"dummy description 2\"",
-											"            }",
-											"        }",
-											"    }",
-											"    pm.expect(result).to.eql(expected);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "graphql",
-									"graphql": {
-										"query": "query {\n    program(author: \"user_id_2\") {\n        id\n        author {\n            name\n            username\n        }\n        name\n        duration\n        description\n    }\n}",
-										"variables": ""
-									},
-									"options": {
-										"graphql": {}
-									}
-								},
-								"url": {
-									"raw": "{{base_url}}/graphql",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"graphql"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "program query by user id",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "bfdabf75-b5d4-41d2-9f4c-348f5879cd96",
-										"exec": [
-											"pm.test(\"Status test\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"Response body test\", function () {",
-											"    var result = pm.response.json();",
-											"    var expected = {",
-											"        \"data\": {",
-											"            \"program\": {",
-											"                \"id\": \"2\",",
-											"                \"author\": {",
-											"                    \"name\": \"jason cheung\",",
-											"                    \"username\": \"kakit\"",
-											"                },",
-											"                \"name\": \"jason's program\",",
-											"                \"duration\": 10,",
-											"                \"description\": \"dummy description 2\"",
-											"            }",
-											"        }",
-											"    }",
-											"    pm.expect(result).to.eql(expected);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "graphql",
-									"graphql": {
-										"query": "query {\n    program(userId: \"user_id_2\") {\n        id\n        author {\n            name\n            username\n        }\n        name\n        duration\n        description\n    }\n}",
-										"variables": ""
-									},
-									"options": {
-										"graphql": {}
-									}
-								},
-								"url": {
-									"raw": "{{base_url}}/graphql",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"graphql"
-									]
-								}
-							},
-							"response": []
 						}
 					],
 					"protocolProfileBehavior": {},
@@ -3248,7 +3116,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n  createProgram(name:\"new program\", author: \"test_id\", duration: 10, desc: \"newest program\") {\n    program {\n      name\n      author {\n        name\n      }\n      duration\n      description\n    }\n  }\n}",
+										"query": "mutation {\n  createProgram(name:\"new program\", duration: 10, desc: \"newest program\") {\n    program {\n      name\n      author {\n        name\n      }\n      duration\n      description\n    }\n  }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -3296,55 +3164,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n  createProgram(author: \"user_id_1\", duration: 10, desc: \"newest program\") {\n    program {\n      name\n      author {\n        name\n      }\n      duration\n      description\n    }\n  }\n}",
-										"variables": ""
-									},
-									"options": {
-										"graphql": {}
-									}
-								},
-								"url": {
-									"raw": "{{base_url}}/graphql",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"graphql"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Missing author",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "c339f2cc-ab5d-4635-ae2a-69a1fdc438f2",
-										"exec": [
-											"pm.test(\"Status test\", function () {",
-											"    pm.response.to.have.status(400);",
-											"});",
-											"",
-											"pm.test(\"Response body test\", function () {",
-											"    var result = pm.response.json();",
-											"    var expected = \"Field \\\"createProgram\\\" argument \\\"author\\\" of type \\\"String!\\\" is required but not provided.\"",
-											"    pm.expect(result.errors[0].message).to.eql(expected);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "graphql",
-									"graphql": {
-										"query": "mutation {\n  createProgram(name:\"new program\", duration: 10, desc: \"newest program\") {\n    program {\n      name\n      author {\n        name\n      }\n      duration\n      description\n    }\n  }\n}",
+										"query": "mutation {\n  createProgram(duration: 10, desc: \"newest program\") {\n    program {\n      name\n      author {\n        name\n      }\n      duration\n      description\n    }\n  }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -3392,7 +3212,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n  createProgram(name:\"new program\", author: \"user_id_1\", desc: \"newest program\") {\n    program {\n      name\n      author {\n        name\n      }\n      duration\n      description\n    }\n  }\n}",
+										"query": "mutation {\n  createProgram(name:\"new program\", desc: \"newest program\") {\n    program {\n      name\n      author {\n        name\n      }\n      duration\n      description\n    }\n  }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -3440,7 +3260,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n  createProgram(name:\"new program\", author: \"user_id_1\", duration: 10) {\n    program {\n      name\n      author {\n        name\n      }\n      duration\n      description\n    }\n  }\n}",
+										"query": "mutation {\n  createProgram(name:\"new program\", duration: 10) {\n    program {\n      name\n      author {\n        name\n      }\n      duration\n      description\n    }\n  }\n}",
 										"variables": ""
 									},
 									"options": {
