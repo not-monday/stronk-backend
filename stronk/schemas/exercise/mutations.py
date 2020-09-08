@@ -3,6 +3,7 @@ import graphene
 
 from stronk.errors.not_found import NotFound
 from stronk.models.exercise import Exercise as ExerciseModel
+from stronk.models.user import User as UserModel
 from stronk.schemas.exercise.type import Exercise
 from stronk.utils.auth import is_authorized
 
@@ -25,7 +26,10 @@ class CreateExercise(graphene.Mutation):
 
 
 class UpdateExercise(graphene.Mutation):
-    """Update an exercise."""
+    """Update an exercise.
+    
+    Author is a user's username.
+    """
     exercise = graphene.Field(Exercise)
 
     class Arguments:
@@ -47,7 +51,10 @@ class UpdateExercise(graphene.Mutation):
         if desc:
             attrs['description'] = desc
         if author:
-            attrs['author'] = author
+            user = UserModel.find_by_username(author)
+            if not user:
+                raise NotFound(USER_NOT_FOUND_MSG)
+            attrs['author'] = user.id
         exercise.update(attrs)
 
         return UpdateExercise(exercise=exercise)

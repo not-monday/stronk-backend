@@ -31,29 +31,25 @@ class CreateUser(graphene.Mutation):
 
 
 class UpdateUser(graphene.Mutation):
-    """Update a user."""
+    """Update a user given their username."""
     user = graphene.Field(User, description="User updated by this mutation.")
 
     class Arguments:
-        id = graphene.String(required=True)
+        username = graphene.String(required=True)
         name = graphene.String(required=False)
-        username = graphene.String(required=False)
         email = graphene.String(required=False)
         currentProgram = graphene.Int(required=False)
 
-    def mutate(root, info, id, name=None, username=None, email=None,
-               currentProgram=None):
-        is_authorized(id)
-
-        user = UserModel.find_by_id(id)
+    def mutate(root, info, username, name=None, email=None, currentProgram=None):
+        user = UserModel.find_by_username(username)
         if not user:
             raise NotFound(USER_NOT_FOUND_MSG)
+        
+        is_authorized(user.id)
 
         attrs = {}
         if name:
             attrs["name"] = name
-        if username:
-            attrs["username"] = username
         if email:
             attrs["email"] = email
         if currentProgram:
@@ -68,15 +64,14 @@ class DeleteUser(graphene.Mutation):
     ok = graphene.Boolean()
 
     class Arguments:
-        id = graphene.String(required=True)
+        username = graphene.String(required=True)
 
-    def mutate(root, info, id):
-        is_authorized(id)
-
-        user = UserModel.find_by_id(id)
+    def mutate(root, info, username):
+        user = UserModel.find_by_username(username)
         if not user:
             raise NotFound(USER_NOT_FOUND_MSG)
-
+        
+        is_authorized(user.id)
         user.delete()
         ok = True
 
