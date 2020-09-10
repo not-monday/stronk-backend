@@ -17,7 +17,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "5542e872-4a6c-4960-86f3-7f253e0aca49",
+										"id": "a1850764-1b08-41f6-a2ee-8cbd4876aff4",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -120,7 +120,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "8b148e16-6239-4a2f-8047-c7efd651ba4b",
+										"id": "4074a62f-1647-4a18-b129-d6a038f8259b",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -212,7 +212,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c354b93c-259b-45db-9774-4db4b07a005d",
+										"id": "74c547c0-d557-4e11-bd7e-a25ab677a668",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -302,7 +302,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "1cf2958b-119e-4d8c-af01-aeba95897774",
+										"id": "2ef94a85-b432-4466-8f79-b536d8bb510b",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -392,7 +392,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "74ccd18a-1f13-462a-8603-8147a5181bb6",
+										"id": "693f52d2-a679-434b-ad8e-36e256301109",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -489,7 +489,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "b7deb1ad-03e1-4e39-8409-6eff14640ae3",
+										"id": "f2bb913b-140d-4361-add2-3567b8fc0c6b",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -607,7 +607,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "229fc96c-0ad5-4ecd-bb18-0170eb9b20c2",
+										"id": "b2466b74-0c13-44b3-8609-125ceb5a3a8a",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -635,7 +635,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "bf78dcde-8d4b-49c4-aa16-a14be1e679a9",
+										"id": "496b4fd0-bf4c-4748-baf2-43c6630a1d57",
 										"exec": [
 											""
 										],
@@ -717,7 +717,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "53501320-5be5-486a-b286-fe321ab6d034",
+										"id": "d95a2723-d7ce-4666-b145-46428c806342",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -814,7 +814,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3d2a5c4f-3be4-42cc-baa6-20411aed99db",
+										"id": "8a0e7a83-28d1-44d2-94cc-d561198fffed",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -913,7 +913,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "bed1a37f-492d-4ffe-99a1-763ff2480dc0",
+										"id": "6175449d-f369-49ee-8446-9e3566947192",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1011,7 +1011,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "922db4b0-3f03-4fb7-bb35-49e5052df18a",
+										"id": "7a2fe2da-e7af-4821-aeb5-e4d8b561064e",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1072,7 +1072,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d868ea2a-ec31-4ed9-9f40-b588c1a319ee",
+										"id": "f3ef650c-2e2a-4dc2-a51a-de9385c3343e",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1133,7 +1133,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "ce30e55b-8413-4128-83c9-7edf93180709",
+										"id": "1de1ab1d-2dc2-4962-8a9c-a44aa61525ad",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1150,11 +1150,11 @@
 											"                    \"username\": \"test_username\",",
 											"                    \"email\": \"new_email\",",
 											"                    \"currentProgram\": {",
-											"                        \"id\": \"2\"",
+											"                        \"name\": \"Jason's Program\"",
 											"                    }",
 											"                }",
 											"            }",
-											"        }",
+											"        }        ",
 											"    }",
 											"    pm.expect(result).to.eql(expected);",
 											"});",
@@ -1171,7 +1171,116 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n    updateUser(username: \"test_username\", currentProgram: 2) {\n        user {\n            id\n            name\n            username\n            email\n            currentProgram {\n                id\n            }\n        }\n    }\n}",
+										"query": "mutation {\n    updateUser(id: \"test_id\", currentProgram: 2) {\n        user {\n            id\n            currentProgram {\n                name\n            }\n        }\n    }\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update currentProgram unsubscribe",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "512956b8-722b-4f83-9f40-ae172561b5f1",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"updateUser\": {",
+											"                \"user\": {",
+											"                    \"id\": \"test_id\",",
+											"                    \"currentProgram\": null",
+											"                }",
+											"            }",
+											"        }        ",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    updateUser(id: \"test_id\", currentProgram: -1) {\n        user {\n            id\n            currentProgram {\n                name\n            }\n        }\n    }\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update currentProgram non-existent",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a0c08525-f865-4824-a55a-409413351d37",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected_code = \"NOT_FOUND_ERROR\";",
+											"    var expected_msg = \"Program not found.\";",
+											"    pm.expect(result.errors[0].context.code).to.eql(expected_code);",
+											"    pm.expect(result.errors[0].context.message).to.eql(expected_msg);",
+											"});",
+											"",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    updateUser(id: \"test_id\", currentProgram: -2) {\n        user {\n            id\n            currentProgram {\n                name\n            }\n        }\n    }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -1203,7 +1312,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f4893235-7414-4bd1-b5b5-6b3d667215cc",
+										"id": "a997142a-d991-4ac8-b646-873e31244312",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1256,7 +1365,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "a1ed52a2-b233-4061-b971-82d728f5aca6",
+										"id": "929d55fd-2b0a-45f5-8bd8-9a21ea1fc97f",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1361,7 +1470,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "2729b989-daa0-4970-9361-19191ba1120b",
+										"id": "74ba3cb3-d13f-4877-98fe-187ff1874573",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1467,7 +1576,7 @@
 				{
 					"listen": "prerequest",
 					"script": {
-						"id": "cbc910e3-6a49-43d1-839e-a012c985ec04",
+						"id": "e186ed3c-9ad2-437b-9a85-878d6963d578",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1477,7 +1586,7 @@
 				{
 					"listen": "test",
 					"script": {
-						"id": "5e5e88fc-0d34-4b31-8e94-dbaa2313e146",
+						"id": "fefd37cd-c60e-4e2a-bdf7-0a22258a9fd7",
 						"type": "text/javascript",
 						"exec": [
 							""
@@ -1499,7 +1608,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "5519744d-bb5d-4965-98a3-68a57f6eb38f",
+										"id": "48af2b4f-dd42-4e32-b971-8848065606f4",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1566,7 +1675,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "bbd09d5f-d2d0-4a09-9a02-ec402cf5ac8f",
+										"id": "a19121c8-be67-4e57-9202-c3fdedfee2d7",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1616,12 +1725,122 @@
 							"response": []
 						},
 						{
+							"name": "exercise query by name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "54519fb7-d32a-4aaf-a2be-e4d103fd0e6a",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"exercise\": {",
+											"                \"id\": \"2\",",
+											"                \"name\": \"squats\",",
+											"                \"description\": \"squats description\"",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\n    exercise(name: \"squats\") {\n        id\n        name\n        description\n    }\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "exercise query by desc",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "43a58f37-4765-4717-8b44-e587b9d35ed9",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"exercise\": {",
+											"                \"id\": \"2\",",
+											"                \"name\": \"squats\",",
+											"                \"description\": \"squats description\"",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\n    exercise(desc: \"squats description\") {\n        id\n        name\n        description\n    }\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "exercise query - NULL",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "224cc2f6-5f27-4376-bad1-f9cb766932e3",
+										"id": "3d59f297-9e64-47f3-9849-ab603f9f50e1",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1679,7 +1898,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "8db260be-43bb-4ff1-9ae2-83a6deb151da",
+										"id": "e2109fed-ea98-4850-9a62-3fcb2c1c389f",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1731,12 +1950,62 @@
 							"response": []
 						},
 						{
+							"name": "Conflict",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "b129b638-09b6-4c58-8b78-68a46302a59f",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected_code = \"RESOURCE_CONFLICT_ERROR\";",
+											"    var expected_msg = \"Name already used by another exercise\";",
+											"    pm.expect(result.errors[0].context.code).to.eql(expected_code);",
+											"    pm.expect(result.errors[0].context.message).to.eql(expected_msg);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n    createExercise(name: \"ex1\", desc: \"newest exercise\") {\n        exercise {\n            id\n            name\n            description\n        }\n    }\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Missing name",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
-										"id": "b5a93acd-901d-4698-a34e-5195533fdaf3",
+										"id": "ec9948e9-8b27-4994-ade0-fe90bb4e4cdb",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -1784,7 +2053,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "1e2f5dcc-7b63-45f0-9c05-efd07e6be533",
+										"id": "1ee4509c-ae53-45dd-b7eb-87a1b21d5c87",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -1803,7 +2072,7 @@
 								{
 									"listen": "prerequest",
 									"script": {
-										"id": "0fba478b-f9e2-4840-ace1-864ed75db5ac",
+										"id": "a4884741-b879-48d3-b711-8c79dc71a9d6",
 										"exec": [
 											""
 										],
@@ -1849,7 +2118,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3a45d88e-fe85-4775-88bf-d94e4e16dd0a",
+										"id": "739bed35-4638-42e8-a688-5566f2259409",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1898,7 +2167,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "78c4f90c-f4b2-4ed1-be3f-03bf5ea10e25",
+										"id": "d471c1f1-48b9-4f71-9360-823b6c454855",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -1956,7 +2225,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "46cf5917-e020-4755-9213-cef00b524109",
+										"id": "478ff4c4-6a9b-41cf-915f-24ed0bc9acff",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2080,7 +2349,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "36019fef-53a2-492b-8868-1512a4914ebc",
+										"id": "968dd20c-4ca8-421e-a22c-0a773d1c92ca",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2135,7 +2404,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "4da84dcb-0bc5-474c-851d-9cc80680b633",
+										"id": "73931261-b868-4df1-aadb-42a39f3fe9f3",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2197,7 +2466,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3077c9c0-79ce-4a63-bbdc-290d2b59de48",
+										"id": "c87b22a4-c05b-4ae3-83ce-73b68895b53a",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2256,7 +2525,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3a2f1421-cd92-4753-bdfa-08fbde90d008",
+										"id": "00bcd75f-1d3a-4618-9b98-e2a2bd73250b",
 										"exec": [
 											"",
 											"pm.test(\"Status test\", function () {",
@@ -2322,7 +2591,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "9a41f607-c4bd-429a-bbdf-26d7b1b8fd35",
+										"id": "15d38208-1d87-41a8-a60e-e45a024b4766",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2381,7 +2650,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "9e1dc6a5-b4b1-4d87-a40a-4a488b31bf76",
+										"id": "19c17052-5ade-4b6a-abcf-639a0ce38cf2",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2440,7 +2709,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "4cd472be-8945-4575-9782-b260fc50be57",
+										"id": "4b5c8ccd-1331-4588-8d5f-3703cd39d60e",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2499,7 +2768,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "4007b132-2c16-4734-a8af-2149133f7f49",
+										"id": "f83478c3-ffbc-4180-93c7-f261ae126ebf",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2556,7 +2825,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d7dbea70-d5ab-4199-9eb0-3687046923b7",
+										"id": "02fc8a7f-6cdf-4f8c-914d-66b19527541e",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2568,7 +2837,7 @@
 											"        \"data\": {",
 											"            \"updateWorkout\": {",
 											"                \"workout\": {",
-											"                    \"id\": \"5\",",
+											"                    \"id\": \"6\",",
 											"                    \"name\": \"new workout name\",",
 											"                    \"description\": \"new desc\",",
 											"                    \"projectedTime\": 200",
@@ -2590,7 +2859,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n  updateWorkout(id: 5, name: \"new workout name\", description: \"new desc\", projectedTime: 200){\n    workout {\n      id,\n      name\n      description\n      projectedTime\n    }\n  }\n}\n",
+										"query": "mutation {\n  updateWorkout(id: 6, name: \"new workout name\", description: \"new desc\", projectedTime: 200){\n    workout {\n      id,\n      name\n      description\n      projectedTime\n    }\n  }\n}\n",
 										"variables": ""
 									},
 									"options": {
@@ -2615,7 +2884,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "ba8f3eeb-26f6-465e-a0a5-c6a45edfbc82",
+										"id": "942560d1-366a-4ef5-b414-0904d7911c9a",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2671,7 +2940,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "1b6d9377-3874-4f5d-b674-438cf9bc0aa1",
+										"id": "6d602a33-3484-4fac-bbfb-4939e5831847",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2700,7 +2969,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n  deleteWorkout(id: 5) {\n    ok\n  }\n}\n",
+										"query": "mutation {\n  deleteWorkout(id: 6) {\n    ok\n  }\n}\n",
 										"variables": ""
 									},
 									"options": {
@@ -2725,7 +2994,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "fbad8f7b-74e4-47c9-b171-64053befead8",
+										"id": "deaf4f4c-5614-4a79-b457-16c81d264a05",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2773,7 +3042,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "f6922d83-a8d0-4bda-bc87-7da0e3430eaa",
+								"id": "e9b1ad30-49c7-4245-8d38-575f380e273a",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -2783,7 +3052,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "e8248e41-0d81-48b6-84b1-e37cdef3f64b",
+								"id": "8e1c58f1-a41d-4a42-ac75-ddcb2dbb7d2b",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -2809,7 +3078,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "1e46e88f-3808-4f25-84ee-5c2412424bba",
+										"id": "ceba8001-c122-47e1-a252-f8d14c881ccb",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2891,7 +3160,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "7d2ecebe-0df2-4aa5-a861-38986ccbd82a",
+										"id": "c5361c6d-ff84-4f91-ac2a-8fef09706964",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2953,7 +3222,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "252b5eac-06ff-4af0-a24a-1a509cee64e7",
+										"id": "367342ac-311a-402f-bf82-83a5931346ce",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -2988,7 +3257,67 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "query {\n    program(id: 1) {\n        id\n        author {\n            name\n            username\n        }\n        name\n        duration\n        description\n    }\n}",
+										"query": "query {\n    program(name: \"max's program\") {\n        id\n        author {\n            name\n            username\n        }\n        name\n        duration\n        description\n    }\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "program query by author",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "017ed84f-0845-4951-a69a-cbf07b7fa543",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = {",
+											"        \"data\": {",
+											"            \"program\": {",
+											"                \"id\": \"2\",",
+											"                \"author\": {",
+											"                    \"name\": \"jason cheung\",",
+											"                    \"username\": \"kakit\"",
+											"                },",
+											"                \"name\": \"jason's program\",",
+											"                \"duration\": 10,",
+											"                \"description\": \"dummy description 2\"",
+											"            }",
+											"        }",
+											"    }",
+											"    pm.expect(result).to.eql(expected);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "query {\n    program(author: \"user_id_2\") {\n        id\n        author {\n            name\n            username\n        }\n        name\n        duration\n        description\n    }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -3013,7 +3342,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "6e994404-fd35-4168-85ae-88bf8568198a",
+										"id": "fa67966b-9db9-4650-a19a-e9cc3a222d3f",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3080,7 +3409,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "bf43cc12-dce3-4d06-ae47-af3db22bd87c",
+										"id": "9b67e425-4a42-424b-9256-67fed211fde3",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3141,7 +3470,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "de26fc5c-3b57-43c3-af76-00256c9d51f9",
+										"id": "6868411d-8113-4eb2-bd0b-5507ba2d5ea6",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -3164,7 +3493,55 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n  createProgram(duration: 10, desc: \"newest program\") {\n    program {\n      name\n      author {\n        name\n      }\n      duration\n      description\n    }\n  }\n}",
+										"query": "mutation {\n  createProgram(author: \"user_id_1\", duration: 10, desc: \"newest program\") {\n    program {\n      name\n      author {\n        name\n      }\n      duration\n      description\n    }\n  }\n}",
+										"variables": ""
+									},
+									"options": {
+										"graphql": {}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/graphql",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"graphql"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Missing author",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d03f583e-b4e3-487c-8a26-d341824ea553",
+										"exec": [
+											"pm.test(\"Status test\", function () {",
+											"    pm.response.to.have.status(400);",
+											"});",
+											"",
+											"pm.test(\"Response body test\", function () {",
+											"    var result = pm.response.json();",
+											"    var expected = \"Field \\\"createProgram\\\" argument \\\"author\\\" of type \\\"String!\\\" is required but not provided.\"",
+											"    pm.expect(result.errors[0].message).to.eql(expected);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "graphql",
+									"graphql": {
+										"query": "mutation {\n  createProgram(name:\"new program\", duration: 10, desc: \"newest program\") {\n    program {\n      name\n      author {\n        name\n      }\n      duration\n      description\n    }\n  }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -3189,7 +3566,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "75d62405-c239-4370-ac51-137ef2ba1331",
+										"id": "6200af3c-7d29-4d0e-9027-a55c1e4a61aa",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -3237,7 +3614,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "cb4a95ad-928d-48ff-a182-8ae90c5f3a73",
+										"id": "9fa39c3e-585d-4c80-8fdd-dcbfa59cb3b1",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -3292,7 +3669,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "109dec00-aab8-46e9-ac3f-8ae3f13b63c1",
+										"id": "554c9fb1-0405-428b-9444-3b175dd2a46f",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3328,7 +3705,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n    updateProgram(id: 4, name: \"new program 1\", duration: 11, desc: \"newest program 1\") {\n        program {\n            name\n            author {\n                name\n            }\n            duration\n            description\n        }\n    }\n}",
+										"query": "mutation {\n    updateProgram(id: 5, name: \"new program 1\", duration: 11, desc: \"newest program 1\") {\n        program {\n            name\n            author {\n                name\n            }\n            duration\n            description\n        }\n    }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -3353,7 +3730,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "2dee3344-ea5f-4455-8f84-c3c8505f055c",
+										"id": "341b1419-4699-4d09-bc20-2b76afd532ba",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3402,7 +3779,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "4f450d6d-331d-437d-8b0b-842fd6bb3b7f",
+										"id": "895a85e9-4872-4bf6-8548-b4d8d624a84c",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3458,7 +3835,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c777eb4b-b798-468b-8b15-f44c73d68f9b",
+										"id": "4241b038-fb59-46c7-b942-419c5d49ec3c",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3487,7 +3864,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n    deleteProgram(id: 4) {\n        ok\n    }\n}",
+										"query": "mutation {\n    deleteProgram(id: 5) {\n        ok\n    }\n}",
 										"variables": ""
 									},
 									"options": {
@@ -3512,7 +3889,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "5e29ff85-eed1-4d6e-988c-f4bd8d5d2651",
+										"id": "3900993e-3d19-46e6-af0e-74a75930f5b1",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3558,175 +3935,6 @@
 					],
 					"protocolProfileBehavior": {},
 					"_postman_isSubFolder": true
-				},
-				{
-					"name": "5. Mutation: subscribe",
-					"item": [
-						{
-							"name": "Subscribe to program",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "4ee3a6b2-2532-4a9b-a4ee-1e3aefd020ff",
-										"exec": [
-											"pm.test(\"Status test\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"Response body test\", function () {",
-											"    var result = pm.response.json();",
-											"    var expected = {",
-											"        \"data\": {",
-											"            \"subscribeToProgram\": {",
-											"                \"updatedUser\": {",
-											"                    \"currentProgram\": {",
-											"                        \"author\": {",
-											"                            \"username\": \"mxwvy\"",
-											"                        },",
-											"                        \"name\": \"Max's Program\",",
-											"                        \"workouts\": [",
-											"                            {",
-											"                                \"name\": \"test workout\",",
-											"                                \"workoutExercises\": []",
-											"                            },",
-											"                            {",
-											"                                \"name\": \"test workout\",",
-											"                                \"workoutExercises\": []",
-											"                            },",
-											"                            {",
-											"                                \"name\": \"workout 1\",",
-											"                                \"workoutExercises\": [",
-											"                                    {",
-											"                                        \"exercise\": {",
-											"                                            \"name\": \"bicep curls\"",
-											"                                        }",
-											"                                    },",
-											"                                    {",
-											"                                        \"exercise\": {",
-											"                                            \"name\": \"squats\"",
-											"                                        }",
-											"                                    },",
-											"                                    {",
-											"                                        \"exercise\": {",
-											"                                            \"name\": \"pullups\"",
-											"                                        }",
-											"                                    }",
-											"                                ]",
-											"                            }",
-											"                        ]",
-											"                    }",
-											"                }",
-											"            }",
-											"        }",
-											"    }",
-											"    pm.expect(result).to.eql(expected);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "graphql",
-									"graphql": {
-										"query": "mutation {\n    subscribeToProgram(programId: 1) {\n        updatedUser { \n            currentProgram {\n                author {\n                    username\n                }\n                name\n                workouts {\n                    name, workoutExercises {\n                        exercise {\n                            name\n                        }\n                    }\n                }\n            }\n        }\n    }\n}",
-										"variables": ""
-									},
-									"options": {
-										"graphql": {}
-									}
-								},
-								"url": {
-									"raw": "{{base_url}}/graphql",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"graphql"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "Subscribe to non-existent program",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "9770d08b-bc54-45c7-acf0-5c3525366c50",
-										"exec": [
-											"pm.test(\"Status test\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"Response body test\", function () {",
-											"    var result = pm.response.json();",
-											"    var expected_code = \"NOT_FOUND_ERROR\";",
-											"    var expected_msg = \"Program not found.\";",
-											"    pm.expect(result.errors[0].context.code).to.eql(expected_code);",
-											"    pm.expect(result.errors[0].context.message).to.eql(expected_msg);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "graphql",
-									"graphql": {
-										"query": "mutation {\n    subscribeToProgram(programId: 10) {\n        updatedUser { \n            currentProgram {\n                name\n            }\n        }\n    }\n}",
-										"variables": ""
-									},
-									"options": {
-										"graphql": {}
-									}
-								},
-								"url": {
-									"raw": "{{base_url}}/graphql",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"graphql"
-									]
-								}
-							},
-							"response": []
-						}
-					],
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "fa3d6408-9499-4cf9-8e11-87973bad8f17",
-								"type": "text/javascript",
-								"exec": [
-									""
-								]
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"id": "ba558d30-1bc2-489c-9c55-41b8e6e8d239",
-								"type": "text/javascript",
-								"exec": [
-									""
-								]
-							}
-						}
-					],
-					"protocolProfileBehavior": {},
-					"_postman_isSubFolder": true
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -3743,7 +3951,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "ec168ab3-e9d2-46d6-8305-8aea87af50ee",
+										"id": "706b6592-996e-48a3-bae8-223e75b6037e",
 										"exec": [
 											"",
 											"",
@@ -3804,7 +4012,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f6096ae1-374a-4eba-8ea5-f3767c9e279a",
+										"id": "711be6d8-3c4c-4c7d-a059-58c400721198",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -3853,7 +4061,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "3075eb41-0286-4818-8c59-1e3a0e49238f",
+										"id": "9a9e7f17-84a5-4210-9552-2b40958de296",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -3900,7 +4108,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c2b91e1c-5ac5-4bb7-915f-ff5fbea28b04",
+										"id": "07efed61-dea3-4397-a560-9da170862ed1",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -3947,7 +4155,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "03b3532e-69b0-4a7f-864e-22cdfe3d77a7",
+										"id": "e043ff02-44cf-41e6-855d-fbe68ac90893",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(400);",
@@ -4001,7 +4209,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "225acdfa-6582-4b84-9e1d-1d7b2e95d357",
+										"id": "88e731ba-4fbd-48db-9f9c-fbc7b8c65f8b",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4061,7 +4269,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d631fc52-86c9-40da-9015-e5ba18ad1516",
+										"id": "b8a13292-8441-493c-8c52-1715a91852bc",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4126,7 +4334,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "8e5a7cf2-6310-4879-b6d1-27f41c99f0fd",
+										"id": "743f4f3b-6422-4b69-b517-2afbff498623",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4179,7 +4387,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "d91f1894-603d-428f-993b-0e12569c25bd",
+										"id": "0e55ff26-4a5f-4f9d-94c4-0122bfcb4286",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4241,7 +4449,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "2ac58778-9cb4-4be7-824c-9218b0aa702c",
+										"id": "bfb271be-3f2f-45f5-928a-33f4cb4cfedb",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4340,7 +4548,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "a2b26feb-7d8b-4474-be44-326e2d29ccb5",
+										"id": "4bd945a9-a392-4746-bc62-c89a969ff000",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4417,7 +4625,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "495ff32c-c92c-4ec3-8169-f4b0ab84b39b",
+										"id": "3a1e37c6-f812-48a5-955a-e3b87b71f2b2",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4487,7 +4695,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "0567f791-e3c4-40d5-a015-bfecd0cf1c74",
+										"id": "9715853c-5078-4dcd-a64c-5c8507391e98",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4537,7 +4745,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "adbf6670-6471-4e0a-98bc-ea2c5bc81a0d",
+								"id": "67784ecc-fa26-4a71-a965-310512c2f66b",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -4547,7 +4755,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "6fb8fb5e-4719-4bad-892c-228de1443618",
+								"id": "a6768787-989f-4b68-a4f0-c606c554c3e1",
 								"type": "text/javascript",
 								"exec": [
 									""
@@ -4567,7 +4775,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "8900242f-be50-47ee-82c6-ad6e671c3bec",
+										"id": "88b5a260-e583-46e5-a407-989f299f3ecb",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4639,7 +4847,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "0b09e146-0f06-4af9-955e-7fbdb9e9de93",
+										"id": "8e910541-a3d6-4845-9047-9361e445d836",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4690,7 +4898,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "1fb2020d-5203-4373-8656-3353e0ba9896",
+										"id": "c83947e2-9fd6-4807-ba4a-1482877d00c1",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4748,7 +4956,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "526b3e74-d4c5-4b0d-8a2f-52b172e1ea76",
+										"id": "d40b97c1-4a25-47d5-8b5e-36fe858841a0",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4803,7 +5011,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "42a82cd1-20e0-44e3-9f8f-fe479d37d7ff",
+										"id": "1d9eddd1-a016-44fc-9bc8-1cd9fe3c700e",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -4867,7 +5075,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "6002d916-0e66-409e-b3ce-187cb1218b00",
+										"id": "ef751877-369e-4db4-a667-ee96e44dcafd",
 										"exec": [
 											"",
 											"pm.test(\"Status test\", function () {",
@@ -4925,7 +5133,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "4e876d0e-bb9f-4023-bacd-69753d33ed43",
+										"id": "09633d6d-7a8a-46df-9bd9-34c1d875e8fb",
 										"exec": [
 											"",
 											"pm.test(\"Status test\", function () {",
@@ -4983,7 +5191,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "619439f9-e922-4329-8a48-2f39950620cf",
+										"id": "efdc936f-1234-4e2a-bd2b-a8e8a015962f",
 										"exec": [
 											"",
 											"pm.test(\"Status test\", function () {",
@@ -5048,7 +5256,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "5818c21e-66dc-4cc2-9d3a-463164f186b1",
+										"id": "59c42143-c40b-4d45-8d24-98e6001faecc",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5104,7 +5312,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "84afa63b-3183-4b00-b6a0-003e2c2eb69a",
+										"id": "9795a5b4-e6a7-4f84-8fe1-cc77cc9a453c",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5177,7 +5385,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "c9abbdfa-2f91-4437-8b49-7d6e7bc3b39c",
+										"id": "41be1519-8016-4c4e-a73d-f3ec69a04bdc",
 										"exec": [
 											"",
 											"",
@@ -5237,7 +5445,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "443f75d5-f85c-4775-a672-202d2fedc4ca",
+										"id": "069b6f3c-350d-4f94-8e78-4a6d62b435e5",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5295,7 +5503,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "f3326c7e-95f9-4f81-a5b1-d7aa23561eae",
+										"id": "aff4c478-1b41-41d9-bf80-99d35b607e87",
 										"exec": [
 											"",
 											"",
@@ -5352,7 +5560,7 @@
 								{
 									"listen": "test",
 									"script": {
-										"id": "95337d08-2436-4aa1-84fc-9214072bffc5",
+										"id": "5263d7a9-d2ae-46ec-95f0-c48db220c8d6",
 										"exec": [
 											"pm.test(\"Status test\", function () {",
 											"    pm.response.to.have.status(200);",
@@ -5409,7 +5617,7 @@
 		{
 			"listen": "prerequest",
 			"script": {
-				"id": "4c6b5d75-8c9e-4eea-a8ae-3a36e9ec8626",
+				"id": "463669aa-0912-4ede-a612-768e0d1acc75",
 				"type": "text/javascript",
 				"exec": [
 					""
@@ -5419,7 +5627,7 @@
 		{
 			"listen": "test",
 			"script": {
-				"id": "b766604b-d70d-4bcc-bd40-79a510c1b9d8",
+				"id": "06f76d47-d6c2-49f6-ae7d-d97a39edb0ee",
 				"type": "text/javascript",
 				"exec": [
 					""
