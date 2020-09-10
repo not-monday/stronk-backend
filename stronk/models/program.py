@@ -52,6 +52,10 @@ class Program(db.Model):
     def find_by_id(id):
         return Program.query.filter_by(id=id).first()
 
+    @staticmethod
+    def find_by_author(author):
+        return Program.query.filter_by(author=author)
+
     def to_dict(self):
         """Returns a dictionary representing the attributes of the program.
            Key is the name of the attribute and value is the value of the
