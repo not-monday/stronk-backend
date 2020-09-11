@@ -1,6 +1,7 @@
-from stronk.constants import PROGRAM_NOT_FOUND_MSG, WORKOUT_NOT_FOUND_MSG, USER_NOT_FOUND_MSG
+from stronk.constants import PROGRAM_NOT_FOUND_MSG, WORKOUT_NOT_FOUND_MSG, USER_NOT_FOUND_MSG, DELETED_USER_ID
 
 from stronk.errors.not_found import NotFound
+from stronk.models.exercise import Exercise as ExerciseModel
 from stronk.models.program import Program as ProgramModel
 from stronk.models.program_workouts import ProgramWorkouts as ProgramWorkoutsModel
 from stronk.models.workout_exercise import WorkoutExercise as WorkoutExerciseModel
@@ -62,6 +63,9 @@ def deletePrograms(user_id: int):
             # delete workout exercises -> program workouts -> workouts -> programs
             workout_exercises = WorkoutExerciseModel.find_workout_exercises(workout_id=workout.id)
             for workout_exercise in workout_exercises:
+                # update exercise author to deleted
+                exercise = ExerciseModel.find_by_id(id=workout_exercise.exercise_id)
+                exercise.author = DELETED_USER_ID
                 # only need to delete workout exercise, not exercise
                 workout_exercise.delete()
 

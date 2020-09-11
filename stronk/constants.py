@@ -23,4 +23,5 @@ ERROR_RESPONSE_BODY = {
     'message': ""
 }
 
+DELETED_USER_ID = "deleted"
 DEV_USER_ID = "user_id_1"
