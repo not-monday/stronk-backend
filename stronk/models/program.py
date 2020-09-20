@@ -22,6 +22,7 @@ class Program(db.Model):
                        index=True,
                        nullable=False)
     name = db.Column(db.String(128), index=True, nullable=False, unique=False)
+    # id of the parent program; none if this is completely original
     parent_id = db.Column(db.Integer)
     duration = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String(256), nullable=False)
@@ -54,7 +55,7 @@ class Program(db.Model):
 
     @staticmethod
     def find_by_author(author):
-        return Program.query.filter_by(author=author)
+        return Program.query.filter_by(author=author).all()
 
     def to_dict(self):
         """Returns a dictionary representing the attributes of the program.

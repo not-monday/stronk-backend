@@ -1,6 +1,8 @@
 import graphene
 
-from stronk.constants import PROGRAM_NOT_FOUND_MSG
+from flask import g
+
+from stronk.constants import PROGRAM_NOT_FOUND_MSG, USER_NOT_FOUND_MSG
 from stronk.errors.not_found import NotFound
 from stronk.models.program import Program as ProgramModel
 from stronk.models.program_workouts import ProgramWorkouts as ProgramWorkoutsModel

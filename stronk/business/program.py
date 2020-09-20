@@ -3,6 +3,7 @@ from stronk.constants import PROGRAM_NOT_FOUND_MSG, WORKOUT_NOT_FOUND_MSG, USER_
 from stronk.errors.not_found import NotFound
 from stronk.models.exercise import Exercise as ExerciseModel
 from stronk.models.program import Program as ProgramModel
+from stronk.models.program_reviews import ProgramReviews as ProgramReviewModel
 from stronk.models.program_workouts import ProgramWorkouts as ProgramWorkoutsModel
 from stronk.models.workout_exercise import WorkoutExercise as WorkoutExerciseModel
 from stronk.models.workout import Workout as WorkoutModel
@@ -71,5 +72,10 @@ def deletePrograms(user_id: int):
 
             program_workout.delete()
             workout.delete()
+
+        # delete program reviews
+        program_reviews = ProgramReviewModel.get_reviews_by_program_id(program.id)
+        for program_review in program_reviews:
+            program_review.delete()
 
         program.delete()
