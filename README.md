@@ -119,3 +119,5 @@ Example usage of blueprints can be found [here](https://flask.palletsprojects.co
 ### Entry point
 
 The entry point of the backend is `stronk/__init__.py`.
+
+test
