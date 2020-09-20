@@ -1786,56 +1786,6 @@
 							"response": []
 						},
 						{
-							"name": "Conflict",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "b129b638-09b6-4c58-8b78-68a46302a59f",
-										"exec": [
-											"pm.test(\"Status test\", function () {",
-											"    pm.response.to.have.status(200);",
-											"});",
-											"",
-											"pm.test(\"Response body test\", function () {",
-											"    var result = pm.response.json();",
-											"    var expected_code = \"RESOURCE_CONFLICT_ERROR\";",
-											"    var expected_msg = \"Name already used by another exercise\";",
-											"    pm.expect(result.errors[0].context.code).to.eql(expected_code);",
-											"    pm.expect(result.errors[0].context.message).to.eql(expected_msg);",
-											"});",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "POST",
-								"header": [],
-								"body": {
-									"mode": "graphql",
-									"graphql": {
-										"query": "mutation {\n    createExercise(name: \"ex1\", desc: \"newest exercise\") {\n        exercise {\n            id\n            name\n            description\n        }\n    }\n}",
-										"variables": ""
-									},
-									"options": {
-										"graphql": {}
-									}
-								},
-								"url": {
-									"raw": "{{base_url}}/graphql",
-									"host": [
-										"{{base_url}}"
-									],
-									"path": [
-										"graphql"
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "Missing name",
 							"event": [
 								{
@@ -5280,30 +5230,6 @@
 				}
 			],
 			"protocolProfileBehavior": {}
-		},
-		{
-			"name": "test request",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "graphql",
-					"graphql": {
-						"query": "",
-						"variables": "\r\n{\r\n    \"username\": \"test username\"\r\n}"
-					},
-					"options": {
-						"graphql": {}
-					}
-				},
-				"url": {
-					"raw": ""
-				}
-			},
-			"response": []
 		}
 	],
 	"event": [

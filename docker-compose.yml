@@ -4,8 +4,6 @@ services:
     build: .
     ports:
       - "5000:5000"
-    # Wait for db container to finish setting up postgres
-    command: bash -c 'while !</dev/tcp/db/5432; do sleep 1; done; ./scripts/entrypoint.sh'
     depends_on:
       - db
   db:
