@@ -1,4 +1,4 @@
-"""removes_fk_constaint_on_exercise_author
+"""removes fk constaint on exercise author
 
 Revision ID: 7273110a4617
 Revises: 89629adb8459

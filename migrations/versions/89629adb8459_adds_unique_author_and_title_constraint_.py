@@ -1,4 +1,4 @@
-"""adds_unique_author_and_title_constraint_to_program
+"""adds unique author and title constraint to program
 
 Revision ID: 89629adb8459
 Revises: 1b948d2fa49c
