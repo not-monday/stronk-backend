@@ -7,6 +7,7 @@ from stronk.models.workout import Workout
 
 from psycopg2.errors import UniqueViolation
 from sqlalchemy.exc import DBAPIError, IntegrityError
+from sqlalchemy.orm.exc import NoResultFound
 
 
 class ProgramWorkouts(db.Model):

@@ -1,22 +1,28 @@
 import string
 from psycopg2.errors import ForeignKeyViolation, UniqueViolation
 from sqlalchemy.exc import DBAPIError, IntegrityError
+from sqlalchemy.schema import UniqueConstraint
 
-from stronk.constants import DATABASE_ERROR_MSG, USER_NOT_FOUND_MSG
+from stronk.constants import DATABASE_ERROR_MSG, USER_NOT_FOUND_MSG, PROGRAM_NOT_FOUND_MSG, WORKOUT_NOT_FOUND_MSG
+
 from stronk import db
 from stronk.errors.bad_attributes import BadAttributes
 from stronk.errors.conflict import Conflict
+from stronk.errors.not_found import NotFound
 from stronk.errors.unexpected_error import UnexpectedError
 from stronk.models.user import User
 
 
 class Program(db.Model):
+    __table_args__ = (UniqueConstraint('author', 'name',
+                                       name='unique_program_names_for_author'),)
     id = db.Column(db.Integer, primary_key=True)
     author = db.Column(db.String(),
                        db.ForeignKey(f'{User.__tablename__}.id'),
                        index=True,
                        nullable=False)
     name = db.Column(db.String(128), index=True, nullable=False, unique=False)
+    # id of the parent program; none if this is completely original
     parent_id = db.Column(db.Integer)
     duration = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String(256), nullable=False)
@@ -46,6 +52,10 @@ class Program(db.Model):
     @staticmethod
     def find_by_id(id):
         return Program.query.filter_by(id=id).first()
+
+    @staticmethod
+    def find_by_author(author):
+        return Program.query.filter_by(author=author).all()
 
     def to_dict(self):
         """Returns a dictionary representing the attributes of the program.
@@ -97,13 +107,13 @@ class Program(db.Model):
         except DBAPIError as err:
             raise UnexpectedError(DATABASE_ERROR_MSG)
 
-    def clone(self):
+    def clone(self, user_id: int):
         new_program = Program.create(
-            author=self.author,
+            author=user_id,
             name=self.name,
             duration=self.duration,
             description=self.description
         )
-       
+
         new_program.parent_id = self.id
         return new_program

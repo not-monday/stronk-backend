@@ -14,7 +14,6 @@ class Exercise(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), index=True, nullable=False)
     author = db.Column(db.String(),
-                       db.ForeignKey(f'{User.__tablename__}.id'),
                        index=True,
                        nullable=False)
     description = db.Column(db.String(500), nullable=False)
@@ -24,7 +23,6 @@ class Exercise(db.Model):
         exercise = Exercise(name=string.capwords(name),
                             description=description,
                             author=author)
-
         try:
             db.session.add(exercise)
             db.session.commit()

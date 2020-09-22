@@ -1,10 +1,12 @@
 import graphene
-from firebase_admin import auth
-from flask import current_app, g
+from flask import g
 
-from stronk.constants import USER_NOT_FOUND_MSG
+from stronk.constants import PROGRAM_NOT_FOUND_MSG, WORKOUT_NOT_FOUND_MSG, USER_NOT_FOUND_MSG
+
 from stronk.errors.not_found import NotFound
 from stronk.models.user import User as UserModel
+
+from stronk.business.program import cloneProgram, deletePrograms
 from stronk.schemas.user.type import User
 from stronk.utils.auth import is_authorized
 
@@ -53,7 +55,10 @@ class UpdateUser(graphene.Mutation):
         if email:
             attrs["email"] = email
         if currentProgram:
-            attrs["current_program"] = currentProgram
+            if (currentProgram == -1):
+                attrs["current_program"] = None
+            else:
+                attrs["current_program"] = cloneProgram(currentProgram, g.id).id
         user.update(attrs)
 
         return UpdateUser(user=user)
@@ -72,6 +77,8 @@ class DeleteUser(graphene.Mutation):
             raise NotFound(USER_NOT_FOUND_MSG)
         
         is_authorized(user.id)
+
+        deletePrograms(user_id=user.id)
         user.delete()
         ok = True
 

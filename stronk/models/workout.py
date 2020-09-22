@@ -8,6 +8,7 @@ from stronk.errors.bad_attributes import BadAttributes
 from stronk.errors.unexpected_error import UnexpectedError
 from stronk.models.user import User
 
+
 class Workout(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     author = db.Column(db.String(),
@@ -89,11 +90,11 @@ class Workout(db.Model):
     def find_by_id(id):
         return Workout.query.filter_by(id=id).first()
 
-    def clone(self):
+    def clone(self, user_id: int):
         return Workout.create(
-            author=self.author,
-            name=self.name, 
-            description=self.description, 
-            projected_time=self.projected_time, 
+            author=user_id,
+            name=self.name,
+            description=self.description,
+            projected_time=self.projected_time,
             scheduled_time=self.scheduled_time
         )

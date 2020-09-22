@@ -88,8 +88,7 @@ class User(db.Model):
         if 'username' in attrs:
             self.username = attrs.get('username')
         if 'current_program' in attrs:
-            new_program = attrs.get('current_program')
-            self.current_program = None if new_program == -1 else new_program
+            self.current_program = attrs.get('current_program')
 
         try:
             db.session.add(self)
