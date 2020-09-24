@@ -9,3 +9,5 @@ venv
 notes.notes
 # firebase service account credentials file
 stronk-google-credentials.json
+# ignore files from GitHub Codespaces
+pythonenv3.8

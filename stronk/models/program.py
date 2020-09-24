@@ -48,14 +48,21 @@ class Program(db.Model):
                 raise UnexpectedError(DATABASE_ERROR_MSG)
         except DBAPIError as err:
             raise UnexpectedError(DATABASE_ERROR_MSG)
-
-    @staticmethod
-    def find_by_id(id):
-        return Program.query.filter_by(id=id).first()
-
+    
     @staticmethod
     def find_by_author(author):
         return Program.query.filter_by(author=author).all()
+
+    @staticmethod
+    def try_find_by_id(id: int):
+        return Program.query.filter_by(id=id).first()
+
+    @staticmethod
+    def find_by_id(id: int):
+        program = Program.try_find_by_id(id)
+        if not program:
+            raise NotFound(PROGRAM_NOT_FOUND_MSG)
+        return program
 
     def to_dict(self):
         """Returns a dictionary representing the attributes of the program.

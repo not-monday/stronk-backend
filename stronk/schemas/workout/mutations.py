@@ -1,9 +1,6 @@
 import graphene
 from flask import g
 
-from stronk.constants import PROGRAM_NOT_FOUND_MSG, WORKOUT_NOT_FOUND_MSG
-from stronk.errors.not_found import NotFound
-
 from stronk.schemas.workout.type import Workout
 from stronk.schemas.workout_exercise.type import WorkoutExercise as WorkoutExercise
 
@@ -30,9 +27,6 @@ class CreateWorkout(graphene.Mutation):
 
     def mutate(root, info, name: str, program_id: int, scheduled_time: str, description: str = None, projected_time: int = None):
         program = ProgramModel.find_by_id(program_id)
-        if not program:
-            raise NotFound(PROGRAM_NOT_FOUND_MSG)
-
         # convert date time string to datetime object
         formatted_time = date_time_str_to_date(scheduled_time)
 
@@ -62,9 +56,6 @@ class UpdateWorkout(graphene.Mutation):
 
     def mutate(root, info, id: str, name: str = None, description: str = None, projected_time: int = None, scheduled_time: str = None):
         workout = WorkoutModel.find_by_id(id)
-        if not workout:
-            raise NotFound(WORKOUT_NOT_FOUND_MSG)
-        
         is_authorized(workout.author)
 
         attrs = {}
@@ -92,9 +83,6 @@ class DeleteWorkout(graphene.Mutation):
 
     def mutate(root, info, id):
         workout = WorkoutModel.find_by_id(id)
-        if not workout:
-            raise NotFound(WORKOUT_NOT_FOUND_MSG)
-        
         is_authorized(workout.author)
         # delete workout exercises associated with this workout
         WorkoutExerciseModel.deleteWorkoutExercises(id)

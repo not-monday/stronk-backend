@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "43941243-7db5-4ef3-a559-e0e45ca0d6a7",
-		"name": "stronk - richard",
+		"name": "stronk",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -3532,7 +3532,7 @@
 								"body": {
 									"mode": "graphql",
 									"graphql": {
-										"query": "mutation {\n    deleteProgram(id: 4) {\n        ok\n    }\n}",
+										"query": "mutation {\n    deleteProgram(id: -1) {\n        ok\n    }\n}",
 										"variables": ""
 									},
 									"options": {

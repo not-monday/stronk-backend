@@ -2,9 +2,10 @@ from datetime import datetime
 from sqlalchemy.exc import DBAPIError
 
 from stronk import db
-from stronk.constants import DATABASE_ERROR_MSG, INVALID_WORKOUT_START_TIME
+from stronk.constants import DATABASE_ERROR_MSG, INVALID_WORKOUT_START_TIME, WORKOUT_NOT_FOUND_MSG
 from stronk.errors.conflict import Conflict
 from stronk.errors.bad_attributes import BadAttributes
+from stronk.errors.not_found import NotFound
 from stronk.errors.unexpected_error import UnexpectedError
 from stronk.models.user import User
 
@@ -87,8 +88,15 @@ class Workout(db.Model):
             raise BadAttributes(INVALID_WORKOUT_START_TIME)
 
     @staticmethod
-    def find_by_id(id):
+    def try_find_by_id(id: int):
         return Workout.query.filter_by(id=id).first()
+    
+    @staticmethod
+    def find_by_id(id: int):
+        workout = Workout.try_find_by_id(id)
+        if not workout:
+            raise NotFound(WORKOUT_NOT_FOUND_MSG)
+        return workout
 
     def clone(self, user_id: int):
         return Workout.create(

@@ -8,6 +8,7 @@ NOT_FOUND_ERROR_CODE = "NOT_FOUND_ERROR"
 # ERROR MESSAGES
 INVALID_WORKOUT_START_TIME = "Workout cannot be scheduled in the past."
 UNEXPECTED_ERROR_MSG = "An unexpected error has occured."
+EXERCISE_NOT_FOUND_MSG = "Exercise not found."
 PROGRAM_NOT_FOUND_MSG = "Program not found."
 USER_NOT_FOUND_MSG = "User not found."
 WORKOUT_NOT_FOUND_MSG = "Workout not found."

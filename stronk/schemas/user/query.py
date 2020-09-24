@@ -1,8 +1,6 @@
 import graphene
 from flask import g
 
-from stronk.constants import USER_NOT_FOUND_MSG
-from stronk.errors.not_found import NotFound
 from stronk.models.user import User as UserModel
 from stronk.schemas.protected_user.type import ProtectedUser
 from stronk.schemas.user.type import User
@@ -35,8 +33,5 @@ class Query(graphene.ObjectType):
         is type User.
         """
         u = UserModel.find_by_username(username)
-        if not u:
-            raise NotFound(USER_NOT_FOUND_MSG)
-
         return u if u.id == g.id else ProtectedUser(name=u.name,
                                                     username=u.username)

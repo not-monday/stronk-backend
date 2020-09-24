@@ -1,19 +1,17 @@
+from psycopg2.errors import UniqueViolation, ForeignKeyViolation
 from sqlalchemy.exc import DBAPIError
+from sqlalchemy.dialects.postgresql import ARRAY
+from sqlalchemy.orm.exc import NoResultFound
+from sqlalchemy.exc import DBAPIError, IntegrityError
 
 from stronk import db
-from stronk.constants import DATABASE_ERROR_MSG
+from stronk.constants import DATABASE_ERROR_MSG, WORKOUT_EXERCISE_NOT_FOUND_MSG
 from stronk.models.exercise import Exercise
 from stronk.models.workout import Workout
-
 from stronk.errors.unexpected_error import UnexpectedError
 from stronk.errors.conflict import Conflict
 from stronk.errors.bad_attributes import BadAttributes
-
-from sqlalchemy.dialects.postgresql import ARRAY
-from sqlalchemy.orm.exc import NoResultFound
-
-from psycopg2.errors import UniqueViolation, ForeignKeyViolation
-from sqlalchemy.exc import DBAPIError, IntegrityError
+from stronk.errors.not_found import NotFound
 
 MISMATCHED_LENGTHS_ERROR_MSG = "Number of weights needs to be the same as the number of reps"
 
@@ -38,7 +36,7 @@ class WorkoutExercise(db.Model):
 
     @staticmethod
     def create(workout_id, exercise_id, superset_exercise_id, workout_weights, workout_reps, rest_time):
-        workoutExercise = WorkoutExercise(
+        workout_exercise = WorkoutExercise(
             workout_id=workout_id,
             exercise_id=exercise_id,
             superset_exercise_id=superset_exercise_id,
@@ -51,10 +49,10 @@ class WorkoutExercise(db.Model):
             raise BadAttributes(MISMATCHED_LENGTHS_ERROR_MSG)
 
         try:
-            db.session.add(workoutExercise)
+            db.session.add(workout_exercise)
             db.session.commit()
 
-            return workoutExercise
+            return workout_exercise
         except IntegrityError as err:
             if isinstance(err.orig, UniqueViolation):
                 raise Conflict(
@@ -80,7 +78,7 @@ class WorkoutExercise(db.Model):
         }
 
     def get_exercise(self):
-        """Returns Exercise object for the exercise of the workoutExercise. """
+        """Returns Exercise object for the exercise of the workout_exercise. """
         return Exercise.query.filter_by(id=self.exercise_id)
 
     def get_superset_exercise(self):
@@ -89,7 +87,7 @@ class WorkoutExercise(db.Model):
 
 
     def get_workout(self):
-        """Returns Workout object for the workout of the workoutExercise. """
+        """Returns Workout object for the workout of the workout_exercise. """
         return Workout.query.filter_by(id=self.workout_id)
 
     def update(self, attrs):
@@ -166,8 +164,8 @@ class WorkoutExercise(db.Model):
     def deleteWorkoutExercises(workout_id):
         """deletes all workout exercises associated with a workout"""
         workoutExercises = WorkoutExercise.find_workout_exercises(workout_id)
-        for workoutExercise in workoutExercises:
-            workoutExercise.delete()
+        for workout_exercise in workoutExercises:
+            workout_exercise.delete()
 
     @staticmethod
     def find_workout_exercises(workout_id):
@@ -175,6 +173,16 @@ class WorkoutExercise(db.Model):
         return WorkoutExercise.query.filter_by(workout_id=workout_id)
 
     @staticmethod
-    def find_workout_exercise(workout_id, exercise_id):
+    def try_find_workout_exercise(workout_id, exercise_id):
         """Returns the workout exercise for a workout"""
         return WorkoutExercise.query.filter_by(workout_id=workout_id).filter_by(exercise_id=exercise_id).first()
+
+    @staticmethod
+    def find_workout_exercise(workout_id, exercise_id):
+        """Returns the workout exercise for a workout. Raises NotFound exception
+        if not found.
+        """
+        workout_exercise = WorkoutExercise.try_find_workout_exercise(workout_id, exercise_id)
+        if not workout_exercise:
+            raise NotFound(WORKOUT_EXERCISE_NOT_FOUND_MSG)
+        return workout_exercise

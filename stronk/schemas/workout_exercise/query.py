@@ -22,4 +22,4 @@ class Query(graphene.ObjectType):
     def resolve_workout_exercise(root, info, workout_id: int, exercise_id: int):
         """Search for a specific workout exercise for a given workout 
         """
-        return WorkoutExerciseModel.find_workout_exercise(workout_id=workout_id, exercise_id=exercise_id)
+        return WorkoutExerciseModel.try_find_workout_exercise(workout_id=workout_id, exercise_id=exercise_id)
