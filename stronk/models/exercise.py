@@ -2,8 +2,9 @@ import string
 from psycopg2.errors import UniqueViolation
 from sqlalchemy.exc import DBAPIError, IntegrityError
 
-from stronk.constants import DATABASE_ERROR_MSG
+from stronk.constants import DATABASE_ERROR_MSG, EXERCISE_NOT_FOUND_MSG
 from stronk.errors.conflict import Conflict
+from stronk.errors.not_found import NotFound
 from stronk.errors.unexpected_error import UnexpectedError
 
 from stronk import db
@@ -37,8 +38,18 @@ class Exercise(db.Model):
             raise UnexpectedError(DATABASE_ERROR_MSG)
 
     @staticmethod
-    def find_by_id(id):
+    def try_find_by_id(id: int):
         return Exercise.query.filter_by(id=id).first()
+
+    @staticmethod
+    def find_by_id(id: int):
+        """Returns the exercise with id. Raises a NotFound exception
+        if the exercise does not exist.
+        """
+        exercise = Exercise.try_find_by_id(id)
+        if not exercise:
+            raise NotFound(EXERCISE_NOT_FOUND_MSG)
+        return exercise
 
     def to_dict(self):
         """Returns a dictionary representing the attributes of the program.

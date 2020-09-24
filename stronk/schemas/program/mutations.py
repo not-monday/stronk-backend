@@ -2,8 +2,6 @@ import graphene
 
 from flask import g
 
-from stronk.constants import PROGRAM_NOT_FOUND_MSG, USER_NOT_FOUND_MSG
-from stronk.errors.not_found import NotFound
 from stronk.models.program import Program as ProgramModel
 from stronk.models.program_workouts import ProgramWorkouts as ProgramWorkoutsModel
 from stronk.models.user import User as UserModel
@@ -33,7 +31,7 @@ class CreateProgram(graphene.Mutation):
 
 
 class UpdateProgram(graphene.Mutation):
-    """Update an existing program. Throws a NotFound error if program not found.
+    """Update an existing program.
 
     Author is a user's username.
     """
@@ -50,16 +48,11 @@ class UpdateProgram(graphene.Mutation):
     def mutate(root, info, id: int, author: str = None, name: str = None,
                duration: int = None, desc: str = None):
         program = ProgramModel.find_by_id(id)
-        if not program:
-            raise NotFound(PROGRAM_NOT_FOUND_MSG)
-
         is_authorized(program.author)
 
         attrs = {}
         if author:
             user = UserModel.find_by_username(author)
-            if not user:
-                raise NotFound(USER_NOT_FOUND_MSG)
             attrs['author'] = user.id
         if name:
             attrs['name'] = name
@@ -81,9 +74,6 @@ class DeleteProgram(graphene.Mutation):
 
     def mutate(root, info, id: int):
         program = ProgramModel.find_by_id(id)
-        if not program:
-            raise NotFound(PROGRAM_NOT_FOUND_MSG)
-
         is_authorized(program.author)
 
         # delete program workout associations

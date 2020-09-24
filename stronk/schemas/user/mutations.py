@@ -3,7 +3,6 @@ from flask import g
 
 from stronk.constants import PROGRAM_NOT_FOUND_MSG, WORKOUT_NOT_FOUND_MSG, USER_NOT_FOUND_MSG
 
-from stronk.errors.not_found import NotFound
 from stronk.models.user import User as UserModel
 
 from stronk.business.program import cloneProgram, deletePrograms
@@ -44,9 +43,6 @@ class UpdateUser(graphene.Mutation):
 
     def mutate(root, info, username, name=None, email=None, currentProgram=None):
         user = UserModel.find_by_username(username)
-        if not user:
-            raise NotFound(USER_NOT_FOUND_MSG)
-        
         is_authorized(user.id)
 
         attrs = {}
@@ -73,9 +69,6 @@ class DeleteUser(graphene.Mutation):
 
     def mutate(root, info, username):
         user = UserModel.find_by_username(username)
-        if not user:
-            raise NotFound(USER_NOT_FOUND_MSG)
-        
         is_authorized(user.id)
 
         deletePrograms(user_id=user.id)

@@ -1,7 +1,6 @@
 import graphene
 from flask import g
 
-from stronk.constants import PROGRAM_NOT_FOUND_MSG
 from stronk.errors.bad_attributes import BadAttributes
 from stronk.errors.not_found import NotFound
 from stronk.models.program import Program as ProgramModel
@@ -21,8 +20,7 @@ class CreateProgramReview(graphene.Mutation):
     def mutate(root, info, program_id: int, rating: int, comments: str):
         if rating > 5 or rating < 0:
             raise BadAttributes("rating must be between 1 and 5 inclusive.")
-        if not ProgramModel.find_by_id(program_id):
-            raise NotFound(PROGRAM_NOT_FOUND_MSG)
+        ProgramModel.find_by_id(program_id)
         program_review = ProgramReviewsModel.create(reviewer_id=g.id,
                                                     program_id=program_id,
                                                     rating=rating,

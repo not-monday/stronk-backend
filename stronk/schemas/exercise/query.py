@@ -1,7 +1,5 @@
 import graphene
 
-from stronk.constants import USER_NOT_FOUND_MSG
-from stronk.errors.not_found import NotFound
 from stronk.models.exercise import Exercise as ExerciseModel
 from stronk.models.user import User as UserModel
 from stronk.schemas.exercise.type import Exercise
@@ -20,9 +18,6 @@ class Query(graphene.ObjectType):
         query = Exercise.get_query(info)
         if author:
             user = UserModel.find_by_username(author)
-            if not user:
-                raise NotFound(USER_NOT_FOUND_MSG)
-
             return (query
                     .order_by(ExerciseModel.name.desc())
                     .filter(ExerciseModel.author == user.id)

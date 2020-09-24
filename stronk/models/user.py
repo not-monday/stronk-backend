@@ -2,9 +2,10 @@ from flask import current_app
 from psycopg2.errors import UniqueViolation, ForeignKeyViolation
 from sqlalchemy.exc import DBAPIError, IntegrityError
 
-from stronk.constants import DATABASE_ERROR_MSG
+from stronk.constants import DATABASE_ERROR_MSG, USER_NOT_FOUND_MSG
 from stronk.errors.bad_attributes import BadAttributes
 from stronk.errors.conflict import Conflict
+from stronk.errors.not_found import NotFound
 from stronk.errors.unexpected_error import UnexpectedError
 
 from stronk import db
@@ -49,12 +50,32 @@ class User(db.Model):
             raise UnexpectedError(DATABASE_ERROR_MSG)
 
     @staticmethod
-    def find_by_id(id):
+    def try_find_by_id(id: str):
         return User.query.filter_by(id=id).first()
 
     @staticmethod
-    def find_by_username(username):
+    def find_by_id(id: str):
+        """Returns the user with id. Raises a NotFound exception
+        if the user does not exist.
+        """
+        user = User.try_find_by_id(id)
+        if not user:
+            raise NotFound(USER_NOT_FOUND_MSG)
+        return user
+
+    @staticmethod
+    def try_find_by_username(username: str):
         return User.query.filter_by(username=username).first()
+    
+    @staticmethod
+    def find_by_username(username: str):
+        """Returns the user with username. Raises a NotFound exception
+        if the user does not exist.
+        """
+        user = User.query.filter_by(username=username).first()
+        if not user:
+            raise NotFound(USER_NOT_FOUND_MSG)
+        return user
 
     @staticmethod
     def find_by_program_id(program_id):

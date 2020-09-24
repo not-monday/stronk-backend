@@ -1,7 +1,6 @@
 from flask import g
 import graphene
 
-from stronk.errors.not_found import NotFound
 from stronk.models.exercise import Exercise as ExerciseModel
 from stronk.models.user import User as UserModel
 from stronk.schemas.exercise.type import Exercise
@@ -40,9 +39,6 @@ class UpdateExercise(graphene.Mutation):
 
     def mutate(root, info, id, name=None, desc=None, author=None):
         exercise = ExerciseModel.find_by_id(id)
-        if not exercise:
-            raise NotFound("Exercise not found.")
-
         is_authorized(exercise.author)
 
         attrs = {}
@@ -52,8 +48,6 @@ class UpdateExercise(graphene.Mutation):
             attrs['description'] = desc
         if author:
             user = UserModel.find_by_username(author)
-            if not user:
-                raise NotFound(USER_NOT_FOUND_MSG)
             attrs['author'] = user.id
         exercise.update(attrs)
 
@@ -69,9 +63,6 @@ class DeleteExercise(graphene.Mutation):
 
     def mutate(root, info, id):
         exercise = ExerciseModel.find_by_id(id)
-        if not exercise:
-            raise NotFound("Exercise not found.")
-
         is_authorized(exercise.author)
 
         exercise.delete()

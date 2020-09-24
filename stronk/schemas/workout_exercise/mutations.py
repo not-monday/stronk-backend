@@ -1,8 +1,5 @@
 import graphene
 
-from stronk.constants import WORKOUT_EXERCISE_NOT_FOUND_MSG
-from stronk.errors.not_found import NotFound
-
 from stronk.schemas.workout_exercise.type import WorkoutExercise as WorkoutExercise
 from stronk.models.workout_exercise import WorkoutExercise as WorkoutExerciseModel
 
@@ -22,9 +19,9 @@ class AddWorkoutExercise(graphene.Mutation):
         rest_time = graphene.Int(required=True)
 
     def mutate(root, info, workout_id: str, exercise_id: str, workout_weights: int, workout_reps: int, rest_time: int, superset_exercise_id:str=None):
-        workoutExercise = WorkoutExerciseModel.create(
+        workout_exercise = WorkoutExerciseModel.create(
             workout_id, exercise_id, superset_exercise_id, workout_weights, workout_reps, rest_time)
-        return AddWorkoutExercise(workoutExercise=workoutExercise)
+        return AddWorkoutExercise(workoutExercise=workout_exercise)
 
 
 class UpdateWorkoutExercise(graphene.Mutation):
@@ -42,11 +39,8 @@ class UpdateWorkoutExercise(graphene.Mutation):
         rest_time = graphene.Int(required=False)
 
     def mutate(root, info, workout_id, exercise_id, workout_weights, workout_reps, rest_time, superset_exercise_id:str=None):
-        workoutExercise = WorkoutExerciseModel.find_workout_exercise(
+        workout_exercise = WorkoutExerciseModel.find_workout_exercise(
             workout_id, exercise_id)
-        if not workoutExercise:
-            raise NotFound(WORKOUT_EXERCISE_NOT_FOUND_MSG)
-
         attrs = {}
         if superset_exercise_id:
             attrs["superset_exercise_id"] = superset_exercise_id
@@ -56,9 +50,9 @@ class UpdateWorkoutExercise(graphene.Mutation):
             attrs["workout_reps"] = workout_reps
         if rest_time:
             attrs["rest_time"] = rest_time
-        workoutExercise.update(attrs)
+        workout_exercise.update(attrs)
 
-        return UpdateWorkoutExercise(workoutExercise=workoutExercise)
+        return UpdateWorkoutExercise(workoutExercise=workout_exercise)
 
 class RemoveSuperSetExercise(graphene.Mutation):
     """ removes a superset from an exercise for a workout
@@ -70,14 +64,11 @@ class RemoveSuperSetExercise(graphene.Mutation):
         exercise_id = graphene.Int(required=True)
 
     def mutate(root, info, workout_id, exercise_id):
-        workoutExercise = WorkoutExerciseModel.find_workout_exercise(
+        workout_exercise = WorkoutExerciseModel.find_workout_exercise(
             workout_id, exercise_id)
-        if not workoutExercise:
-            raise NotFound(WORKOUT_EXERCISE_NOT_FOUND_MSG)
+        workout_exercise.removeSuperSet()
 
-        workoutExercise.removeSuperSet()
-
-        return RemoveSuperSetExercise(workoutExercise=workoutExercise)
+        return RemoveSuperSetExercise(workoutExercise=workout_exercise)
     
 class DeleteWorkoutExercise(graphene.Mutation):
     """ deletes an exercise workout from a workout
@@ -90,12 +81,9 @@ class DeleteWorkoutExercise(graphene.Mutation):
         exercise_id = graphene.Int(required=True)
 
     def mutate(root, info, workout_id: str, exercise_id: str):
-        workoutExercise = WorkoutExerciseModel.find_workout_exercise(
+        workout_exercise = WorkoutExerciseModel.find_workout_exercise(
             workout_id, exercise_id)
-        if not workoutExercise:
-            raise NotFound(WORKOUT_EXERCISE_NOT_FOUND_MSG)
-
-        workoutExercise.delete()
+        workout_exercise.delete()
         ok = True
 
         return DeleteWorkoutExercise(ok=ok)

@@ -19,7 +19,7 @@ class User(SQLAlchemyObjectType):
     weights = graphene.List(Weight)
 
     def resolve_currentProgram(root, info):
-        return ProgramModel.find_by_id(root.current_program)
+        return ProgramModel.try_find_by_id(root.current_program)
 
     def resolve_weights(root, info, start: str = None, end: str = None):
         """Get the weight of user. Defaults to last 5 entries.
